@@ -1,6 +1,12 @@
 class CustomerPet < ApplicationRecord
   belongs_to :customer
+  has_one_attached :image
 
+  #バリデーション
+  validates :name, presence: true
+  validates :age, presence: true
+  validates :weight, presence: true
+  validates :characteristics, presence: true
 
   # ペットの状況
   enum pet_status: { normal: 0, lost: 1, found: 2, resolved: 3 }
