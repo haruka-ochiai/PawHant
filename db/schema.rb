@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_09_040241) do
+ActiveRecord::Schema.define(version: 2023_09_09_080927) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,7 +52,26 @@ ActiveRecord::Schema.define(version: 2023_09_09_040241) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "customer_pets", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "pet_status", default: 0, null: false
+    t.integer "species", default: 0, null: false
+    t.string "name", null: false
+    t.integer "gender", default: 0, null: false
+    t.string "age", null: false
+    t.integer "weight", default: 1, null: false
+    t.text "characteristics", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_customer_pets_on_customer_id"
+  end
+
   create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "phone_number", null: false
+    t.string "postcode", null: false
+    t.string "address", null: false
+    t.boolean "active", default: true, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -64,6 +83,26 @@ ActiveRecord::Schema.define(version: 2023_09_09_040241) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "pet_posts", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "pet_status", default: 1, null: false
+    t.integer "species", default: 0, null: false
+    t.string "name", null: false
+    t.integer "gender", default: 2, null: false
+    t.string "age", null: false
+    t.string "prefecture", null: false
+    t.text "area", null: false
+    t.date "occurred_on", null: false
+    t.integer "weight", default: 1, null: false
+    t.text "characteristics", null: false
+    t.text "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_pet_posts_on_customer_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "customer_pets", "customers"
+  add_foreign_key "pet_posts", "customers"
 end

@@ -1,2 +1,0 @@
-class Sighting < ApplicationRecord
-end
