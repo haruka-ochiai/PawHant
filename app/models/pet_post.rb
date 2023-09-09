@@ -1,0 +1,2 @@
+class PetPost < ApplicationRecord
+end
