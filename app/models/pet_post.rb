@@ -1,10 +1,11 @@
 class PetPost < ApplicationRecord
+  has_one_attached :image
+
   belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :sightings, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags,　through: :taggings
-
   # 通知
   has_one :notification, as: :subject, dependent: :destroy
 
@@ -17,7 +18,13 @@ class PetPost < ApplicationRecord
   validates :characteristics, presence: true
   validates :description, presence: true
 
-  has_one_attached :image
+  def get_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/animal-no-image.jpg')
+      product_image.attach(io: File.open(file_path), filename: 'animal-no-image.jpg', content_type: 'image/jpg')
+    end
+    product_image.variant(resize_to_limit: [width, height]).processed
+  end
 
   # ペットの状況
   enum pet_status: { normal: 0, lost: 1, found: 2, resolved: 3 }
