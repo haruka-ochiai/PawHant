@@ -1,0 +1,39 @@
+<%= form_with model: customer, url: customer_path, method: :patch do |f| %>
+  <table class="table table-borderless">
+    <tr>
+      <td>ユーザー名</td>
+      <td>
+        <%= f.text_field :name, autofocus: true %>
+      </td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td>
+        <%= f.text_field :email %>
+      </td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td>
+        <%= f.text_field :postcode %>
+      </td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td>
+        <%= f.text_field :address %>
+      </td>
+    </tr>
+    <tr>
+      <td>電話番号(ハイフンなし)</td>
+      <td>
+        <%= f.text_field :phone_number %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "編集内容を保存", class:"btn btn-outline-secondary" %></td>
+      <td><%= link_to "退会する", check_customers_path, class:"btn btn-outline-danger" %></td>
+    </tr>
+  </table>
+<% end %>

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg py-4 navbar-light">
+  <div class = "container-fluid border-bottom">
+    <%= link_to root_path, class: "mx-0" do %>
+      <%= image_tag "logo.png", alt: "LOGO", size: "280x80" %>
+    <% end %>
+    <div class="d-flex flex-column">
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav ml-auto">
+          <% if customer_signed_in? %>
+            <li class="nav-item"><%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "迷子保護情報一覧", pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "グループ一覧", groups_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item"><%= link_to "商品一覧", admin_products_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "会員一覧", admin_customers_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "ジャンル一覧", admin_categories_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"> <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"> <%= link_to "About", about_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item">  <%= link_to "情報一覧", pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
+             </ul>
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdownMenu" aria-expanded="false">
+              情報一覧
+            </button>
+            <ul class="dropdown-menu" id="dropdownMenu">
+              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
+              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
+              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
+            </ul>
+
+            </div>
+        <% end %>
+
+        <%= render 'layouts/search_form' %>
+      </div>
+    </div>
+  </div>
+</nav>
