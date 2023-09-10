@@ -1,2 +1,17 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 sm-10">
+      <h4 >マイページ</h4>
+      <div class="py-3">
+        <%= link_to "迷子補情報を登録", new_pet_post_path, class:"btn btn-outline-secondary mb-2" %>
+        <%= link_to "参加しているグループ一覧", groups_path, class:"btn btn-outline-secondary mb-2" %><br>
+        <%= link_to "いいねした投稿", pet_posts_path, class:"btn btn-outline-secondary pt-2" %>
+        <%= link_to "自分の投稿", pet_posts_path, class:"btn btn-outline-secondary pt-2" %>
+      </div>
+      <%=render 'info', customer:  @customer %>
+    </div>
+    <div class="col-md-5 offset-md-1 sm-10">
+      <%=render 'public/customers_pets/info', customer:  @customer %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+  <tr>
+    <td class="bg-light">氏名</td>
+    <td><%= customer.name %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">郵便番号</td>
+    <td><%= customer.postcode %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">住所</td>
+    <td><%= customer.address %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">電話番号</td>
+    <td><%= customer.phone_number %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">メールアドレス</td>
+    <td><%= customer.email %></td>
+  </tr>
+</table>
+
+<%= link_to "編集する",  edit_customer_path, class: "btn btn-outline-info" %>
