@@ -17,10 +17,9 @@
             <li class="nav-item"><%= link_to "グループ一覧", groups_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
           <% elsif admin_signed_in? %>
-            <li class="nav-item"><%= link_to "商品一覧", admin_products_path, class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item"><%= link_to "会員一覧", admin_customers_path, class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item"><%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item"><%= link_to "ジャンル一覧", admin_categories_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "顧客一覧", admin_customers_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "迷子保護情報一覧", admin_pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item"><%= link_to "グループ一覧", admin_groups_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
           <% else %>
             <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "btn btn-light nav-link ml-2" %></li>

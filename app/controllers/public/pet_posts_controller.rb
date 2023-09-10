@@ -6,9 +6,11 @@ class Public::PetPostsController < ApplicationController
   end
 
   def new
+
   end
 
   def create
+   
   end
 
   def edit
@@ -18,5 +20,20 @@ class Public::PetPostsController < ApplicationController
   end
 
   def destroy
+  end
+
+   private
+
+  def customer_pet_params
+    params.require(:customer_pet).permit(
+                                          :customer_id,
+                                          :image,
+                                          :pet_status,
+                                          :species,
+                                          :name,
+                                          :gender,
+                                          :age,
+                                          :weight,
+                                          :characteristics)
   end
 end

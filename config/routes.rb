@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :pet_posts, only: [:destroy]
+    resources :pet_posts, only: [:index, :destroy]
     resources :comments, only: [:destroy]
-    resources :groups, only: [:destroy]
+    resources :groups, only: [:index, :destroy]
     end
 
   # 会員側のルーティング
