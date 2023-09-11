@@ -10,7 +10,16 @@ class Public::PetPostsController < ApplicationController
   end
 
   def create
-
+    @pet_post = PetPost.new(pet_post_params)
+    @pet_post.customer_id = current_customer.id
+     # 受け取った値を,で区切って配列にする
+    tag_list = params[:pet_post][:tag_name].split(',')
+    if @pet_post.save
+      @pet_post.save_tags(tag_list)
+      redirect_to root_path, notice:'投稿が完了しました'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -24,16 +33,25 @@ class Public::PetPostsController < ApplicationController
 
    private
 
-  def customer_pet_params
-    params.require(:customer_pet).permit(
-                                          :customer_id,
-                                          :image,
-                                          :pet_status,
-                                          :species,
-                                          :name,
-                                          :gender,
-                                          :age,
-                                          :weight,
-                                          :characteristics)
+  def pet_post_params
+    params.require(:pet_post).permit(
+                                      :customer_id,
+                                      :image,
+                                      :pet_status,
+                                      :species,
+                                      :gender,
+                                      :age,
+                                      :prefecture,
+                                      :area,
+                                      :occurred_on,
+                                      :weight,
+                                      :characteristics,
+                                      :description,
+                                      :tag_name)
+  end
+
+
+  def tag_params # tagに関するストロングパラメータ
+    params.require(:pet_post).permit(:tag_name)
   end
 end

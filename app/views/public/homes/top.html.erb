@@ -1,2 +1,28 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4>迷子情報一覧</h4>
+    <% @pet_posts.each do |pet_post| %>
+      <div class="col-sm-3 mt-3 px-1">
+        <div class="card">
+          <%= link_to pet_post_path(pet_post) do %>
+            <%= image_tag pet_post.get_image(500, 500), size: "150x150", class: "w-100 rounded" %>
+          <% end %>
+          <div class="card-body">
+            <div class="card-title">
+              <h6>
+                <%= link_to customer.name, pet_post_path(pet_post) %>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0">
+            <h6>発生日<%= pet_post.occurred_on %></h6>
+          </div>
+          <% @tag_list.each do |list|%>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%=link_to list.name, root_path(tag_id: list.id) %>
+            <%="(#{list.pet_posts.count})" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
