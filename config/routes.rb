@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy]
     resources :groups, only: [:index, :destroy]
     end
+    
+  # ゲストログイン
+  devise_scope :customer do
+    post "customers/guest_sign_in", to: "customers/sessions#guest_sign_in"
+  end
 
   # 会員側のルーティング
   scope module: :public do
@@ -34,7 +39,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :comments, only: [:create]
       resource :sightings, only: [:create, :destroy]
     end
