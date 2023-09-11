@@ -33,13 +33,6 @@
           restrict_dependent_destroy:
             has_one: "%{record}が存在しているので削除できません"
             has_many: "%{record}が存在しているので削除できません"
-      models:
-         customer:
-            email: "メールアドレス"
-            name: "名前"
-            postcode: "郵便番号"
-            address: "住所"
-            phone_number: "電話番号"
     date:
       abbr_day_names:
       - 日

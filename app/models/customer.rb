@@ -15,9 +15,24 @@ class Customer < ApplicationRecord
 
   #バリデーション
   validates :name, presence: true
-  validates :postcode, presence: true
-  validates :address, presence: true
-  validates :phone_number, presence: true
+  validates :postcode, presence: true, unless: -> { is_guest }
+  validates :address, presence: true, unless: -> { is_guest }
+  validates :phone_number, presence: true, unless: -> { is_guest }
   validates :email, presence: true, uniqueness: true
+
+
+  # ゲストログイン
+  GUEST_CUSTOMER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_CUSTOMER_EMAIL) do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "guestuser"
+      customer.postcode = ""
+      customer.phone_number = ""
+      customer.address = ""
+      customer.is_guest = true # ゲストユーザーであることを示すフラグ
+    end
+  end
 
 end
