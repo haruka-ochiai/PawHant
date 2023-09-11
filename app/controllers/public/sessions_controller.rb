@@ -15,6 +15,7 @@ class Public::SessionsController < Devise::SessionsController
       root_path
   end
 
+
   #ログイン時のバリデーション
   protected
 

@@ -1,2 +1,9 @@
-<h1>Public::PetPosts#new</h1>
-<p>Find me in app/views/public/pet_posts/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 sm-5">
+      <h4 class="my-3 ml-4">保護迷子情報新規登録</h4>
+      <%= render 'layouts/error', obj: @pet_post %>
+      <%= render 'form', customer: @customer, customer_pet: @customer_pet %>
+    </div>
+  </div>
+</div>

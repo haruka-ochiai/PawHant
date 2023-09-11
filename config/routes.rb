@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy]
     resources :groups, only: [:index, :destroy]
     end
-    
+
   # ゲストログイン
   devise_scope :customer do
     post "customers/guest_sign_in", to: "customers/sessions#guest_sign_in"
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:show, :edit, :update] do
       member do
-      resources :customers_pets, only: [:new, :create, :edit, :update, :destroy]
+      resources :customer_pets, only: [:new, :create, :edit, :update, :destroy]
       end
       collection do
         get 'check' => 'customers#check'

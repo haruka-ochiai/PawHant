@@ -1,0 +1,34 @@
+<table class="table table-bordered">
+  <tr>
+    <td class="bg-light">ユーザー名</td>
+    <td><%= customer.name %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">郵便番号</td>
+    <td><%= customer.postcode %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">住所</td>
+    <td><%= customer.address %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">電話番号</td>
+    <td><%= customer.phone_number %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">メールアドレス</td>
+    <td><%= customer.email %></td>
+  </tr>
+  <tr>
+    <td class="bg-light">ステータス</td>
+    <td>
+      <% if customer.active == true %>
+          <p>有効</p>
+      <% else %>
+          <p class="text-danger">アカウント停止</p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<%= link_to "編集する",  edit_admin_customer_path, class: "btn btn-outline-info" %>
