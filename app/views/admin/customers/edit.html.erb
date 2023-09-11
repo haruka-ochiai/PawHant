@@ -1,2 +1,9 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 sm-5">
+      <%= render 'layouts/error', obj: @customer %>
+      <h4 class="my-3 ml-4">会員情報編集</h4>
+      <%=render 'form', customer:  @customer %>
+    </div>
+  </div>
+</div>

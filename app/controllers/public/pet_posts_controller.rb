@@ -6,11 +6,11 @@ class Public::PetPostsController < ApplicationController
   end
 
   def new
-
+    @pet_post = PetPost.new
   end
 
   def create
-   
+
   end
 
   def edit

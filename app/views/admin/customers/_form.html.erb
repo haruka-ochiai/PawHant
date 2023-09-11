@@ -1,0 +1,45 @@
+<%= form_with model: customer, url: admin_customer_path, method: :patch do |f| %>
+  <table class="table table-borderless">
+    <tr>
+      <td>ユーザー名</td>
+      <td>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td>
+        <%= f.text_field :email, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td>
+        <%= f.text_field :postcode, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td>
+        <%= f.text_field :address, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td>電話番号(ハイフンなし)</td>
+      <td>
+        <%= f.text_field :phone_number, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td>会員ステータス</td>
+      <td>
+          <%= f.radio_button :active, true %><%= f.label :有効 %>
+          <%= f.radio_button :active, false %><%= f.label :アカウント停止 %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "変更を保存", class: "btn btn-outline-secondary" %></td>
+    </tr>
+  </table>
+<% end %>

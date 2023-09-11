@@ -1,35 +1,41 @@
 <% if customer.customer_pets.any? %>
-  <h2>ペット情報</h2>
+  <h4>ペット情報</h4>
+    <% pet = customer.customer_pets.first %>
     <table class="table table-bordered">
     <tr>
+      <td class="bg-light">ペットの画像</td>
+      <td><%= pet.image %></td>
+    </tr>
+    <tr>
       <td class="bg-light">ペットの種類</td>
-      <td><%= customer.customer_pets.species %></td>
+      <td><%= pet.species %></td>
     </tr>
     <tr>
       <td class="bg-light">ペットの名前</td>
-      <td><%= customer.customer_pets.name %></td>
+      <td><%= pet.name %></td>
     </tr>
     <tr>
       <td class="bg-light">性別</td>
-      <td><%= customer.customer_pets.gender %></td>
+      <td><%= pet.gender %></td>
     </tr>
     <tr>
       <td class="bg-light">年齢</td>
-      <td><%= customer.customer_pets.age %></td>
+      <td><%= pet.age %></td>
     </tr>
     <tr>
       <td class="bg-light">体重</td>
-      <td><%= customer.customer_pets.weight %></td>
+      <td><%= pet.weight %></td>
     </tr>
     <tr>
       <td class="bg-light">特徴</td>
-      <td><%= customer.customer_pets.characteristics %></td>
+      <td><%= pet.characteristics %></td>
     </tr>
   </table>
+  <%= link_to "編集する", edit_customer_pet_path, class: "btn btn-outline-info" %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->
   <h4 class="my-4">ペット情報はまだ登録されていません。</h4>
-  <%= link_to "ペットを登録する", new_customers_pet_path, class: "btn btn-outline-warning" %>
+  <%= link_to "ペットを登録する", new_customer_pet_path, class: "btn btn-outline-warning" %>
 <% end %>
 
 

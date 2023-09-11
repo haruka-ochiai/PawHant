@@ -1,4 +1,4 @@
-<%= form_with model: customers_pet, url:  customer_pets_path, method: :post do |f| %>
+<%= form_with model: pet_post, url: customer_pets_path, method: :post do |f| %>
     <div class="form-group">
       <%= f.label :image, "ペット画像" %>
       <%= f.file_field :image, accept: "image/*", class: "form-control" %>
@@ -10,34 +10,34 @@
     <div class="form-group">
       <%= f.label :species, "ペットの種類" %>
       <div class="form-check">
-        <%= f.radio_button :species, 'dog', class: "form-check-input" %>
+        <%= f.radio_button :species, '犬', class: "form-check-input" %>
         <%= f.label :犬, class: "form-check-label" %>
       </div>
       <div class="form-check">
-        <%= f.radio_button :species, 'cat', class: "form-check-input" %>
+        <%= f.radio_button :species, '猫', class: "form-check-input" %>
         <%= f.label :猫, class: "form-check-label" %>
       </div>
       <div class="form-check">
-        <%= f.radio_button :species, 'bird', class: "form-check-input" %>
+        <%= f.radio_button :species, '鳥', class: "form-check-input" %>
         <%= f.label :鳥, class: "form-check-label" %>
       </div>
       <div class="form-check">
-        <%= f.radio_button :species, 'other', class: "form-check-input" %>
+        <%= f.radio_button :species, 'その他', class: "form-check-input" %>
         <%= f.label :その他, class: "form-check-label" %>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :gender, "ペットの性別" %>
       <div class="form-check">
-        <%= f.radio_button :gender, 'male', class: "form-check-input" %>
+        <%= f.radio_button :gender, 'オス', class: "form-check-input" %>
         <%= f.label :オス, class: "form-check-label" %>
       </div>
       <div class="form-check">
-        <%= f.radio_button :gender, 'female', class: "form-check-input" %>
+        <%= f.radio_button :gender, 'メス', class: "form-check-input" %>
         <%= f.label :メス, class: "form-check-label" %>
       </div>
       <div class="form-check">
-        <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
+        <%= f.radio_button :gender, '不明', class: "form-check-input" %>
         <%= f.label :不明, class: "form-check-label" %>
       </div>
     </div>
@@ -58,4 +58,13 @@
       <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
     </div>
 
+<% end %>
+
+<!-- 新規登録フォーム -->
+<%= form_with model: Topic.new, url: topics_path do |f| %>
+  <%= f.label :title, "タイトル" %>
+  <%= f.text_field :title %>
+  <%= f.label :name, "タグ(半角スペースで複数個登録できます)" %>
+  <%= f.text_field :name %>
+  <%= f.submit "登録" %>
 <% end %>
