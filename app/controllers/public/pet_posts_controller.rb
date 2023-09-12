@@ -1,10 +1,12 @@
 class Public::PetPostsController < ApplicationController
   def index
     @pet_posts = PetPost.all
+    @tag_list = Tag.all
   end
 
   def show
     @pet_post = PetPost.find(params[:id])
+    @pet_post_tags = @pet_post.tags
   end
 
   def new
@@ -15,11 +17,9 @@ class Public::PetPostsController < ApplicationController
   def create
     @pet_post = PetPost.new(pet_post_params)
     @pet_post.customer_id = current_customer.id
-    # tag_paramsをsplitメソッドを用いて配列に変換する
-    input_tags = tag_params[:tag_name].to_s.split
-    # create_tagsはtopic.rbにメソッドを記載している
-    @pet_post.create_tags(input_tags)
+    tag_list = params[:pet_post][:tag_name].split(',')
     if @pet_post.save
+      @pet_post.save_tag(tag_list)
       flash[:notice] = "投稿に成功しました"
       redirect_to pet_post_path(@pet_post)
     else

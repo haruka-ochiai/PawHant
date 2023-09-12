@@ -33,7 +33,6 @@
     <%= f.label :address, "年齢" %>
     <%= f.text_field :age, class: "form-control" %>
   </div>
-
   <div class="form-group">
     <%= f.label :weight, "体重" %>
     <%= f.select :weight, CustomerPet.weights_i18n.keys.map { |key| [t("enums.weight.#{key}"), key] }, {}, class: "form-control" %>
@@ -60,7 +59,7 @@
   </div>
   <div class="form-group">
     <%= f.label :tag_name, "タグ(半角スペースで複数個登録できます)" %>
-    <%= f.text_field :tag_name, class: 'form-control' %>
+    <%= f.text_field :tag_name %>
   </div>
   <div class="form-group">
     <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>

@@ -52,6 +52,13 @@
         <td><%= pet_post.description %></td>
       </tr>
       <tr>
+        <td class="bg-light">タグ</td>
+        <td><% pet_post_tags.each do |tag| %>
+              <%= link_to "##{tag.tag_name}", root_path %>
+            <% end %>
+        </td>
+      </tr>
+      <tr>
         <td class="bg-light">投稿者</td>
         <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>
       </tr>

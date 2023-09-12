@@ -8,21 +8,7 @@
     </div>
     <% @pet_posts.each do |pet_post| %>
       <% if pet_post.lost? %>
-        <div class="col-sm-3 mt-3 px-1">
-          <div class="card">
-            <%= link_to pet_post_path(pet_post.id) do %>
-              <%= image_tag pet_post.get_image(500, 500), size: "150x150", class: "w-100 rounded" %>
-            <% end %>
-            <div class="card-body">
-              <div class="card-title">
-                <h6>投稿者 <%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></h6>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent border-0">
-              <h6>発生日<%= pet_post.occurred_on %></h6>
-            </div>
-          </div>
-        </div>
+        <%= render 'public/pet_posts/list', pet_post: pet_post, tag_list: @tag_list %>
       <% end %>
     <% end %>
   </div>

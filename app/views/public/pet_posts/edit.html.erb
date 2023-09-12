@@ -4,6 +4,10 @@
       <h4 class="my-3 ml-4">投稿編集ページ</h4>
         <%= form_with model: @pet_post, url: pet_post_path, method: :patch do |f| %>
           <div class="form-group">
+            <%= f.label :image, "ペット画像" %>
+            <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+          </div>
+          <div class="form-group">
             <%= f.label :pet_status, "ペット状況" %>
             <div class="form-check">
               <%= f.radio_button :pet_status, 'lost', class: "form-check-input" %>
