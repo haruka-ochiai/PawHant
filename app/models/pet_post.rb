@@ -35,14 +35,14 @@ class PetPost < ApplicationRecord
     new_tags = sent_tags - current_tags
 
     # 古いタグを消す
-    old_tags.each do |old|
-      self.tags.delete　Tag.find_by(tag_name: old)
+    old_tags.each do |old_tag_name|
+      self.tags.delete_all
     end
 
     # 新しいタグを保存
-    new_tags.each do |new|
-      new_post_tag = Tag.find_or_create_by(tag_name: new)
-      self.tags << new_post_tag
+    new_tags.each do |new_tag_name|
+      new_pet_post_tag = Tag.find_or_create_by(tag_name: new_tag_name)
+      self.tags << new_pet_post_tag
    end
   end
 

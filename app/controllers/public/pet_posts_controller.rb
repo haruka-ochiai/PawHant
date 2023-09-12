@@ -17,7 +17,7 @@ class Public::PetPostsController < ApplicationController
   def create
     @pet_post = PetPost.new(pet_post_params)
     @pet_post.customer_id = current_customer.id
-    tag_list = params[:pet_post][:tag_name].split(',')
+    tag_list = params[:pet_post][:tag_name].split
     if @pet_post.save
       @pet_post.save_tag(tag_list)
       flash[:notice] = "投稿に成功しました"
@@ -29,15 +29,16 @@ class Public::PetPostsController < ApplicationController
 
   def edit
     @pet_post = PetPost.find(params[:id])
+    @pet_post_tags = @pet_post.tags.pluck(:tag_name)
   end
 
   def update
     @pet_post = PetPost.find(params[:id])
     @pet_posts = PetPost.all
-    tag_list = params[:pet_post][:tag_name].split(',')
+    tag_list = params[:pet_post][:tag_name].split
 
     if @pet_post.update(pet_post_params)
-       @pet_post.update_tags(tag_list)
+       @pet_post.save_tag(tag_list)
        flash[:notice] = "情報を変更しました"
        redirect_to pet_post_path(@pet_post)
     else

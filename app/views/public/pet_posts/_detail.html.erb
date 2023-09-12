@@ -1,67 +1,67 @@
-<h4 class="my-3 ml-4">詳細ページ</h4>
-  <div class="col-md-4">
+<div class="col col-md-6">
     <%= image_tag pet_post.get_image(500, 500), size: "350x250", class: "rounded" %>
-  </div>
-  <div class="col-md-8">
-    <div class="d-flex align-items-center">
-      <h4>詳細情報</h4>
-      <div class="ml-3">
-        <%= link_to "編集する", edit_pet_post_path, class: "btn btn-outline-info" %>
-        <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
-      </div>
+</div>
+<div class="col">
+  <div class="d-flex align-items-center">
+    <h4>詳細情報</h4>
+    <div class="ml-3">
+      <%= link_to "編集する", edit_pet_post_path, class: "btn btn-outline-info" %>
+      <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
     </div>
-    <table class="table table-bordered">
-      <tr>
-        <td class="bg-light">ペットの状況</td>
-        <td><%= pet_post.pet_status_i18n %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">ペットの種類</td>
-        <td><%= pet_post.species_i18n %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">性別</td>
-        <td><%= pet_post.gender_i18n %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">年齢</td>
-        <td><%= pet_post.age %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">体重</td>
-        <td><%= pet_post.weight_i18n %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">都道府県</td>
-        <td><%= pet_post.prefecture %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">詳細住所</td>
-        <td><%= pet_post.area %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">発生日</td>
-        <td><%= pet_post.occurred_on %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">特徴</td>
-        <td><%= pet_post.characteristics %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">説明文</td>
-        <td><%= pet_post.description %></td>
-      </tr>
-      <tr>
-        <td class="bg-light">タグ</td>
-        <td><% pet_post_tags.each do |tag| %>
-              <%= link_to "##{tag.tag_name}", root_path %>
-            <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="bg-light">投稿者</td>
-        <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>
-      </tr>
-    </table>
   </div>
+  <table class="table table-bordered">
+    <tr>
+      <td class="bg-light">ペットの状況</td>
+      <td><%= pet_post.pet_status_i18n %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">ペットの種類</td>
+      <td><%= pet_post.species_i18n %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">性別</td>
+      <td><%= pet_post.gender_i18n %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">年齢</td>
+      <td><%= pet_post.age %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">体重</td>
+      <td><%= pet_post.weight_i18n %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">都道府県</td>
+      <td><%= pet_post.prefecture %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">詳細住所</td>
+      <td><%= pet_post.area %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">発生日</td>
+      <td><%= pet_post.occurred_on %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">特徴</td>
+      <td><%= pet_post.characteristics %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">説明文</td>
+      <td><%= pet_post.description %></td>
+    </tr>
+    <tr>
+      <td class="bg-light">タグ</td>
+      <td><% pet_post_tags.each do |tag| %>
+            <%= link_to "##{tag.tag_name}", root_path %>
+          <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="bg-light">投稿者</td>
+      <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>
+    </tr>
+  </table>
+</div>
+
 

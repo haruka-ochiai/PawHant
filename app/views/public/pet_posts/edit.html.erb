@@ -83,7 +83,7 @@
           </div>
           <div class="form-group">
             <%= f.label :tag_name, "タグ(半角スペースで複数個登録できます)" %>
-            <%= f.text_field :tag_name, class: 'form-control' %>
+            <%= f.text_field :tag_name, value: @pet_post_tags, class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= f.submit "更新する", class: "btn btn-outline-secondary" %>
