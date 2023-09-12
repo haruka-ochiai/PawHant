@@ -1,28 +1,30 @@
 <div class="container">
   <div class="row">
-    <h4>迷子情報一覧</h4>
+    <div class="d-flex align-items-center">
+      <h4 class="my-2">迷子情報一覧</h4>
+      <div class="ml-3">
+        <%= link_to "迷子・保護情報を登録", new_pet_post_path, class:"btn btn-outline-danger mb-2" %>
+      </div>
+    </div>
     <% @pet_posts.each do |pet_post| %>
-      <div class="col-sm-3 mt-3 px-1">
-        <div class="card">
-          <%= link_to pet_post_path(pet_post) do %>
-            <%= image_tag pet_post.get_image(500, 500), size: "150x150", class: "w-100 rounded" %>
-          <% end %>
-          <div class="card-body">
-            <div class="card-title">
-              <h6>
-                <%= link_to customer.name, pet_post_path(pet_post) %>
+      <% if pet_post.lost? %>
+        <div class="col-sm-3 mt-3 px-1">
+          <div class="card">
+            <%= link_to pet_post_path(pet_post.id) do %>
+              <%= image_tag pet_post.get_image(500, 500), size: "150x150", class: "w-100 rounded" %>
+            <% end %>
+            <div class="card-body">
+              <div class="card-title">
+                <h6>投稿者 <%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></h6>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <h6>発生日<%= pet_post.occurred_on %></h6>
             </div>
           </div>
-          <div class="card-footer bg-transparent border-0">
-            <h6>発生日<%= pet_post.occurred_on %></h6>
-          </div>
-          <% @tag_list.each do |list|%>
-            <i class="fa-sharp fa-solid fa-tag"></i>
-            <%=link_to list.name, root_path(tag_id: list.id) %>
-            <%="(#{list.pet_posts.count})" %>
-          <% end %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
+

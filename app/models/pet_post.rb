@@ -21,28 +21,15 @@ class PetPost < ApplicationRecord
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/animal-no-image.jpg')
-      product_image.attach(io: File.open(file_path), filename: 'animal-no-image.jpg', content_type: 'image/jpg')
+      image.attach(io: File.open(file_path), filename: 'animal-no-image.jpg', content_type: 'image/jpg')
     end
-    product_image.variant(resize_to_limit: [width, height]).processed
+    image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def save_tags(tags)
-    # タグが存在していれば、タグの名前を配列として全て取得
-    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    # 現在取得したタグから送られてきたタグを除いてoldtagとする
-    old_tags = current_tags - tags
-    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-    new_tags = tags - current_tags
-
-    # 古いタグを消す
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_tag_name)
-    end
-
-    # 新しいタグを保存
-    new_tags.each do |new_name|
-      tag = Tag.find_or_create_by(name:new_tag_name)
-      self.tags << tag
+  def create_tags(input_tags)
+    input_tags.each do |tag|                     # splitで分けたtagをeach文で取得する
+      new_tag = Tag.find_or_create_by(tag_name: tag) # tagモデルに存在していれば、そのtagを使用し、なければ新規登録する
+      tags << new_tag                            # 登録するtopicのtagに紐づける（中間テーブルにも反映される）
     end
   end
 
