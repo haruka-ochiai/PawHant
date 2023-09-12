@@ -34,9 +34,12 @@ class Public::PetPostsController < ApplicationController
   def update
     @pet_post = PetPost.find(params[:id])
     @pet_posts = PetPost.all
+    tag_list = params[:pet_post][:tag_name].split(',')
+
     if @pet_post.update(pet_post_params)
-      flash[:notice] = "情報を変更しました"
-      redirect_to pet_post_path(@pet_post)
+       @pet_post.update_tags(tag_list)
+       flash[:notice] = "情報を変更しました"
+       redirect_to pet_post_path(@pet_post)
     else
        render "edit"
     end
