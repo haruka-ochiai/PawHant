@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="col">
       <div class="d-flex align-items-center">
         <h4 class="my-2">保護情報一覧</h4>
         <div class="ml-3">
@@ -11,9 +10,8 @@
       </div>
       <% @pet_posts.each do |pet_post| %>
         <% if pet_post.found? %>
-          <%= render 'list', pet_post: pet_post, tag_list: @tag_list %>
+          <%= render 'list', pet_post: pet_post %>
          <% end %>
       <% end %>
-    </div>
   </div>
 </div>

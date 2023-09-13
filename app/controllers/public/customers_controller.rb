@@ -19,9 +19,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def check
+    @customer = current_customer
   end
 
-  def destroy
+  def withdraw
+    @customer = current_customer
+    @customer.update(active: false)
+    reset_session
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to :root #削除に成功すればrootページに戻る
   end
 
   def customer_params

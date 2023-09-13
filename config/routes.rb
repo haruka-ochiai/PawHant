@@ -35,19 +35,21 @@ Rails.application.routes.draw do
       end
       collection do
         get 'check' => 'customers#check'
-        patch 'withdraw' => 'customers#withdraw'
+        delete 'withdraw' => 'customers#withdraw'
       end
     end
 
       resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
-      resource :sightings, only: [:create, :destroy]
+      resource :sightings, only: [:create, :destroy, :index]
     end
 
     resources :rooms, only: [:show, :create]
     resources :messages, only: [:create]
     resources :groups, only: [:index, :show, :edit, :update, :new, :create] do
       resource :group_members, only: [:create, :destroy]
+      get "new/mail" => "groups#new_mail"
+      get "send/mail" => "groups#send_mail"
     end
 
     resources :notifications, only: [:index]

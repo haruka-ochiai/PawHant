@@ -1,7 +1,6 @@
 class Public::PetPostsController < ApplicationController
   def index
     @pet_posts = PetPost.all
-    @tag_list = Tag.all
   end
 
   def show
