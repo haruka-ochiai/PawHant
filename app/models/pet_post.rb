@@ -18,6 +18,10 @@ class PetPost < ApplicationRecord
   validates :characteristics, presence: true
   validates :description, presence: true
 
+  def favorited_by?(customer)
+    sightings.exists?(customer_id: customer.id)
+  end
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/animal-no-image.jpg')
@@ -26,6 +30,7 @@ class PetPost < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # タグの処理
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?

@@ -9,6 +9,6 @@ class Comment < ApplicationRecord
 
   private
   def create_notifications
-    Notification.create(subject: self, end_user: post_workout.end_user, action_type: :commented_to_own_post)
+    Notification.create(subject: self, customer: pet_post.customer, action_type: :commented_to_own_post)
   end
 end

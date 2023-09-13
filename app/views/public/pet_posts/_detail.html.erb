@@ -1,6 +1,8 @@
 <div class="col col-md-6">
     <%= image_tag pet_post.get_image(500, 500), size: "350x250", class: "rounded" %>
 </div>
+<div>
+</div>
 <div class="col">
   <div class="d-flex align-items-center">
     <h4>詳細情報</h4>
@@ -62,6 +64,35 @@
       <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>
     </tr>
   </table>
+   <% if pet_post.favorited_by?(current_customer) %>
+    <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
+      <i class="fa-regular fa-eye" aria-hidden="true" style="color: orange;"></i>
+    <% end %>
+      <%= pet_post.sightings.count %> 件の目撃
+  <% else %>
+    <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
+      <i class="fa-regular fa-eye" aria-hidden="true" style="color: grey;"></i>
+    <% end %>
+    <%= pet_post.sightings.count %> 件の目撃
+  <% end %>
+  <div>
+  <p>コメント件数：<%= pet_post.comments.count %></p>
+  <% pet_post.comments.each do |comment| %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.customer.name %>
+    <% if comment.customer == current_customer %>
+      <%= link_to "削除",  pet_post_comment_path(comment.pet_post, comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [pet_post, comment] do |f| %>
+    <%= f.text_area :comment, rows: '6', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
 </div>
 
 

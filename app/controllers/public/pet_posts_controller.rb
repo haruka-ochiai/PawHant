@@ -7,6 +7,7 @@ class Public::PetPostsController < ApplicationController
   def show
     @pet_post = PetPost.find(params[:id])
     @pet_post_tags = @pet_post.tags
+    @comment = Comment.new
   end
 
   def new
