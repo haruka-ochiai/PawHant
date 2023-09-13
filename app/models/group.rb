@@ -8,14 +8,18 @@ class Group < ApplicationRecord
   validates :introduction, presence: true
 
   def get_group_image(width, height)
-    unless product_image.attached?
+    unless group_image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.jpg')
-      product_image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpg')
+      group_image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpg')
     end
-    product_image.variant(resize_to_limit: [width, height]).processed
+    group_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def is_owned_by?(customer)
     owner.id == customer.id
+  end
+
+  def includesCustomer?(customer)
+    group_members.exists?(customer_id: customer.id)
   end
 end

@@ -1,70 +1,67 @@
-<%= form_with model: pet_post, url: customer_pets_path, method: :post do |f| %>
-    <div class="form-group">
-      <%= f.label :image, "ペット画像" %>
-      <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+<%= form_with model: @pet_post, url: pet_posts_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :image, "ペット画像" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :pet_status, "ペット状況" %>
+    <div class="form-check">
+      <%= f.radio_button :pet_status, 'lost', class: "form-check-input" %>
+      <%= f.label :迷子, class: "form-check-label" %>
     </div>
-    <div class="form-group">
-      <%= f.label :name, "ペットの名前" %>
-      <%= f.text_field :name, class: "form-control" %>
+    <div class="form-check">
+      <%= f.radio_button :pet_status, 'found', class: "form-check-input" %>
+      <%= f.label :保護, class: "form-check-label" %>
     </div>
-    <div class="form-group">
-      <%= f.label :species, "ペットの種類" %>
-      <div class="form-check">
-        <%= f.radio_button :species, '犬', class: "form-check-input" %>
-        <%= f.label :犬, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, '猫', class: "form-check-input" %>
-        <%= f.label :猫, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, '鳥', class: "form-check-input" %>
-        <%= f.label :鳥, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, 'その他', class: "form-check-input" %>
-        <%= f.label :その他, class: "form-check-label" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender, "性別" %>
+    <div class="form-check">
+      <%= f.radio_button :gender, 'male', class: "form-check-input" %>
+      <%= f.label :オス, class: "form-check-label" %>
     </div>
-    <div class="form-group">
-      <%= f.label :gender, "ペットの性別" %>
-      <div class="form-check">
-        <%= f.radio_button :gender, 'オス', class: "form-check-input" %>
-        <%= f.label :オス, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, 'メス', class: "form-check-input" %>
-        <%= f.label :メス, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, '不明', class: "form-check-input" %>
-        <%= f.label :不明, class: "form-check-label" %>
-      </div>
+    <div class="form-check">
+      <%= f.radio_button :gender, 'female', class: "form-check-input" %>
+      <%= f.label :メス, class: "form-check-label" %>
     </div>
-    <div class="form-group">
-      <%= f.label :address, "年齢" %>
-      <%= f.text_field :age, class: "form-control" %>
+    <div class="form-check">
+      <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
+      <%= f.label :不明, class: "form-check-label" %>
     </div>
-    <div class="form-group">
-      <%= f.label :weight, "体重" %>
-      <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight.#{key}"), key] }, {}, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :characteristics, "特徴" %>
-      <%= f.text_field :characteristics, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
-    </div>
-
-<% end %>
-
-<!-- 新規登録フォーム -->
-<%= form_with model: Topic.new, url: topics_path do |f| %>
-  <%= f.label :title, "タイトル" %>
-  <%= f.text_field :title %>
-  <%= f.label :name, "タグ(半角スペースで複数個登録できます)" %>
-  <%= f.text_field :name %>
-  <%= f.submit "登録" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, "年齢" %>
+    <%= f.text_field :age, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :weight, "体重" %>
+    <%= f.select :weight, CustomerPet.weights_i18n.keys.map { |key| [t("enums.weight.#{key}"), key] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :prefecture, "都道府県" %>
+    <%= f.select :prefecture, prefecture_options, prompt: "選択してください" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :area, "詳細住所" %>
+    <%= f.text_field :area, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :occurred_on, "発生日" %>
+    <%= f.date_field :occurred_on, class: "datetimepicker" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :characteristics, "特徴" %>
+    <%= f.text_field :characteristics, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "説明文" %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tag_name, "タグ(半角スペースで複数個登録できます)" %>
+    <%= f.text_field :tag_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
+  </div>
 <% end %>

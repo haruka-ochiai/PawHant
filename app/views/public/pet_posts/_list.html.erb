@@ -1,0 +1,39 @@
+<div class="card-deck mb-3">
+    <div class="card width: 18rem;">
+        <%= link_to pet_post_path(pet_post.id) do %>
+          <%= image_tag pet_post.get_image(500, 500), size: "200x200", class: "rounded" %>
+        <% end %>
+      <div class="card-body">
+        <% if customer_signed_in? %>
+          <% if pet_post.favorited_by?(current_customer) %>
+            <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+            <% end %>
+              <%= pet_post.sightings.count %> 件の目撃
+          <% else %>
+            <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
+              <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
+            <% end %>
+              <%= pet_post.sightings.count %> 件の目撃
+          <% end %>
+          <p><%= link_to "#{pet_post.comments.count} 件のコメント", pet_post_path(pet_post.id) %></p>
+        <div class="card-title">
+        <h6>投稿者 :<%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></h6>
+      </div>
+      <% end %>
+      <div class="card-text">
+        <p>場所 :<%= pet_post.prefecture %><%= pet_post.area %>付近</p>
+        <p>
+        <% tag_list.each do |list|%>
+          <%= link_to list.tag_name, root_path %>
+        <% end %>
+        </p>
+        <%= link_to pet_post_path(pet_post.id), class: "btn btn-primary" do %>
+          詳細を見る
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent border-0">
+        <h6>発生日 :<%= pet_post.occurred_on %></h6>
+      </div>
+    </div>
+  </div>

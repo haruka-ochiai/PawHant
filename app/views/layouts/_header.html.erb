@@ -13,29 +13,44 @@
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
             <li class="nav-item"><%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item"><%= link_to "迷子保護情報一覧", pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ペット情報一覧
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<%= root_path %>">迷子情報一覧</a>
+                <a class="dropdown-item" href="<%= pet_posts_path %>">保護情報一覧</a>
+              </div>
+            </li>
             <li class="nav-item"><%= link_to "グループ一覧", groups_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
           <% elsif admin_signed_in? %>
             <li class="nav-item"><%= link_to "顧客一覧", admin_customers_path, class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item"><%= link_to "迷子保護情報一覧", admin_pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ペット情報一覧
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<%= admin_root_path %>">迷子情報一覧</a>
+                <a class="dropdown-item" href="<%= admin_pet_posts_path %>">保護情報一覧</a>
+              </div>
+            </li>
             <li class="nav-item"><%= link_to "グループ一覧", admin_groups_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light nav-link ml-2" %></li>
           <% else %>
             <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"> <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light nav-link ml-2" %></li>
             <li class="nav-item"> <%= link_to "About", about_path, class: "btn btn-light nav-link ml-2" %></li>
-            <li class="nav-item">  <%= link_to "情報一覧", pet_posts_path, class: "btn btn-light nav-link ml-2" %></li>
-             </ul>
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdownMenu" aria-expanded="false">
-              情報一覧
-            </button>
-            <ul class="dropdown-menu" id="dropdownMenu">
-              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
-              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
-              <li><%= link_to "迷子情報", pet_posts_path, class: "dropdown-item" %></li>
-            </ul>
-
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ペット情報一覧
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<%= root_path %>">迷子情報一覧</a>
+                <a class="dropdown-item" href="<%= pet_posts_path %>">保護情報一覧</a>
+              </div>
+            </li>
+          </ul>
             </div>
         <% end %>
 

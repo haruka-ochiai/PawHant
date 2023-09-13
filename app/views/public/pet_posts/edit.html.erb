@@ -1,2 +1,94 @@
-<h1>Public::PetPosts#edit</h1>
-<p>Find me in app/views/public/pet_posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 sm-5 mx-auto">
+      <h4 class="my-3 ml-4">投稿編集ページ</h4>
+        <%= form_with model: @pet_post, url: pet_post_path, method: :patch do |f| %>
+          <div class="form-group">
+            <%= f.label :image, "ペット画像" %>
+            <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :pet_status, "ペット状況" %>
+            <div class="form-check">
+              <%= f.radio_button :pet_status, 'lost', class: "form-check-input" %>
+              <%= f.label :迷子, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :pet_status, 'found', class: "form-check-input" %>
+              <%= f.label :保護, class: "form-check-label" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :species, "ペットの種類" %>
+            <div class="form-check">
+              <%= f.radio_button :species, 'dog', class: "form-check-input", checked: true %>
+              <%= f.label :犬, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :species, 'cat', class: "form-check-input" %>
+              <%= f.label :猫, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :species, 'bird', class: "form-check-input" %>
+              <%= f.label :鳥, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :species, 'other', class: "form-check-input" %>
+              <%= f.label :その他, class: "form-check-label" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :gender, "性別" %>
+            <div class="form-check">
+              <%= f.radio_button :gender, 'male', class: "form-check-input" %>
+              <%= f.label :オス, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :gender, 'female', class: "form-check-input" %>
+              <%= f.label :メス, class: "form-check-label" %>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
+              <%= f.label :不明, class: "form-check-label" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :address, "年齢" %>
+            <%= f.text_field :age, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :weight, "体重" %>
+            <%= f.select :weight, CustomerPet.weights_i18n.keys.map { |key| [t("enums.weight.#{key}"), key] }, {}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :prefecture, "都道府県" %>
+            <%= f.select :prefecture, prefecture_options, prompt: "選択してください" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :area, "詳細住所" %>
+            <%= f.text_field :area, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :occurred_on, "発生日" %>
+            <%= f.date_field :occurred_on, class: "datetimepicker" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :characteristics, "特徴" %>
+            <%= f.text_field :characteristics, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :description, "説明文" %>
+            <%= f.text_field :description, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :tag_name, "タグ(半角スペースで複数個登録できます)" %>
+            <%= f.text_field :tag_name, value: @pet_post_tags, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "更新する", class: "btn btn-outline-secondary" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

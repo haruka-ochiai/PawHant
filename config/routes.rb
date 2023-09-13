@@ -40,13 +40,16 @@ Rails.application.routes.draw do
     end
 
       resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
       resource :sightings, only: [:create, :destroy]
     end
 
     resources :rooms, only: [:show, :create]
     resources :messages, only: [:create]
-    resources :groups, only: [:index, :show, :edit, :update, :new, :create]
+    resources :groups, only: [:index, :show, :edit, :update, :new, :create] do
+      resource :group_members, only: [:create, :destroy]
+    end
+
     resources :notifications, only: [:index]
 
   end

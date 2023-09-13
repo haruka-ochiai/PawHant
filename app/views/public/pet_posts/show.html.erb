@@ -1,2 +1,8 @@
-<h1>Public::PetPosts#show</h1>
-<p>Find me in app/views/public/pet_posts/show.html.erb</p>
+<div class="container">
+  <div class="my-3 mx-auto">
+    <h4>詳細ページ</h4>
+  </div>
+  <div class="row">
+      <%= render 'detail', customer: @customer, pet_post: @pet_post, pet_post_tags: @pet_post_tags, comment: @comment %>
+  </div>
+</div>

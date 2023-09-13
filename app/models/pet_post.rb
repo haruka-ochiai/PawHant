@@ -5,7 +5,7 @@ class PetPost < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :sightings, dependent: :destroy
   has_many :taggings, dependent: :destroy
-  has_many :tags,　through: :taggings
+  has_many :tags, through: :taggings
   # 通知
   has_one :notification, as: :subject, dependent: :destroy
 
@@ -18,13 +18,39 @@ class PetPost < ApplicationRecord
   validates :characteristics, presence: true
   validates :description, presence: true
 
+  def favorited_by?(customer)
+    sightings.exists?(customer_id: customer.id)
+  end
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/animal-no-image.jpg')
-      product_image.attach(io: File.open(file_path), filename: 'animal-no-image.jpg', content_type: 'image/jpg')
+      image.attach(io: File.open(file_path), filename: 'animal-no-image.jpg', content_type: 'image/jpg')
     end
-    product_image.variant(resize_to_limit: [width, height]).processed
+    image.variant(resize_to_limit: [width, height]).processed
   end
+
+  # タグの処理
+  def save_tag(sent_tags)
+  # タグが存在していれば、タグの名前を配列として全て取得
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - sent_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = sent_tags - current_tags
+
+    # 古いタグを消す
+    old_tags.each do |old_tag_name|
+      self.tags.delete_all
+    end
+
+    # 新しいタグを保存
+    new_tags.each do |new_tag_name|
+      new_pet_post_tag = Tag.find_or_create_by(tag_name: new_tag_name)
+      self.tags << new_pet_post_tag
+   end
+  end
+
 
   # ペットの状況
   enum pet_status: { normal: 0, lost: 1, found: 2, resolved: 3 }
