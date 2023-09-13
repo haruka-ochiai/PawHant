@@ -13,6 +13,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def edit
@@ -29,6 +30,7 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
+    @group.group_members.build(customer_id: current_customer.id)
     if @group.save
       redirect_to groups_path
     else
