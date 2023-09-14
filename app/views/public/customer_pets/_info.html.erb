@@ -4,7 +4,7 @@
     <table class="table table-bordered">
     <tr>
       <td class="bg-light">ペットの画像</td>
-      <td><%= pet.image %></td>
+      <td><%= image_tag pet.get_image(500, 500), size: "200x250" %></td>
     </tr>
     <tr>
       <td class="bg-light">ペットの種類</td>
@@ -31,11 +31,15 @@
       <td><%= pet.characteristics %></td>
     </tr>
   </table>
-  <%= link_to "編集する", edit_customer_pet_path, class: "btn btn-outline-info" %>
+  <% if current_customer == @customer %>
+    <%= link_to "編集する", edit_customer_pet_path, class: "btn btn-outline-info" %>
+  <% end %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->
-  <h4 class="my-4">ペット情報はまだ登録されていません。</h4>
-  <%= link_to "ペットを登録する", new_customer_pet_path, class: "btn btn-outline-warning" %>
+  <h4 class="mx-auto mt-5">ペット情報はまだ登録されていません。</h4>
+  <% if current_customer == @customer %>
+    <%= link_to "ペットを登録する", new_customer_pet_path, class: "btn btn-outline-warning" %>
+  <% end %>
 <% end %>
 
 
