@@ -41,7 +41,8 @@ class PetPost < ApplicationRecord
 
     # 古いタグを消す
     old_tags.each do |old_tag_name|
-      self.tags.delete_all
+      tag_to_delete = self.tags.find_by(tag_name: old_tag_name)
+      self.tags.delete(tag_to_delete) if tag_to_delete
     end
 
     # 新しいタグを保存

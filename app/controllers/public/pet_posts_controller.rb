@@ -4,9 +4,14 @@ class Public::PetPostsController < ApplicationController
   end
 
   def show
-    @pet_post = PetPost.find(params[:id])
-    @pet_post_tags = @pet_post.tags
-    @comment = Comment.new
+    if customer_signed_in?
+      @pet_post = PetPost.find(params[:id])
+      @pet_post_tags = @pet_post.tags
+      @comment = Comment.new
+    else
+    redirect_to new_customer_session_path,
+    alert: "詳細を見るには、ログイン、または新規登録が必要です。"
+    end
   end
 
   def new
@@ -51,6 +56,7 @@ class Public::PetPostsController < ApplicationController
     @pet_post.destroy
     redirect_to root_path
   end
+
 
   private
 

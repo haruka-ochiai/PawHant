@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :destroy]
     end
 
+  resources :searches, only: [] do
+  get 'tag_search', on: :collection
+  get 'keyword_search', on: :collection
+end
+
   # ゲストログイン
   devise_scope :customer do
     post "customers/guest_sign_in", to: "customers/sessions#guest_sign_in"
@@ -41,7 +46,7 @@ Rails.application.routes.draw do
 
       resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
-      resource :sightings, only: [:create, :destroy, :index]
+      resource :sightings, only: [:create, :destroy]
     end
 
     resources :rooms, only: [:show, :create]

@@ -1,0 +1,5 @@
+<h1>タグ検索結果</h1>
+<% @pet_posts.each do |pet_post| %>
+  <%= link_to pet_post.title, pet_post_path(pet_post) %>
+  <!-- 投稿の表示内容を適切に表示 -->
+<% end %>
