@@ -15,7 +15,7 @@
         </td>
         <td><%= group.name %></td>
         <td><%= group.group_members.count %></td>
-        <td><%= link_to '詳細を見る', group_path(group), class: "group_#{group.id} btn btn-sm btn-success" %></td>
+        <td><%= link_to '詳細を見る', group_path(group), class: "btn btn-sm btn-success" %></td>
         <td><%= link_to 'メールを送信',group_new_mail_path(group), class: "btn btn-sm btn-info" %></td>
       </tr>
     <% end %>

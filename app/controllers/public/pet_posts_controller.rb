@@ -1,6 +1,7 @@
 class Public::PetPostsController < ApplicationController
+
   def index
-    @pet_posts = PetPost.page(params[:page]).per(8).order('updated_at DESC')
+    @pet_posts = PetPost.where(pet_status: "found").page(params[:page]).per(8).order('updated_at DESC')
   end
 
   def show

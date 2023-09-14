@@ -4,6 +4,8 @@ class Group < ApplicationRecord
   has_many :group_members, dependent: :destroy
   belongs_to :owner, class_name: 'Customer'
 
+  has_many :customers, through: :group_members
+
   validates :name, presence: true
   validates :introduction, presence: true
 

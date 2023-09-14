@@ -13,7 +13,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @customer = Customer.find(params[:id])
+    @customers = @group.customers
   end
 
   def edit
@@ -30,7 +30,7 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
-    @group.group_members
+    @group.customers << current_customer
     if @group.save
       redirect_to groups_path
     else
@@ -45,10 +45,10 @@ class Public::GroupsController < ApplicationController
   def send_mail
     @group = Group.find(params[:group_id])
     @group_name = @group.name
-    @group_members = @group.group_members.map(&:customer)
+    @customers = @group.customers
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
-    ContactMailer.send_mail(@mail_title, @mail_content,@group_members).deliver
+    ContactMailer.send_mail(@mail_title, @mail_content,@customers).deliver
   end
 
   def group_params

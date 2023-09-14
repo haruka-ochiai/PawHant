@@ -13,9 +13,7 @@
     <div class="container">
       <div class="row">
           <% @pet_posts.each do |pet_post| %>
-            <% if pet_post.lost? %>
               <%= render 'public/pet_posts/list', pet_post: pet_post, tag_list: @tag_list %>
-            <% end %>
           <% end %>
         </div>
       </div>
