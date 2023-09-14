@@ -22,9 +22,8 @@
             <td><%= @group.introduction %></td>
             <td>
               <% @group.group_members.each do |group_member| %>
-                <% member = group_member.customer %>
 　　            <li style="list-style: none;">
-　　            <%= link_to member.name, customer_path(@customer) %>
+　　            <%= link_to group_member.customer.name, customer_path(@customer) %>
 　　            </li>
               <% end %>
             </td>

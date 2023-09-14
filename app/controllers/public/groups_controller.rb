@@ -30,7 +30,7 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
-    @group.group_members.build(customer_id: current_customer.id)
+    @group.group_members
     if @group.save
       redirect_to groups_path
     else

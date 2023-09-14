@@ -1,6 +1,6 @@
 class Public::PetPostsController < ApplicationController
   def index
-    @pet_posts = PetPost.all
+    @pet_posts = PetPost.page(params[:page]).per(8).order('updated_at DESC')
   end
 
   def show

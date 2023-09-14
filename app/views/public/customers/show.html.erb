@@ -1,17 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 sm-10">
-      <h4 >マイページ</h4>
+      <h4><%= @customer.name %>さんの詳細ページ</h4>
       <div class="py-3">
-        <%= link_to "迷子補情報を登録", new_pet_post_path, class:"btn btn-outline-danger mb-2" %><br>
         <%= link_to "参加しているグループ一覧", groups_path, class:"btn btn-outline-secondary" %>
         <%= link_to "いいねした投稿", pet_posts_path, class:"btn btn-outline-secondary pt-2" %>
         <%= link_to "自分の投稿", pet_posts_path, class:"btn btn-outline-secondary pt-2" %>
       </div>
-      <%=render 'info', customer:  @customer %>
+      <% if current_customer == @customer %>
+        <%=render 'info', customer:  @customer %>
+       <% end %>
     </div>
+
     <div class="col-md-6 sm-10">
       <%=render 'public/customer_pets/info', customer:  @customer %>
     </div>
+
   </div>
 </div>

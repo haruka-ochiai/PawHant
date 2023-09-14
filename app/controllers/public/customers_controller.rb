@@ -1,18 +1,17 @@
 class Public::CustomersController < ApplicationController
   def show
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:notice] = "登録情報を変更しました"
-      redirect_to admin_customer_path
+      redirect_to customer_path(@customer)
     else
       render :edit
     end
