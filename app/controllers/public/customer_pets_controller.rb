@@ -1,12 +1,12 @@
 class Public::CustomerPetsController < ApplicationController
 
   def new
-    @customer = current_customer
+    @customer = Customer.find(params[:customer_id])
     @customer_pet = @customer.customer_pets.build
   end
 
   def create
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
     @customer_pet = @customer.customer_pets.build(customer_pets_params)
     if @customer_pet.save
       flash[:notice] = "ペット情報を登録しました"
@@ -17,19 +17,24 @@ class Public::CustomerPetsController < ApplicationController
   end
 
   def edit
+     @customer = Customer.find(params[:id])
+    @customer_pet = @customer.customer_pets.find(params[:id])
   end
 
   def update
   end
 
   def destroy
+    @customer = Customer.find(params[:customer_id])
+    @customer_pet = @customer.customer_pets.find(params[:id])
+    @customer_pet.destroy
+    redirect_to root_path
   end
 
    private
 
   def customer_pets_params
     params.require(:customer_pet).permit(
-                                         :customer_id,
                                          :image,
                                          :name,
                                          :pet_status,

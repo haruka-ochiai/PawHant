@@ -2,7 +2,6 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only: [:edit, :update]
 
-
   def new
     @group = Group.new
   end
@@ -44,11 +43,10 @@ class Public::GroupsController < ApplicationController
 
   def send_mail
     @group = Group.find(params[:group_id])
-    @group_name = @group.name
-    @customers = @group.customers
+    group_members = @group.customers
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
-    ContactMailer.send_mail(@mail_title, @mail_content,@customers).deliver
+    ContactMailer.send_mail(@mail_title, @mail_content, group_members).deliver
   end
 
   def group_params

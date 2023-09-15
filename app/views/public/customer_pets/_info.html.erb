@@ -31,7 +31,7 @@
       <td><%= pet.characteristics %></td>
     </tr>
   </table>
-  <% if current_customer == @customer %>
+  <% if current_customer == customer %>
     <%= link_to "編集する", edit_customer_pet_path, class: "btn btn-outline-info" %>
   <% end %>
 <% else %>

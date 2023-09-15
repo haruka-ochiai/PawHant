@@ -14,13 +14,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :pet_posts, only: [:index, :destroy]
+    resources :pet_posts, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
-    resources :groups, only: [:index, :destroy]
+    resources :groups, only: [:index, :show, :destroy]
     end
 
   resources :searches, only: [] do
-  get 'tag_search', on: :collection
   get 'keyword_search', on: :collection
 end
 
@@ -45,6 +44,9 @@ end
     end
 
       resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+        member do
+        get 'tag_search/:tag_id', action: 'tag_search', as: :tag_search
+      end
       resources :comments, only: [:create, :destroy]
       resource :sightings, only: [:create, :destroy]
     end

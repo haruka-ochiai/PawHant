@@ -6,12 +6,9 @@
   <div class="col col-md-7 offset-md-1">
     <div class="d-flex align-items-center">
       <h4>詳細情報</h4>
-      <% if current_customer == pet_post.customer %>
         <div class="ml-3">
-          <%= link_to "編集する", edit_pet_post_path, class: "btn btn-outline-info" %>
-          <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
+          <%= link_to "削除", admin_pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
         </div>
-      <% end %>
     </div>
     <table class="table table-bordered">
       <tr>
@@ -63,37 +60,19 @@
       </tr>
       <tr>
         <td class="bg-light">投稿者</td>
-        <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>
+        <td><%= link_to pet_post.customer.name, admin_customer_path(pet_post.customer) %></td>
       </tr>
     </table>
   </div>
 </div>
 <div>
-  <% if pet_post.favorited_by?(current_customer) %>
-    <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
-      <i class="fa-regular fa-eye" aria-hidden="true" style="color: orange;"></i>
-    <% end %>
-      <%= pet_post.sightings.count %> 件の目撃
-  <% else %>
-    <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
-      <i class="fa-regular fa-eye" aria-hidden="true" style="color: grey;"></i>
-    <% end %>
-    <%= pet_post.sightings.count %> 件の目撃
-  <% end %>
+    <p><%= pet_post.sightings.count %> 件の目撃</p>
     <p>コメント件数：<%= pet_post.comments.count %></p>
 </div>
 
 <div class="container">
   <div class="row my-3">
     <div class="col-md-10 mx-auto">
-    <%= render 'public/comments/comments-lists', pet_post: pet_post, comment: comment %>
+    <%= render 'admin/comments/comments-lists', pet_post: pet_post, comment: comment %>
     </div>
   </div>
-
-
-<div class="row">
-  <div class="col-md-10 mx-auto">
-  <%= render 'public/comments/form', pet_post: pet_post, comment: comment %>
-  </div>
-</div>
-</div>

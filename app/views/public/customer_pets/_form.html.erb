@@ -1,4 +1,4 @@
-<%= form_with model: customer_pet, url: customer_pets_path, method: :post do |f| %>
+
     <div class="form-group">
       <%= f.label :image, "ペット画像" %>
       <%= f.file_field :image, accept: "image/*", class: "form-control" %>
@@ -47,7 +47,7 @@
     </div>
     <div class="form-group">
       <%= f.label :weight, "体重" %>
-      <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight.#{key}"), key] }, {}, class: "form-control" %>
+      <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight_i18n.#{key}"), key] }, {}, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :characteristics, "特徴" %>
@@ -58,4 +58,3 @@
       <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
     </div>
 
-<% end %>

@@ -5,7 +5,7 @@ class Public::PetPostsController < ApplicationController
   end
 
   def show
-    if customer_signed_in?
+    if admin_signed_in? || customer_signed_in?
       @pet_post = PetPost.find(params[:id])
       @pet_post_tags = @pet_post.tags
       @comment = Comment.new
@@ -55,9 +55,14 @@ class Public::PetPostsController < ApplicationController
   def destroy
     @pet_post = PetPost.find(params[:id])
     @pet_post.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to root_path
   end
 
+  def tag_search
+    @tag = Tag.find(params[:tag_id])
+    @pet_posts = @tag.pet_posts.page(params[:page]).per(8)
+  end
 
   private
 
