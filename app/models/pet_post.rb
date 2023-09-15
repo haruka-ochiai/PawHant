@@ -4,6 +4,7 @@ class PetPost < ApplicationRecord
   belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :sightings, dependent: :destroy
+  has_many :customers, through: :sightings
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   # 通知

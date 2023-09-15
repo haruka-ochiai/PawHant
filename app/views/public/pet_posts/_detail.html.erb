@@ -57,7 +57,7 @@
       <tr>
         <td class="bg-light">タグ</td>
         <td><% pet_post_tags.each do |tag| %>
-              <%= link_to "##{tag.tag_name}", root_path %>
+              <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
             <% end %>
         </td>
       </tr>

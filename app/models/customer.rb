@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   has_many :customer_pets, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :sightings, dependent: :destroy
+  has_many :sighting_pet_posts, through: :sightings, source: :pet_post
   has_many :group_members, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy

@@ -30,6 +30,11 @@ class Public::CustomersController < ApplicationController
     redirect_to :root #削除に成功すればrootページに戻る
   end
 
+  def sighting_pet_posts
+    @customer = current_customer
+    @sighting_pet_posts = @customer.sighting_pet_posts.page(params[:page]).per(8).order('updated_at DESC')
+  end
+
   def customer_params
     params.require(:customer).permit(
                                       :name,

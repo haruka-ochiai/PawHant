@@ -34,6 +34,7 @@ end
     get 'about' => 'homes#about'
 
     resources :customers, only: [:show, :edit, :update] do
+      get "sighting_pet_posts", to: "customers#sighting_pet_posts", as: 'customers_sighting_pet_posts'
       member do
       resources :customer_pets, only: [:new, :create, :edit, :update, :destroy]
       end

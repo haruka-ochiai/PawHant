@@ -9,7 +9,7 @@
       <p><%= link_to "#{pet_post.comments.count} 件のコメント", admin_pet_post_path(pet_post.id) %></p>
       <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
       <p><% pet_post.tags.each do |tag|%>
-           <%= link_to "##{tag.tag_name}", root_path %>
+           <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
          <% end %>
       </p>
       <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-primary" do %>
