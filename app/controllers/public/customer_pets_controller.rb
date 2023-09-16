@@ -1,7 +1,7 @@
 class Public::CustomerPetsController < ApplicationController
 
   def new
-    @customer = Customer.find(params[:customer_id])
+    @customer = Customer.find(params[:id])
     @customer_pet = @customer.customer_pets.build
   end
 
@@ -17,11 +17,12 @@ class Public::CustomerPetsController < ApplicationController
   end
 
   def edit
-     @customer = Customer.find(params[:id])
-    @customer_pet = @customer.customer_pets.find(params[:id])
+    @customer = Customer.find(params[:id])
+    @customer_pet = @customer.customer_pets.find(params[:customer_pets_id])
   end
 
   def update
+    
   end
 
   def destroy

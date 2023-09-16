@@ -3,8 +3,8 @@
     <div class="col-md-6 sm-10">
       <h4><%= @customer.name %>さんの詳細ページ</h4>
       <div class="py-3">
-        <%= link_to "リアクションした投稿", customer_customers_sighting_pet_posts_path(@customer), class:"btn btn-outline-secondary pt-2" %>
-        <%= link_to "#{@customer.name} さんの投稿", pet_posts_path, class:"btn btn-outline-secondary pt-2" %>
+        <%= link_to "#{@customer.name} さんがリアクションした投稿", customer_customers_sighting_pet_posts_path(@customer), class:"btn btn-outline-secondary pt-2" %>
+        <%= link_to "#{@customer.name} さんの投稿", pet_posts_customer_path(@customer), class:"btn btn-outline-secondary pt-2" %>
       </div>
       <% if current_customer == @customer %>
         <%=render 'info', customer:  @customer %>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-6 sm-10">
-      <%=render 'public/customer_pets/info', customer:  @customer %>
+      <%=render 'public/customer_pets/info', customer:  @customer, customer_pet: @customer_pet %>
     </div>
 
   </div>

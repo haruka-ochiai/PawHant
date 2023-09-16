@@ -3,6 +3,7 @@
   <%= link_to pet_post_path(pet_post.id) do %>
     <%= image_tag pet_post.get_image(500, 500), size: "200x200", class: "rounded card-img-top" %>
   <% end %>
+
   <div class="card-body">
     <div class="card-text">
     <% if customer_signed_in? %>

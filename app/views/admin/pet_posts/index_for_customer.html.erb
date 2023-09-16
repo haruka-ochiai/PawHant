@@ -1,14 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-3">保護情報一覧</h4>
-    </div>
+        <div class="d-flex align-items-center">
+          <h4 class="my-2"><%= @customer.name %>さんの投稿一覧</h4>
+        </div>
       </div>
       <div class="container">
           <div class="row">
+            <% if @pet_posts.any? %>
               <% @pet_posts.each do |pet_post| %>
                     <%= render 'list', pet_post: pet_post %>
               <% end %>
+            <% else %>
+             <div class="d-flex align-items-center justify-content-center" style="height: 300px;">
+              <h4>投稿はありません</h4>
+            </div>
+            <% end %>
           </div>
       </div>
       <div class="mx-auto mt-3">

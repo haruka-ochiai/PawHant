@@ -59,9 +59,16 @@ class Public::PetPostsController < ApplicationController
     redirect_to root_path
   end
 
+  # タグが含まれる投稿を表示
   def tag_search
     @tag = Tag.find(params[:tag_id])
-    @pet_posts = @tag.pet_posts.page(params[:page]).per(8)
+    @pet_posts = @tag.pet_posts.page(params[:page]).per(8).order('updated_at DESC')
+  end
+
+  # カスタマーごとの投稿一覧表示
+  def index_for_customer
+    @customer = Customer.find(params[:id])
+    @pet_posts = @customer.pet_posts.page(params[:page]).per(8).order('updated_at DESC')
   end
 
   private

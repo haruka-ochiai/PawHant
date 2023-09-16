@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   # 管理者側のルーティング
   namespace :admin do
     root to: 'homes#top'
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      member do
+        get 'pet_posts', to: 'pet_posts#index_for_customer'
+      end
+    end
     resources :pet_posts, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
     resources :groups, only: [:index, :show, :destroy]
@@ -37,6 +41,7 @@ end
       get "sighting_pet_posts", to: "customers#sighting_pet_posts", as: 'customers_sighting_pet_posts'
       member do
       resources :customer_pets, only: [:new, :create, :edit, :update, :destroy]
+      get 'pet_posts', to: 'pet_posts#index_for_customer'
       end
       collection do
         get 'check' => 'customers#check'

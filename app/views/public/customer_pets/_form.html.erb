@@ -1,60 +1,59 @@
+<div class="form-group">
+  <%= f.label :image, "ペット画像" %>
+  <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :name, "ペットの名前" %>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :species, "ペットの種類" %>
+  <div class="form-check">
+    <%= f.radio_button :species, 'dog', class: "form-check-input" %>
+    <%= f.label :犬, class: "form-check-label" %>
+  </div>
+  <div class="form-check">
+    <%= f.radio_button :species, 'cat', class: "form-check-input" %>
+    <%= f.label :猫, class: "form-check-label" %>
+  </div>
+  <div class="form-check">
+    <%= f.radio_button :species, 'bird', class: "form-check-input" %>
+    <%= f.label :鳥, class: "form-check-label" %>
+  </div>
+  <div class="form-check">
+    <%= f.radio_button :species, 'other', class: "form-check-input" %>
+    <%= f.label :その他, class: "form-check-label" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :gender, "ペットの性別" %>
+  <div class="form-check">
+    <%= f.radio_button :gender, 'male', class: "form-check-input" %>
+    <%= f.label :オス, class: "form-check-label" %>
+  </div>
+  <div class="form-check">
+    <%= f.radio_button :gender, 'female', class: "form-check-input" %>
+    <%= f.label :メス, class: "form-check-label" %>
+  </div>
+  <div class="form-check">
+    <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
+    <%= f.label :不明, class: "form-check-label" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :address, "年齢" %>
+  <%= f.text_field :age, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :weight, "体重" %>
+  <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight_i18n.#{key}"), key] }, {}, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :characteristics, "特徴" %>
+  <%= f.text_field :characteristics, class: "form-control" %>
+</div>
 
-    <div class="form-group">
-      <%= f.label :image, "ペット画像" %>
-      <%= f.file_field :image, accept: "image/*", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :name, "ペットの名前" %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :species, "ペットの種類" %>
-      <div class="form-check">
-        <%= f.radio_button :species, 'dog', class: "form-check-input" %>
-        <%= f.label :犬, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, 'cat', class: "form-check-input" %>
-        <%= f.label :猫, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, 'bird', class: "form-check-input" %>
-        <%= f.label :鳥, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :species, 'other', class: "form-check-input" %>
-        <%= f.label :その他, class: "form-check-label" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :gender, "ペットの性別" %>
-      <div class="form-check">
-        <%= f.radio_button :gender, 'male', class: "form-check-input" %>
-        <%= f.label :オス, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, 'female', class: "form-check-input" %>
-        <%= f.label :メス, class: "form-check-label" %>
-      </div>
-      <div class="form-check">
-        <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
-        <%= f.label :不明, class: "form-check-label" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :address, "年齢" %>
-      <%= f.text_field :age, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :weight, "体重" %>
-      <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight_i18n.#{key}"), key] }, {}, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :characteristics, "特徴" %>
-      <%= f.text_field :characteristics, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
-    </div>
+<div class="form-group">
+  <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
+</div>
 
