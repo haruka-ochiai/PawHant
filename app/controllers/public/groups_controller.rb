@@ -46,6 +46,9 @@ class Public::GroupsController < ApplicationController
     group_members = @group.customers
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
+    pp "group_members----------------------------#{group_members.inspect}"
+    pp "@mail_title----------------------------#{@mail_title}"
+    pp "@mail_content----------------------------#{@mail_content}"
     ContactMailer.send_mail(@mail_title, @mail_content, group_members).deliver
   end
 

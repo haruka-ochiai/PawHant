@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @customer_pet = @customer.customer_pets
   end
 
   def edit

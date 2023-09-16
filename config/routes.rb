@@ -39,8 +39,8 @@ end
 
     resources :customers, only: [:show, :edit, :update] do
       get "sighting_pet_posts", to: "customers#sighting_pet_posts", as: 'customers_sighting_pet_posts'
-      member do
       resources :customer_pets, only: [:new, :create, :edit, :update, :destroy]
+      member do
       get 'pet_posts', to: 'pet_posts#index_for_customer'
       end
       collection do
