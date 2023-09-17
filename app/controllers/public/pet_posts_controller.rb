@@ -29,7 +29,7 @@ class Public::PetPostsController < ApplicationController
       flash[:notice] = "投稿に成功しました"
       redirect_to pet_post_path(@pet_post)
     else
-       render "edit"
+       render "new"
     end
   end
 

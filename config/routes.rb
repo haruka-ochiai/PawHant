@@ -23,16 +23,20 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :show, :destroy]
     end
 
-  resources :searches, only: [] do
-  get 'keyword_search', on: :collection
-end
+  # 検索関係
+  resources :searches, only: [:new] do
+    collection do
+    get 'keyword_search', to: 'searches#keyword_search'
+    get 'detail', to: 'searches#detail'
+    end
+  end
 
   # ゲストログイン
   devise_scope :customer do
     post "customers/guest_sign_in", to: "customers/sessions#guest_sign_in"
   end
 
-  # 会員側のルーティング
+  # 会員側
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'

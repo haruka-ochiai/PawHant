@@ -12,6 +12,9 @@ class PetPost < ApplicationRecord
 
   #バリデーション
   validates :age, presence: true
+  validates :pet_status, presence: true
+  validates :species, presence: true
+  validates :gender, presence: true
   validates :prefecture, presence: true
   validates :area, presence: true
   validates :occurred_on, presence: true
@@ -53,6 +56,11 @@ class PetPost < ApplicationRecord
    end
   end
 
+  # 検索
+  def self.ransackable_attributes(auth_object = nil)
+    ["age", "area", "gender", "occurred_on", "pet_status", "prefecture", "species"]
+  end
+
 
   # ペットの状況
   enum pet_status: { normal: 0, lost: 1, found: 2, resolved: 3 }
@@ -60,4 +68,6 @@ class PetPost < ApplicationRecord
   enum species: { dog: 0, cat: 1, bird: 2, other: 3 }
   enum gender: { male: 0, female: 1, unknown: 2 }
   enum weight: {less_than_1kg: 0, between_1_and_5kg: 1, between_5_and_10kg: 2, over_10kg: 3 }
+
+
 end

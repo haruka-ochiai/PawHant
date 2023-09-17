@@ -1,4 +1,4 @@
-<%= form_with url: keyword_search_searches_path, local: true, method: :get, class: "d-flex align-items-center" do |f| %>
+<%= form_with url:  keyword_search_searches_path, local: true, method: :get, class: "d-flex align-items-center" do |f| %>
   <%= f.text_field :keyword, class: "form-control w-75", placeholder: "エリアを入力してください" %>
   <%= f.hidden_field :model, value: "pet_post" %>
   <%= f.hidden_field :method, value: "partial" %>
