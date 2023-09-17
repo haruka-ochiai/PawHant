@@ -32,8 +32,9 @@
           <%= f.submit "サインアップ", class:"btn btn-block btn-secondary mt-5" %>
         <% end %>
         <div class="pt-5">
-        登録済みの方は<%= render "public/shared/links" %>からログインしてください。<br>
-        ゲストログインの方はこちらを押してください。
+        登録済みの方、ゲストログインの方は<br>
+        <%= render "public/shared/links" %><br>
+        からログインしてください。
         </div>
       </div>
     </div>
