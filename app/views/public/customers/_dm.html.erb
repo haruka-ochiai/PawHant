@@ -1,0 +1,12 @@
+<% unless customer.id == current_customer.id %>
+  <% if isRoom == true %>
+    <%= link_to "チャットへ", room_path(roomId), class:"btn btn-primary" %>
+  <% else %>
+    <%= form_with model: room do |f| %>
+      <%= fields_for entry do |e| %>
+        <%= e.hidden_field :customer_id, value: customer.id %>
+      <% end %>
+      <%= f.submit "チャットを始める", class:"btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>
