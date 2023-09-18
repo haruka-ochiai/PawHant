@@ -3,6 +3,26 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @customer_pet = @customer.customer_pets
+    
+    # DMの処理
+    @currentCustomerEntry = Entry.where(customer_id: current_customer.id)
+    @customerEntry = Entry.where(customer_id: @customer.id)
+    if @customer.id == current_customer.id
+    else
+      @currentCustomerEntry.each do |cc|
+        @customerEntry.each do |c|
+          if cc.room_id = c.room_id then
+            @isRoom = true
+            @roomId = cc.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit

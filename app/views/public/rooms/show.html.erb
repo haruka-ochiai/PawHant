@@ -1,2 +1,19 @@
-<h1>Public::Rooms#show</h1>
-<p>Find me in app/views/public/rooms/show.html.erb</p>
+<% @entries.each do |e| %>
+  <% if @myCustomerId != e.customer.id %>
+    <h2><%= e.customer.name %>さんとのトークルーム</h2>
+  <% end %>
+<% end %>
+
+<% if @messages.present? %>
+  <% @messages.each do |m| %>
+    <% @myCustomerId == m.customer.id %>
+    <p><%= m.customer.name %></p>
+    <p><%= m.message %></p>
+  <% end %>
+<% end %>
+
+<%= form_with model: @message do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.submit "投稿",class: 'form-submit'%>
+<% end %>
