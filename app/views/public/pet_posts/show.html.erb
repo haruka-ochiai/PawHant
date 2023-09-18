@@ -3,4 +3,5 @@
     <h4>詳細ページ</h4>
   </div>
       <%= render 'detail', pet_post: @pet_post, pet_post_tags: @pet_post_tags, comment: @comment %>
+      <%= render 'layouts/error', obj: @comment %>
 </div>

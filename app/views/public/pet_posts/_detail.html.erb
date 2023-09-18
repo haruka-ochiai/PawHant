@@ -71,12 +71,12 @@
 <div>
   <% if pet_post.favorited_by?(current_customer) %>
     <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
-      <i class="fa-regular fa-eye" aria-hidden="true" style="color: orange;"></i>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
     <% end %>
       <%= pet_post.sightings.count %> 件の目撃
   <% else %>
     <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
-      <i class="fa-regular fa-eye" aria-hidden="true" style="color: grey;"></i>
+      <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
     <% end %>
     <%= pet_post.sightings.count %> 件の目撃
   <% end %>
@@ -89,7 +89,6 @@
     <%= render 'public/comments/comments-lists', pet_post: pet_post, comment: comment %>
     </div>
   </div>
-
 
 <div class="row">
   <div class="col-md-10 mx-auto">
