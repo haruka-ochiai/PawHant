@@ -32,7 +32,8 @@ class Customer < ApplicationRecord
       customer.postcode = ""
       customer.phone_number = ""
       customer.address = ""
-      customer.is_guest = true # ゲストユーザーであることを示すフラグ
+      customer.is_guest = true
+      # ゲストユーザーであることを示すフラグ
     end
   end
 
