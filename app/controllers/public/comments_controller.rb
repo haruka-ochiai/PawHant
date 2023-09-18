@@ -1,14 +1,20 @@
 class Public::CommentsController < ApplicationController
+
   def create
     pet_post = PetPost.find(params[:pet_post_id])
     comment = current_customer.comments.new(comment_params)
     comment.pet_post_id = pet_post.id
-    comment.save
-    redirect_to request.referer
+    if comment.save
+      redirect_to request.referer
+    else
+      @pet_post = PetPost.find(params[:pet_post_id])
+      render 'public/pet_posts/show'
+    end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
+    flash[:notice] = "コメントを削除しました"
     redirect_to pet_post_path(params[:pet_post_id])
   end
 
