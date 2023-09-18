@@ -8,6 +8,9 @@ class Public::CommentsController < ApplicationController
       redirect_to request.referer
     else
       @pet_post = PetPost.find(params[:pet_post_id])
+      @pet_post_tags = @pet_post.tags
+      @comment = Comment.new
+      flash.now[:alert] = "投稿失敗!!"
       render 'public/pet_posts/show'
     end
   end
