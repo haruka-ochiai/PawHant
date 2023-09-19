@@ -2,8 +2,6 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :customer_state, only: [:create]
-
 
    #顧客ログイン後遷移先
   def after_sign_in_path_for(resource)
@@ -13,25 +11,6 @@ class Public::SessionsController < Devise::SessionsController
   #顧客ログアウト後遷移先
   def after_sign_out_path_for(resource)
       root_path
-  end
-
-
-  #ログイン時のバリデーション
-  protected
-
-  def customer_state
-    @customer = Customer.find_by(email: params[:customer][:email])
-    if @customer
-      if @customer.valid_password?(params[:customer][:password]) && (@customer.active == false)
-        #退会済みの場合の処理
-        flash[:notice] = "アカウント停止中です。再度ご登録をしてご利用ください"
-        redirect_to new_customer_session_path
-      else
-        flash[:notice] = "項目を入力してください"
-      end
-    else
-      flash[:notice] = "該当するユーザーが見つかりません"
-    end
   end
 
   # GET /resource/sign_in

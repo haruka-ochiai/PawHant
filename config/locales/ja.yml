@@ -47,6 +47,34 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      pet_post:
+      customer_pet:
+      customer:
+      group:
+    attributes:
+      pet_post:
+        age: "年齢"
+        prefecture: "都道府県"
+        area: "詳細住所"
+        occurred_on: "発生日"
+        characteristics: "特徴"
+        description: "説明文"
+      customer_pet:
+        name: "名前"
+        age: "年齢"
+        characteristics: "特徴"
+      customer:
+        email: "メールアドレス"
+        name: "ユーザー名"
+        postcode: "郵便番号"
+        address: "住所"
+        phone_number: "電話番号"
+        password: "パスワード"
+      group:
+        name: "エリア名"
+        introduction: "紹介文"
+
   date:
     abbr_day_names:
     - 日

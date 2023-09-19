@@ -8,6 +8,7 @@
         <%= render 'dm', customer: @customer, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
       </div>
       <% if current_customer == @customer %>
+        <p>※下記の情報は他のユーザーには表示されません</p>
         <%= render 'info', customer:  @customer %>
        <% end %>
     </div>
