@@ -8,7 +8,7 @@
       <h4>詳細情報</h4>
       <% if current_customer == pet_post.customer %>
         <div class="ml-3">
-          <%= link_to "編集する", edit_pet_post_path, class: "btn btn-outline-info" %>
+          <%= link_to "編集する", edit_pet_post_path(pet_post), class: "btn btn-outline-info" %>
           <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
         </div>
       <% end %>
