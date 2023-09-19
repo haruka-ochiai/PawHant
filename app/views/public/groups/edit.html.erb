@@ -3,6 +3,7 @@
     <div class="col-sm-12 col-md-8 px-sm-0 mx-auto">
       <h3>グループ編集</h3>
       <%= form_with model: @group, url: group_path, method: :patch, local: true do |f| %>
+        <%= render 'layouts/error', obj: @group %>
         <%= render 'form', f: f %>
       <% end %>
   </div>

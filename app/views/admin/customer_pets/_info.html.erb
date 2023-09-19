@@ -1,6 +1,5 @@
 <% if customer.customer_pets.any? %>
   <h4>ペット情報</h4>
-    <%= link_to "ペット情報を追加する", new_customer_customer_pet_path(customer, customer_pet), class:"btn btn-outline-secondary pt-2" %>
     <% customer.customer_pets.each do |pet| %>
       <table class="table table-bordered">
       <tr>
@@ -32,17 +31,8 @@
         <td><%= pet.characteristics %></td>
       </tr>
     </table>
-    <% if current_customer == customer %>
-      <tr>
-      <td><%= link_to "編集する", edit_customer_customer_pet_path(customer, pet), class: "btn btn-outline-info" %></td>
-      <td><%= link_to "削除", customer_customer_pet_path(customer, pet), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"btn btn-outline-secondary pt-2" %>
-      </tr>
-    <% end %>
   <% end %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->
   <h4 class="mx-auto mt-5">ペット情報はまだ登録されていません。</h4>
-  <% if current_customer == customer %>
-    <%= link_to "ペットを登録する", new_customer_customer_pet_path(customer, customer_pet), class: "btn btn-outline-warning" %>
-  <% end %>
 <% end %>

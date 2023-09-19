@@ -22,7 +22,9 @@
       </div>
     <% end %>
 
-    <%= flash[:notice] %>
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% end %>
     <%= yield %>
     </main>
     <footer>
