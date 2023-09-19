@@ -1,9 +1,10 @@
 class Public::CustomersController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update]
 
   def show
     @customer = Customer.find(params[:id])
     @customer_pet = @customer.customer_pets
-    
+
     # DMの処理
     @currentCustomerEntry = Entry.where(customer_id: current_customer.id)
     @customerEntry = Entry.where(customer_id: @customer.id)
@@ -56,6 +57,9 @@ class Public::CustomersController < ApplicationController
     @sighting_pet_posts = @customer.sighting_pet_posts.page(params[:page]).per(8).order('updated_at DESC')
   end
 
+
+  private
+
   def customer_params
     params.require(:customer).permit(
                                       :name,
@@ -64,6 +68,13 @@ class Public::CustomersController < ApplicationController
                                       :phone_number,
                                       :email,
                                       )
+  end
+
+  def is_matching_login_customer
+    customer = Customer.find(params[:id])
+    unless customer.id == current_customer.id
+      redirect_to root_path
+    end
   end
 
 end
