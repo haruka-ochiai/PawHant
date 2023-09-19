@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= f.label :image, "ペット画像" %>
-  <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+  <%= f.file_field :image, accept: "image/*" %>
 </div>
 <div class="form-group">
   <%= f.label :pet_status, "ペット状況" %>
@@ -49,7 +49,7 @@
 </div>
 <div class="form-group">
   <%= f.label :address, "年齢" %>
-  <%= f.text_field :age, class: "form-control" %>
+  <%= f.text_field :age, class: "form-control", placeholder: "例: 2歳、子犬、成犬、シニア犬"  %>
 </div>
 <div class="form-group">
   <%= f.label :weight, "体重" %>
@@ -57,22 +57,22 @@
 </div>
 <div class="form-group">
   <%= f.label :prefecture, "都道府県" %>
-  <%= f.select :prefecture, prefecture_options, prompt: "選択してください" %>
+  <%= f.select :prefecture, prefecture_options, { prompt: "選択してください" }, class: "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :area, "詳細住所" %>
-  <%= f.text_field :area, class: "form-control" %>
+  <%= f.text_field :area, class: "form-control", placeholder: "例:〇〇市〇〇町11-1" %>
 </div>
 <div class="form-group">
   <%= f.label :occurred_on, "発生日" %>
-  <%= f.date_field :occurred_on, class: "datetimepicker" %>
+  <%= f.date_field :occurred_on, class: "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :characteristics, "特徴" %>
-  <%= f.text_field :characteristics, class: "form-control" %>
+  <%= f.text_field :characteristics, class: "form-control", placeholder: "毛色、模様、特徴を入力してください" %>
 </div>
 <div class="form-group">
   <%= f.label :description, "説明文" %>
-  <%= f.text_field :description, class: "form-control" %>
+  <%= f.text_field :description, class: "form-control", placeholder: "状況や伝えたいことなどご自由にお書きください"  %>
 </div>
 

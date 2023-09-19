@@ -4,7 +4,7 @@ class CustomerPet < ApplicationRecord
   belongs_to :customer
 
   #バリデーション
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 2, maximum: 10 }
   validates :age, presence: true
   validates :weight, presence: true
   validates :characteristics, presence: true

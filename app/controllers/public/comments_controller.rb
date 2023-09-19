@@ -10,7 +10,7 @@ class Public::CommentsController < ApplicationController
       @pet_post = PetPost.find(params[:pet_post_id])
       @pet_post_tags = @pet_post.tags
       @comment = Comment.new
-      flash.now[:alert] = "コメントの投稿に失敗しました"
+      flash.now[:alert] = "コメントの投稿に失敗しました。(5文字〜20文字で入力してください。)"
       render 'public/pet_posts/show'
     end
   end

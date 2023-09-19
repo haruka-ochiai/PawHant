@@ -16,11 +16,11 @@ class PetPost < ApplicationRecord
   validates :species, presence: true
   validates :gender, presence: true
   validates :prefecture, presence: true
-  validates :area, presence: true
+  validates :area, presence: true, length: { minimum: 2, maximum: 20 }
   validates :occurred_on, presence: true
   validates :weight, presence: true
-  validates :characteristics, presence: true
-  validates :description, presence: true
+  validates :characteristics, presence: true, length: { minimum: 2, maximum: 50 }
+  validates :description, presence: true, length: { minimum: 2, maximum: 60 }
 
   def favorited_by?(customer)
     sightings.exists?(customer_id: customer.id)

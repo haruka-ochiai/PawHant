@@ -41,7 +41,7 @@ class Public::CustomerPetsController < ApplicationController
     redirect_to customer_path(@customer)
   end
 
-   private
+  private
 
   def customer_pets_params
     params.require(:customer_pet).permit(
@@ -55,7 +55,4 @@ class Public::CustomerPetsController < ApplicationController
                                          :characteristics
                                          )
   end
-
-
-
 end
