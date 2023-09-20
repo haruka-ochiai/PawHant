@@ -1,18 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4 class="my-3">保護情報一覧</h4>
+      <h4 class="my-3">保護情報一覧(新着順)</h4>
     </div>
+    <div class="container">
+      <div class="row">
+        <% @pet_posts.each do |pet_post| %>
+          <%= render 'list', pet_post: pet_post %>
+        <% end %>
       </div>
-      <div class="container">
-          <div class="row">
-              <% @pet_posts.each do |pet_post| %>
-                    <%= render 'list', pet_post: pet_post %>
-              <% end %>
-          </div>
-      </div>
-      <div class="mx-auto mt-3">
-        <%= paginate @pet_posts %>
-      </div>
+    </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @pet_posts %>
+    </div>
   </div>
 </div>
