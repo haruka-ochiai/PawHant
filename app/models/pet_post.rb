@@ -9,6 +9,9 @@ class PetPost < ApplicationRecord
   has_many :tags, through: :taggings
   # 通知
   has_one :notification, as: :subject, dependent: :destroy
+  # attr_accessor :tag_name
+  # after_save :save_tag
+  # validate :tag_name_present
 
   #バリデーション
   validates :age, presence: true
@@ -21,6 +24,7 @@ class PetPost < ApplicationRecord
   validates :weight, presence: true
   validates :characteristics, presence: true, length: { minimum: 2, maximum: 50 }
   validates :description, presence: true, length: { minimum: 2, maximum: 60 }
+  validates :image, presence: true
 
   def favorited_by?(customer)
     sightings.exists?(customer_id: customer.id)
@@ -34,7 +38,13 @@ class PetPost < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  # タグの処理
+  # def tag_name_present
+  #   unless self.tag_name.present?
+  #     errors.add(:tags, "を入力してください")
+  #   end
+  # end
+
+   # タグの処理
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -42,6 +52,16 @@ class PetPost < ApplicationRecord
     old_tags = current_tags - sent_tags
     # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
     new_tags = sent_tags - current_tags
+
+  # タグの処理
+  # def save_tag
+  #   sent_tags = tag_name.split
+  # # タグが存在していれば、タグの名前を配列として全て取得
+  #   current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+  #   # 現在取得したタグから送られてきたタグを除いてoldtagとする
+  #   old_tags = current_tags - sent_tags
+  #   # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+  #   new_tags = sent_tags - current_tags
 
     # 古いタグを消す
     old_tags.each do |old_tag_name|
@@ -56,7 +76,7 @@ class PetPost < ApplicationRecord
    end
   end
 
-  # 検索
+  # 絞り込み検索
   def self.ransackable_attributes(auth_object = nil)
     ["age", "area", "gender", "occurred_on", "pet_status", "prefecture", "species"]
   end

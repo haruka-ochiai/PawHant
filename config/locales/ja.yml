@@ -54,6 +54,8 @@ ja:
       group:
     attributes:
       pet_post:
+        image: "画像"
+        tags: "タグ"
         age: "年齢"
         prefecture: "都道府県"
         area: "詳細住所"
