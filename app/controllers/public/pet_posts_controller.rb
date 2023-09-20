@@ -1,4 +1,5 @@
 class Public::PetPostsController < ApplicationController
+  before_action :authenticate_customer!, except: [:index]
 
   def index
     @pet_posts = PetPost.where(pet_status: "found").page(params[:page]).per(8).order('updated_at DESC')

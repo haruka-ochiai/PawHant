@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_customer!
 
   def keyword_search
     @keyword = params[:keyword]

@@ -1,4 +1,5 @@
 class Public::CustomerPetsController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @customer = Customer.find(params[:customer_id])

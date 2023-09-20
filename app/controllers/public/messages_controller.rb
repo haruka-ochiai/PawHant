@@ -1,4 +1,5 @@
 class Public::MessagesController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
     if Entry.where(:customer_id => current_customer.id, :room_id => params[:message][:room_id]).present?
