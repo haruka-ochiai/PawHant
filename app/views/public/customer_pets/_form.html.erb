@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= f.label :image, "ペット画像" %>
-  <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+  <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
 </div>
 <div class="form-group">
   <%= f.label :name, "ペットの名前" %>
@@ -42,7 +42,7 @@
 </div>
 <div class="form-group">
   <%= f.label :address, "年齢" %>
-  <%= f.text_field :age, class: "form-control" %>
+  <%= f.text_field :age, class: "form-control", placeholder: "例: 2歳、子犬、成犬、シニア犬" %>
 </div>
 <div class="form-group">
   <%= f.label :weight, "体重" %>
@@ -50,5 +50,5 @@
 </div>
 <div class="form-group">
   <%= f.label :characteristics, "特徴" %>
-  <%= f.text_field :characteristics, class: "form-control" %>
+  <%= f.text_field :characteristics, class: "form-control", placeholder: "毛色、模様、特徴を入力してください" %>
 </div>

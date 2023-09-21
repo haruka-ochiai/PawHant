@@ -1,5 +1,4 @@
 class Public::SightingsController < ApplicationController
-  before_action :authenticate_customer!
 
   def index
      @sightings_pet_posts = current_customer.sightings.map(&:sighting)
