@@ -17,7 +17,7 @@
         <td><%= group.customers.count %></td>
         <td><%= link_to '詳細を見る', group_path(group), class: "btn btn-outline-warning" %></td>
         <% if group.customers.where(id: current_customer.id).present? %>
-          <td><%= link_to 'メールを送信',group_new_mail_path(group), class: "btn btn-sm btn-info" %></td>
+          <td><%= link_to 'メールを送信',group_new_mail_path(group), class: "btn btn-outline-primary" %></td>
         <% else %>
           <td></td>
         <% end %>

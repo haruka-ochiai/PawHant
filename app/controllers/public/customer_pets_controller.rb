@@ -1,4 +1,5 @@
 class Public::CustomerPetsController < ApplicationController
+  before_action :is_matching_login_customer, only: [:new, :edit, :update]
   before_action :authenticate_customer!
 
   def new
@@ -55,5 +56,12 @@ class Public::CustomerPetsController < ApplicationController
                                          :weight,
                                          :characteristics
                                          )
+  end
+
+  def is_matching_login_customer
+    customer = Customer.find(params[:customer_id])
+    unless customer.id == current_customer.id
+      redirect_to root_path
+    end
   end
 end
