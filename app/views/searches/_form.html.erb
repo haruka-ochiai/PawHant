@@ -24,14 +24,17 @@
 </div>
 <div class="form-group">
   <%= f.label :prefecture, "都道府県" %>
-  <%= f.select :prefecture_eq, prefecture_options, prompt: "選択してください" %>
+  <%= f.select :prefecture_eq, prefecture_options, { prompt: "選択してください" }, class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :area, "詳細住所" %>
-  <%= f.search_field :area_cont, class: "form-control" %>
+  <%= f.label :area, "詳細住所(キーワード検索)" %>
+  <%= f.search_field :area_cont, class: "form-control", placeholder: "エリアのキーワードを入力。例:大宮" %>
 </div>
 <div class="form-group">
-    <%= label_tag :occurred_on, "発生日範囲を選択(〜日)" %>
-    <%= f.date_field :occurred_on_gteq, class: "form-control"%><br>
-    <%= f.date_field :occurred_on_lteq, class: "form-control" %>
+    <%= label_tag :occurred_on, "発生日範囲を選択" %>
+    <div class="form-inline">
+      <%= f.date_field :occurred_on_gteq, class: "form-control", style: "width: 300px;" %>
+      <span>〜</span>
+      <%= f.date_field :occurred_on_lteq, class: "form-control", style: "width: 300px;" %>
+    </div>
 </div>

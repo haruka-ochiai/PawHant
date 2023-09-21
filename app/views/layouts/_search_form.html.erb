@@ -1,5 +1,5 @@
 <%= form_with url:  keyword_search_searches_path, local: true, method: :get, class: "d-flex align-items-center" do |f| %>
-  <%= f.text_field :keyword, class: "form-control w-75", placeholder: "エリアを入力してください" %>
+  <%= f.text_field :keyword, class: "form-control w-75", placeholder: "エリアを入力" %>
   <%= f.hidden_field :model, value: "pet_post" %>
   <%= f.hidden_field :method, value: "partial" %>
   <button type="submit" class="btn btn-light">検索</button>

@@ -53,8 +53,9 @@ class Public::CustomersController < ApplicationController
     redirect_to :root #削除に成功すればrootページに戻る
   end
 
+  # リアクションした投稿一覧
   def sighting_pet_posts
-    @customer = current_customer
+    @customer = Customer.find(params[:customer_id])
     @sighting_pet_posts = @customer.sighting_pet_posts.page(params[:page]).per(8).order('updated_at DESC')
   end
 

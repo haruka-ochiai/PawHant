@@ -23,8 +23,6 @@
         <%= pet_post.sightings.count %> 件の目撃
         <p><%= "#{pet_post.comments.count} 件のコメント" %></p>
       <% end %>
-
-
         <div style="height: 80px;">
           <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
           <p><% pet_post.tags.each do |tag|%>
@@ -32,7 +30,7 @@
              <% end %>
           </p>
         </div>
-        <%= link_to pet_post_path(pet_post.id), class: "btn btn-primary" do %>
+        <%= link_to pet_post_path(pet_post.id), class: "btn btn-outline-warning" do %>
           詳細を見る
         <% end %>
       </div>

@@ -1,25 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <div class="d-flex align-items-center">
-          <h4 class="my-2"><%= @customer.name %>さんの投稿一覧</h4>
-        </div>
-      </div>
-      <div class="container">
-          <div class="row">
-            <% if @pet_posts.any? %>
-              <% @pet_posts.each do |pet_post| %>
-                    <%= render 'list', pet_post: pet_post %>
-              <% end %>
-            <% else %>
-             <div class="d-flex align-items-center justify-content-center" style="height: 300px;">
-              <h4>投稿はありません</h4>
-            </div>
-            <% end %>
+      <h4 class="my-3"><%= @customer.name %>さんの投稿一覧</h4>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% if @pet_posts.any? %>
+          <% @pet_posts.each do |pet_post| %>
+            <%= render 'list', pet_post: pet_post %>
+          <% end %>
+        <% else %>
+
+        <h4>保護情報は登録されておりません</h4>
+          <div class="mx-auto" style="height: 300px; text-align: center;">
+
           </div>
+        <% end %>
       </div>
-      <div class="mx-auto mt-3">
-        <%= paginate @pet_posts %>
-      </div>
+    </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @pet_posts %>
+    </div>
   </div>
 </div>
