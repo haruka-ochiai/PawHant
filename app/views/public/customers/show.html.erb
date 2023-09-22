@@ -7,10 +7,12 @@
         <%= link_to "#{@customer.name} さんの投稿", pet_posts_customer_path(@customer), class:"btn btn-outline-secondary pt-2" %>
         <%= render 'dm', customer: @customer, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
       </div>
+      <div class="mt-5">
       <% if current_customer == @customer %>
         <p>※下記の情報は他のユーザーには表示されません</p>
         <%= render 'info', customer:  @customer %>
        <% end %>
+      </div>
     </div>
 
     <div class="col-md-6 sm-10">

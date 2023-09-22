@@ -3,22 +3,21 @@
     <div class="col">
       <h4 class="my-3">迷子情報一覧(新着順)</h4>
     </div>
-    <div class="container">
-      <div class="row">
-        <% if @pet_posts.present? %>
-          <% @pet_posts.each do |pet_post| %>
-              <%= render 'public/pet_posts/list', pet_post: pet_post, tag_list: @tag_list %>
-          <% end %>
-        <% else %>
-          <div class="d-flex align-items-center mx-auto" style="height: 300px;">
-            <h4 class="text-center">保護情報は登録されておりません</h4>
-          </div>
-        <% end %>
-        </div>
+   </div>
+</div>
+<div class="container">
+  <div class="row">
+    <% if @pet_posts.present? %>
+      <% @pet_posts.each do |pet_post| %>
+          <%= render 'public/pet_posts/list', pet_post: pet_post, tag_list: @tag_list %>
+      <% end %>
+    <% else %>
+      <div class="d-flex align-items-center mx-auto" style="height: 300px;">
+        <h4 class="text-center">保護情報は登録されておりません</h4>
       </div>
+    <% end %>
     <div class="mx-auto mt-3">
-        <%= paginate @pet_posts %>
+      <%= paginate @pet_posts %>
     </div>
   </div>
 </div>
-

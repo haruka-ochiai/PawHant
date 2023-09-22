@@ -48,7 +48,7 @@
   <%= f.label :weight, "体重" %>
    <%= f.select :weight, CustomerPet.weights.keys.map { |key| [I18n.t("enums.pet_post.weight.#{key}"), key] }, {}, class: "form-control" %>
 </div>
-<div class="form-group">
+<div class="form-group mb-4">
   <%= f.label :characteristics, "特徴" %>
   <%= f.text_field :characteristics, class: "form-control", placeholder: "毛色、模様、特徴を入力してください" %>
 </div>

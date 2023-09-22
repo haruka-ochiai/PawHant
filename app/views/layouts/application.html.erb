@@ -18,12 +18,14 @@
     <main class="mb-auto">
     <% if flash[:alert] %>
       <div class="alert alert-danger">
-      <%= flash[:alert] %>
+        <%= flash[:alert] %>
       </div>
     <% end %>
 
     <% if flash[:notice] %>
-      <%= flash[:notice] %>
+      <div class="ml-4">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
     <%= yield %>
     </main>

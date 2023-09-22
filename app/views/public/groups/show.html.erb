@@ -1,39 +1,42 @@
 <div class='container'>
-  <h4>グループ詳細</h4>
-  <div class='row mt-5'>
-      <div class="col-md-4 d-flex align-items-center">
-        <%= image_tag @group.get_group_image(500, 500), size: "250x250", class: "rounded" %>
-      </div>
-      <div class="col col-md-7 offset-md-1">
-        <div class="d-flex align-items-center">
-          <table class='table table-borderless'>
-            <tr>
-              <th>エリア名</th>
-              <td><%= @group.name %></td>
-            <tr>
-              <th>紹介文</th>
-              <td><%= @group.introduction %></td>
-            </tr>
-              <th>メンバー</th>
-              <td>
-                <% @customers.each do |customer| %>
-  　　              <%= link_to customer.name, customer_path(customer) %>
-                <% end %>
-              </td>
-            </tr>
-           </table>
-           <div class="mt-3">
-                <% if @group.is_owned_by?(current_customer) %>
-  　　            <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-outline-info" %>
-                <% elsif @group.includesCustomer?(current_customer)%>
-  　　            <%= link_to '抜ける', group_group_members_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-                <% else %>
-  　               <%= link_to '参加する', group_group_members_path(@group), method: :post, class: "btn btn-sm btn-success" %>
-                <% end %>
-            </div>
-
-
-
+  <div class="row">
+    <div class="col mt-3">
+       <h4>グループ詳細</h4>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class='row'>
+    <div class="col-md-4 col-sm-8 d-flex align-items-center mt-5 ml-3">
+      <%= image_tag @group.get_group_image(500, 500), size: "250x250", class: "rounded" %>
+    </div>
+    <div class="col col-md-7 col-sm-8 mt-5">
+     <table class='table table-bordered'>
+      <tr>
+        <th class="bg-light">エリア名</th>
+        <td><%= @group.name %></td>
+      <tr>
+        <th class="bg-light">紹介文</th>
+        <td><%= @group.introduction %></td>
+      </tr>
+        <th class="bg-light">メンバー</th>
+        <td>
+          <% @customers.each do |customer| %>
+　　              <%= link_to customer.name, customer_path(customer) %>
+          <% end %>
+        </td>
+      </tr>
+     </table>
+    <div class="mt-5">
+      <% if @group.is_owned_by?(current_customer) %>
+　　      <%= link_to '編集', edit_group_path(@group), class: "btn btn-outline-secondary" %>
+      <% elsif @group.includesCustomer?(current_customer)%>
+　　      <%= link_to '抜ける', group_group_members_path(@group), method: :delete, class: "btn btn-warning" %>
+      <% else %>
+　         <%= link_to '参加する', group_group_members_path(@group), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+   </div>
   </div>
 </div>
 
