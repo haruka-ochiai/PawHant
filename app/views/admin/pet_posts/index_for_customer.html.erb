@@ -10,10 +10,8 @@
             <%= render 'list', pet_post: pet_post %>
           <% end %>
         <% else %>
-
-        <h4>保護情報は登録されておりません</h4>
-          <div class="mx-auto" style="height: 300px; text-align: center;">
-
+          <div class="d-flex align-items-center mx-auto" style="height: 300px;">
+              <h4 class="text-center"><%= @customer.name %>さんの投稿はありません</h4>
           </div>
         <% end %>
       </div>
