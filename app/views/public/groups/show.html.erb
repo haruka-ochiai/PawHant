@@ -29,7 +29,7 @@
      </table>
     <div class="mt-5">
       <% if @group.is_owned_by?(current_customer) %>
-　　      <%= link_to '編集', edit_group_path(@group), class: "btn btn-outline-secondary" %>
+　　      <%= link_to '編集する', edit_group_path(@group), class: "btn btn-outline-secondary" %>
       <% elsif @group.includesCustomer?(current_customer)%>
 　　      <%= link_to '抜ける', group_group_members_path(@group), method: :delete, class: "btn btn-warning" %>
       <% else %>

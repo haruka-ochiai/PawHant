@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: 'Customer'
   has_many :customers, through: :group_members
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 10 }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 10 }
   validates :introduction, presence: true, length: { minimum: 5, maximum: 20 }
 
   def get_group_image(width, height)
