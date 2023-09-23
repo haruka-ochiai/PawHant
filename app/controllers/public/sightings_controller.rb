@@ -1,9 +1,5 @@
 class Public::SightingsController < ApplicationController
-  before_action :authenticate_customer!
 
-  def index
-     @sightings_pet_posts = current_customer.sightings.map(&:sighting)
-  end
 
   def create
     pet_post = PetPost.find(params[:pet_post_id])

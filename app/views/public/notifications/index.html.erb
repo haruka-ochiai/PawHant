@@ -1,17 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-       <h4>通知</h4>
-        <% if @notifications.present? %>
-          <% @notifications.each do |notification| %>
-              <%= render "#{notification.action_type}", notification: notification %>
-          <% end %>
-        <% else %>
-          通知はありません
-        <% end %>
+    <div class="col-md-8 sm-8 mx-auto">
+     <h4 class="my-3">通知</h4>
     </div>
-  </div>
-  <div class="mx-auto mt-3">
-    <%= paginate @notifications %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 sm-8 mx-auto">
+          <% if @notifications.present? %>
+            <% @notifications.each do |notification| %>
+              <table class="table table-bordered">
+                <tr>
+                  <td>
+                    <%= render "#{notification.action_type}", notification: notification %>
+                  </td>
+                </tr>
+              </table>
+            <% end %>
+          <% else %>
+            <div class="d-flex align-items-center justify-content-center mx-auto" style="height: 300px;">
+              <h4 class="text-center">通知はありません</h4>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @notifications %>
+    </div>
   </div>
 </div>

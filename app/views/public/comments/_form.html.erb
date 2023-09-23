@@ -1,4 +1,6 @@
 <%= form_with model: [pet_post, comment] do |f| %>
-  <%= f.text_area :comment, rows: '6', class: "w-100",  placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
+  <%= f.text_area :comment, rows: '2', class: "form-control",  placeholder: "コメントをここに(20文字以内)" %>
+  <div class="my-2">
+    <%= f.submit "送信する", class: "btn btn-sm btn-outline-secondary" %>
+  </div>
 <% end %>

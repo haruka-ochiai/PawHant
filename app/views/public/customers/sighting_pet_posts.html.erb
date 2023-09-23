@@ -1,24 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <div class="d-flex align-items-center">
-          <h4 class="my-2">保護情報一覧</h4>
-          <div class="ml-3">
-            <% if customer_signed_in? %>
-              <%= link_to "迷子・保護情報を登録", new_pet_post_path, class:"btn btn-outline-danger mb-2" %>
-            <% end %>
+      <h4 class="my-3"><%= @customer.name %>さんのリアクションした投稿一覧</h4>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% if @sighting_pet_posts.present? %>
+          <% @sighting_pet_posts.each do |pet_post| %>
+            <%= render 'public/pet_posts/list', pet_post: pet_post %>
+          <% end %>
+        <% else %>
+          <div class="d-flex align-items-center mx-auto" style="height: 300px;">
+            <h4 class="text-center">リアクションした投稿はありません</h4>
           </div>
-        </div>
+        <% end %>
       </div>
-      <div class="container">
-          <div class="row">
-              <% @sighting_pet_posts.each do |pet_post| %>
-                    <%= render 'public/pet_posts/list', pet_post: pet_post %>
-              <% end %>
-          </div>
-      </div>
-      <div class="mx-auto mt-3">
-        <%= paginate @sighting_pet_posts %>
-      </div>
+    </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @sighting_pet_posts %>
+    </div>
   </div>
 </div>

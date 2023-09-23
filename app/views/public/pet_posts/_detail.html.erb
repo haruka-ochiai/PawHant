@@ -1,21 +1,41 @@
 <div class="row">
-  <div class="col col-md-4 d-flex align-items-center">
-    <%= image_tag pet_post.get_image(500, 500), size: "350x250", class: "rounded mx-auto d-block" %>
+  <div class="col col-md-5 col-sm-8 d-flex align-items-center justify-content-center">
+     <table class="table table-borderless ">
+       <tr>
+        <td><%= image_tag pet_post.get_image(500, 500), class: "rounded mx-auto d-block", style: "object-fit: cover; width: 320px;" %></td>
+      </tr>
+      <tr>
+        <td class="text-center">
+         <% if pet_post.favorited_by?(current_customer) %>
+            <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+            <% end %>
+              <%= pet_post.sightings.count %> 件の目撃
+          <% else %>
+            <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
+              <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
+            <% end %>
+            <%= pet_post.sightings.count %> 件の目撃
+          <% end %>
+            <p>コメント件数：<%= pet_post.comments.count %></p>
+        </td>
+      </tr>
+    </table>
   </div>
 
-  <div class="col col-md-7 offset-md-1">
+  <div class="col col-md-6 col-sm-8 offset-md-1 mx-auto">
     <div class="d-flex align-items-center">
       <h4>詳細情報</h4>
       <% if current_customer == pet_post.customer %>
         <div class="ml-3">
-          <%= link_to "編集する", edit_pet_post_path(pet_post), class: "btn btn-outline-info" %>
-          <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
+          <%= link_to "編集する", edit_pet_post_path(pet_post), class: "btn btn-outline-secondary mb-2" %>
+          <%= link_to "削除", pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger mb-2" %>
         </div>
       <% end %>
     </div>
     <table class="table table-bordered">
       <tr>
-        <td class="bg-light">ペットの状況</td>
+        <td class="bg-light col-4">ペットの状況</td>
         <td><%= pet_post.pet_status_i18n %></td>
       </tr>
       <tr>
@@ -69,30 +89,18 @@
   </div>
 </div>
 <div>
-  <% if pet_post.favorited_by?(current_customer) %>
-    <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <% end %>
-      <%= pet_post.sightings.count %> 件の目撃
-  <% else %>
-    <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
-    <% end %>
-    <%= pet_post.sightings.count %> 件の目撃
-  <% end %>
-    <p>コメント件数：<%= pet_post.comments.count %></p>
+
 </div>
 
 <div class="container">
-  <div class="row my-3">
-    <div class="col-md-10 mx-auto">
+  <div class="row">
+    <div class="col-md-8 sm-8 mx-auto">
     <%= render 'public/comments/comments-lists', pet_post: pet_post, comment: comment %>
     </div>
   </div>
-
-<div class="row">
-  <div class="col-md-10 mx-auto">
-  <%= render 'public/comments/form', pet_post: pet_post, comment: comment %>
+  <div class="row">
+    <div class="col-md-8 sm-8 mx-auto">
+      <%= render 'public/comments/form', pet_post: pet_post, comment: comment %>
+    </div>
   </div>
-</div>
 </div>

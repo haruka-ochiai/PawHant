@@ -23,7 +23,7 @@
             <td>
               <% @customers.each do |customer| %>
 　　            <li style="list-style: none;">
-　　            <%= link_to customer.name, customer_path(customer) %>
+　　            <%= link_to customer.name, admin_customer_path(customer) %>
 　　            </li>
               <% end %>
             </td>

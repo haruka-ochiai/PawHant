@@ -1,24 +1,20 @@
-<div class="col-md-3">
-<div class="card" style:"width: 18rem;">
-  <%= link_to admin_pet_post_path(pet_post.id) do %>
-    <%= image_tag pet_post.get_image(500, 500), size: "200x200", class: "rounded card-img-top" %>
-  <% end %>
-  <div class="card-body">
-    <div class="card-text">
-      <p><%= pet_post.sightings.count %> 件の目撃</p>
-      <p><%= link_to "#{pet_post.comments.count} 件のコメント", admin_pet_post_path(pet_post.id) %></p>
-      <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
-      <p><% pet_post.tags.each do |tag|%>
-           <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
-         <% end %>
-      </p>
-      <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-primary" do %>
-        詳細を見る
-      <% end %>
-    </div>
-    <div class="card-footer">
-      <h6>発生日 :<%= pet_post.occurred_on %></h6>
+<div class="col-md-3 col-sm-8 my-3">
+  <div class="card mx-auto" style="width: 17rem;">
+    <%= link_to admin_pet_post_path(pet_post.id) do %>
+      <%= image_tag pet_post.get_image(500, 500), class: "card-img-top img-fluid", style: "object-fit: cover; height: 280px;" %>
+    <% end %>
+    <div class="card-body">
+      <div class="card-text" style="height: 200px;">
+        <p><%= pet_post.sightings.count %> 件の目撃</p>
+        <p><%= link_to "#{pet_post.comments.count} 件のコメント", admin_pet_post_path(pet_post.id) %></p>
+        <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
+        <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-primary" do %>
+          詳細を見る
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <h6>発生日 :<%= pet_post.occurred_on %></h6>
+      </div>
     </div>
   </div>
-</div>
 </div>

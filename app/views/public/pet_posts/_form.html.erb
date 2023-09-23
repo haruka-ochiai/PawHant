@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= f.label :image, "ペット画像" %>
-  <%= f.file_field :image, accept: "image/*" %>
+  <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
 </div>
 <div class="form-group">
   <%= f.label :pet_status, "ペット状況" %>
@@ -53,7 +53,7 @@
 </div>
 <div class="form-group">
   <%= f.label :weight, "体重" %>
-  <%= f.select :weight, CustomerPet.weights.keys.map { |key| [t("enums.weight#{key}"), key] }, {}, class: "form-control" %>
+  <%= f.select :weight, CustomerPet.weights.keys.map { |key| [I18n.t("enums.pet_post.weight.#{key}"), key] }, {}, class: "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :prefecture, "都道府県" %>

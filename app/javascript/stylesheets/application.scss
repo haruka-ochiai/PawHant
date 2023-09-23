@@ -1,6 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=IBM+Plex+Sans+JP:wght@200&family=M+PLUS+Rounded+1c:wght@100;300&family=Noto+Sans+JP:wght@200;300&family=Noto+Serif+JP:wght@300&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Noto Sans JP', sans-serif;
 }

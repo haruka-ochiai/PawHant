@@ -1,11 +1,13 @@
 <% if customer.customer_pets.any? %>
-  <h4>ペット情報</h4>
-    <%= link_to "ペット情報を追加する", new_customer_customer_pet_path(customer, customer_pet), class:"btn btn-outline-secondary pt-2" %>
+  <div class="d-flex align-items-center">
+    <h4>ペット情報</h4>
+      <%= link_to "ペット情報を追加する", new_customer_customer_pet_path(customer, customer_pet), class:"btn btn-outline-primary ml-2 mb-2" %>
+  </div>
     <% customer.customer_pets.each do |pet| %>
       <table class="table table-bordered">
       <tr>
         <td class="bg-light">ペットの画像</td>
-        <td><%= image_tag pet.get_image(500, 500), size: "200x250" %></td>
+        <td><%= image_tag pet.get_image(500, 500), style: "object-fit: cover; width: 250px; height: 250px;" %></td>
       </tr>
       <tr>
         <td class="bg-light">ペットの種類</td>
@@ -31,13 +33,14 @@
         <td class="bg-light">特徴</td>
         <td><%= pet.characteristics %></td>
       </tr>
-    </table>
     <% if current_customer == customer %>
       <tr>
-      <td><%= link_to "編集する", edit_customer_customer_pet_path(customer, pet), class: "btn btn-outline-info" %></td>
-      <td><%= link_to "削除", customer_customer_pet_path(customer, pet), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"btn btn-outline-secondary pt-2" %>
+      <td></td>
+      <td><%= link_to "編集する", edit_customer_customer_pet_path(customer, pet), class: "btn btn-outline-secondary mx-3" %>
+      <%= link_to "削除", customer_customer_pet_path(customer, pet), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"btn btn-outline-danger pt-2" %>
       </tr>
     <% end %>
+   </table>
   <% end %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->

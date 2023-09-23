@@ -1,16 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 sm-5 mx-auto">
-      <h4 class="my-3 ml-4">絞り込み検索フォーム
+      <h4 class="my-4 ml-4">絞り込み検索フォーム
       (不明な箇所は空欄で検索可能です)</h4>
-      <div>
-        <%= search_form_for @q, url: detail_searches_path do |f| %>
-          <%= render 'form', f: f %>
-           <div class="form-group">
-              <%= f.submit "検索する", class: "btn btn-outline-secondary" %>
-           </div>
-        <% end %>
-      </div>
+    <div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 sm-8 mx-auto">
+      <%= search_form_for @q, url: detail_searches_path do |f| %>
+        <%= render 'form', f: f %>
+         <div class="form-group">
+            <%= f.submit "検索する", class: "btn btn-outline-secondary" %>
+         </div>
+      <% end %>
     </div>
   </div>
 </div>

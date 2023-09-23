@@ -1,14 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 sm-5">
-      <h4 class="my-3 ml-4">ペット情報新規登録</h4>
+    <div class="col-md-8 sm-5 mx-auto">
+      <h4 class="my-4 ml-4">ペット情報新規登録</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 sm-8 mx-auto">
       <%= form_with model: [@customer, @customer_pet], url: customer_customer_pets_path(@customer, @customer_pet), method: :post do |f| %>
       <%= render 'layouts/error', obj: @customer_pet %>
       <%= render 'form', customer: @customer, customer_pet: @customer_pet, f: f %>
       <div class="form-group">
-        <%= f.submit "新規登録", class: "btn btn-outline-secondary" %>
+        <%= f.submit "新規登録", class: "btn btn-outline-primary" %>
       </div>
       <% end %>
     </div>
   </div>
 </div>
+
