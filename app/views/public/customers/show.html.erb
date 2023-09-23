@@ -2,11 +2,19 @@
   <div class="row">
     <div class="col-md-6 sm-10">
       <h4><%= @customer.name %>さんの詳細ページ</h4>
-      <div class="py-3">
-        <%= link_to "#{@customer.name} さんがリアクションした投稿", customer_customers_sighting_pet_posts_path(@customer), class:"btn btn-outline-secondary pt-2" %>
-        <%= link_to "#{@customer.name} さんの投稿", pet_posts_customer_path(@customer), class:"btn btn-outline-secondary pt-2" %>
-        <%= render 'dm', customer: @customer, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
-      </div>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            <%= link_to "#{@customer.name} さんがリアクションした投稿", customer_customers_sighting_pet_posts_path(@customer), class:"btn btn-outline-secondary pt-2" %>
+            <%= link_to "#{@customer.name} さんの投稿", pet_posts_customer_path(@customer), class:"btn btn-outline-secondary pt-2" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= render 'dm', customer: @customer, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
+          </td>
+        </tr>
+      </table>
       <div class="mt-5">
       <% if current_customer == @customer %>
         <p>※下記の情報は他のユーザーには表示されません</p>
