@@ -15,7 +15,7 @@ class Customer < ApplicationRecord
   has_many :entries, dependent: :destroy
 
   #バリデーション
-  validates :name, presence: true, length: { minimum: 2, maximum: 10 }, uniqueness: { case_sensitive: false, message: "は既に使用されています" },
+  validates :name, presence: true, length: { minimum: 1, maximum: 10 }, uniqueness: { case_sensitive: false, message: "は既に使用されています" },
   format: { with: /\A[a-zA-Z_\-\p{L}]+\z/u, message: "では数字を使用できません" }
   validates :postcode, presence: true, format: { with: /\A\d{7}\z/, message: "はハイフンなしの7桁の数字で入力してください" }, unless: -> { is_guest }
   validates :address, presence: true, unless: -> { is_guest }
