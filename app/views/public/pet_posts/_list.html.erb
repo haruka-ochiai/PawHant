@@ -23,7 +23,7 @@
         <%= pet_post.sightings.count %> 件の目撃
         <p><%= "#{pet_post.comments.count} 件のコメント" %></p>
       <% end %>
-        <div style="height: 80px;">
+        <div style="height: 100px;">
           <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
           <p><% pet_post.tags.each do |tag|%>
                <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
@@ -34,7 +34,7 @@
           詳細を見る
         <% end %>
       </div>
-      <div class="card-footer">
+      <div class="card-footer mt-2">
         <h6>発生日 :<%= pet_post.occurred_on %></h6>
       </div>
     </div>

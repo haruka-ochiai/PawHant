@@ -1,7 +1,9 @@
 <% if customer.customer_pets.any? %>
   <div class="d-flex align-items-center">
     <h4>ペット情報</h4>
+    <% if current_customer == customer %>
       <%= link_to "ペット情報を追加する", new_customer_customer_pet_path(customer, customer_pet), class:"btn btn-outline-primary ml-2 mb-2" %>
+    <% end %>
   </div>
     <% customer.customer_pets.each do |pet| %>
       <table class="table table-bordered">
