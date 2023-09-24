@@ -46,8 +46,10 @@
   <% end %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->
-  <h4 class="mx-auto mt-5">ペット情報はまだ登録されていません。</h4>
-  <% if current_customer == customer %>
-    <%= link_to "ペットを登録する", new_customer_customer_pet_path(customer, customer_pet), class: "btn btn-outline-warning" %>
-  <% end %>
+  <div class="d-flex flex-column align-items-center justify-content-center" style="height: 60vh;">
+    <h4>ペット情報はまだ登録されていません。</h4>
+    <% if current_customer == customer %>
+      <%= link_to "ペットを登録する", new_customer_customer_pet_path(customer, customer_pet), class: "btn btn-outline-primary mt-3" %>
+    <% end %>
+  </div>
 <% end %>
