@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <div class="d-flex align-items-center">
-        <h4 class="my-3">キーワード検索結果</h4>
+        <h4 class="my-3"><%= sanitize(params[:keyword]) %> の検索結果</h4>
         <div class="ml-3">
           <% if customer_signed_in? %>
             <%= link_to "絞り込み検索をする", new_search_path, class:"btn btn-outline-secondary mb-2" %>

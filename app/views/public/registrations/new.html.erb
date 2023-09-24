@@ -7,7 +7,11 @@
           <p>下記を入力してください。</p>
         </div>
         <%= form_with model: @customer, url: customer_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+          <% if flash[:error].present? %>
+            <% flash[:error].each do |message| %>
+              <p><%= message %></p>
+            <% end %>
+          <% end %>
           <div class="input-group mb-3">
             <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前"%>
           </div>
