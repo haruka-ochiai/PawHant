@@ -1,7 +1,17 @@
 <nav class="navbar navbar-expand-lg py-4 navbar-light">
   <div class = "container-fluid border-bottom">
-    <%= link_to root_path, class: "mx-0" do %>
-      <%= image_tag "logo.png", alt: "LOGO", size: "280x80" %>
+    <% if customer_signed_in? %>
+      <%= link_to root_path, class: "mx-0" do %>
+        <%= image_tag "logo.png", alt: "LOGO", size: "280x80" %>
+      <% end %>
+    <% elsif admin_signed_in? %>
+      <%= link_to admin_root_path, class: "mx-0" do %>
+        <%= image_tag "logo.png", alt: "LOGO", size: "280x80" %>
+      <% end %>
+    <% else %>
+      <%= link_to root_path, class: "mx-0" do %>
+        <%= image_tag "logo.png", alt: "LOGO", size: "280x80" %>
+      <% end %>
     <% end %>
     <div class="d-flex flex-column ml-auto" >
       <button class="navbar-toggler" type="button" data-toggle="collapse"

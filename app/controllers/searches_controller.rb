@@ -14,5 +14,4 @@ class SearchesController < ApplicationController
     @q = PetPost.ransack(params[:q])
     @pet_posts = @q.result(distinct: true).page(params[:page]).per(8)
   end
-
 end
