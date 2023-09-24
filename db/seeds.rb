@@ -286,7 +286,7 @@ yuna_post = PetPost.find_or_create_by!(area: "世田谷区〇〇町9-9") do |pet
 end
 
 Tagging.find_or_create_by!(pet_post_id: yuna_post.id, tag_id: gray_tag.id)
-Tagging.find_or_create_by!(pet_post_id: itsuki_post.id, tag_id: cat_tag.id)
+Tagging.find_or_create_by!(pet_post_id: yuna_post.id, tag_id: cat_tag.id)
 
 sakura = Customer.find_or_create_by!(email: "sakura@example.com") do |customer|
   customer.name = "咲良"
@@ -490,7 +490,7 @@ kazu_post = PetPost.find_or_create_by!(area: "足立区〇〇町18-18") do |pet_
   pet_post.occurred_on = "2023-09-25"
   pet_post.characteristics = "小柄で動きが速いです"
   pet_post.description = "迷子になって心配しています。よろしくお願いします。"
-  pet_post.customer = riku
+  pet_post.customer = kazu
 end
 
 Tagging.find_or_create_by!(pet_post_id: kazu_post.id, tag_id: white_tag.id)
@@ -548,11 +548,93 @@ end
 Tagging.find_or_create_by!(pet_post_id: ryu_post.id, tag_id: brack_tag.id)
 Tagging.find_or_create_by!(pet_post_id: ryu_post.id, tag_id: cat_tag.id)
 
+CustomerPet.find_or_create_by!(characteristics: "警戒心が強く人見知りです。") do |customer_pet|
+  customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-cat1.jpg"), filename:"sample-customer-pet-cat1.jpg")
+  customer_pet.customer_id = "itsuki.id"
+  customer_pet.pet_status = "normal"
+  customer_pet.species = "cat"
+  customer_pet.name = "ナナ"
+  customer_pet.gender = "male"
+  customer_pet.age = "８歳"
+  customer_pet.weight ="between_1_and_5kg"
+  customer_pet.characteristics = "警戒心が強く人見知りです。"
+  customer_pet.customer = itsuki
+end
+
+CustomerPet.find_or_create_by!(characteristics: "やんちゃで可愛いです。") do |customer_pet|
+  customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-dog1.jpg"), filename:"sample-customer-pet-dog1.jpg")
+  customer_pet.customer_id = "yuna.id"
+  customer_pet.pet_status = "normal"
+  customer_pet.species = "dog"
+  customer_pet.name = "ゴロウ"
+  customer_pet.gender = "male"
+  customer_pet.age = "7歳"
+  customer_pet.weight ="between_1_and_5kg"
+  customer_pet.characteristics = "やんちゃで可愛いです。"
+  customer_pet.customer = yuna
+end
+
+CustomerPet.find_or_create_by!(characteristics: "いろいろなことに好奇心旺盛です。") do |customer_pet|
+  customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-dog2.jpg"), filename:"sample-customer-pet-dog2.jpg")
+  customer_pet.customer_id = "an.id"
+  customer_pet.pet_status = "normal"
+  customer_pet.species = "dog"
+  customer_pet.name = "コタ"
+  customer_pet.gender = "female"
+  customer_pet.age = "1歳"
+  customer_pet.weight ="between_1_and_5kg"
+  customer_pet.characteristics = "いろいろなことに好奇心旺盛です。"
+  customer_pet.customer = an
+end
+
+CustomerPet.find_or_create_by!(characteristics: "とても人懐っこいです。") do |customer_pet|
+  customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-cat2.jpg"), filename:"sample-customer-pet-cat2.jpg")
+  customer_pet.customer_id = "riko.id"
+  customer_pet.pet_status = "normal"
+  customer_pet.species = "cat"
+  customer_pet.name = "くろ"
+  customer_pet.gender = "female"
+  customer_pet.age = "1歳"
+  customer_pet.weight ="between_1_and_5kg"
+  customer_pet.characteristics = "とても人懐っこいです。"
+  customer_pet.customer = riko
+end
+
 
 shinjuku_group = Group.find_or_create_by!(name: "新宿区") do |group|
   group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-bird3.jpg"), filename:"sample-petpost3.jpg")
-  group.introduction = "鳥を探しています。"
+  group.introduction = "鳥を探しています。情報共有お願いします。"
   group.owner_id = kou.id
 end
 
-GroupMember.find_or_create_by!(group_id: shinjuku_group.id, customer_id: haru.id)
+GroupMember.find_or_create_by!(group_id: shinjuku_group.id, customer_id: sakura.id)
+GroupMember.find_or_create_by!(group_id: shinjuku_group.id, customer_id: kou.id)
+
+adachi_group = Group.find_or_create_by!(name: "足立区") do |group|
+  group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-dog2.jpg"), filename:"sample-petpost-dog2.jpg")
+  group.introduction = "犬を探しています。"
+  group.owner_id = yuma.id
+end
+
+GroupMember.find_or_create_by!(group_id: adachi_group.id, customer_id: an.id)
+GroupMember.find_or_create_by!(group_id: adachi_group.id, customer_id: kazu.id)
+GroupMember.find_or_create_by!(group_id: adachi_group.id, customer_id: yuma.id)
+
+itabashi_group = Group.find_or_create_by!(name: "板橋区") do |group|
+  group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-no-image.jpg"), filename:"sample-no-image.jpg")
+  group.introduction = "犬が好きです。情報共有しましょう。"
+  group.owner_id = haru.id
+end
+
+GroupMember.find_or_create_by!(group_id: itabashi_group.id, customer_id: haru.id)
+GroupMember.find_or_create_by!(group_id: itabashi_group.id, customer_id: itsuki.id)
+
+katsushika_group = Group.find_or_create_by!(name: "葛飾区") do |group|
+  group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-cat6.jpg"), filename:"sample-petpost-cat6.jpg")
+  group.introduction = "猫が好きです。猫探し手伝いお願いします。"
+  group.owner_id = ryu.id
+end
+
+GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: ryu.id)
+GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: rin.id)
+GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: toshi.id)
