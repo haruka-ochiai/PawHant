@@ -73,6 +73,7 @@
         <td class="bg-light">説明文</td>
         <td><%= pet_post.description %></td>
       </tr>
+    <% if pet_post_tags.any? %>
       <tr>
         <td class="bg-light">タグ</td>
         <td>
@@ -81,6 +82,7 @@
           <% end %>
         </td>
       </tr>
+    <% end %>
       <tr>
         <td class="bg-light">投稿者</td>
         <td><%= link_to pet_post.customer.name, customer_path(pet_post.customer) %></td>

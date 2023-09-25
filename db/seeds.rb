@@ -638,3 +638,5 @@ end
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: ryu.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: rin.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: toshi.id)
+
+Sighting.find_or_create_by!(pet_post_id: ryu_post.id, customer_id: toshi.id)
