@@ -13,7 +13,7 @@
       </td>
     </tr>
     <tr>
-      <td>郵便番号</td>
+      <td>郵便番号(ハイフンなし)</td>
       <td>
         <%= f.text_field :postcode, class: "form-control" %>
       </td>
@@ -33,8 +33,8 @@
     <tr>
       <td>会員ステータス</td>
       <td>
-          <%= f.radio_button :active, true %><%= f.label :有効 %>
-          <%= f.radio_button :active, false %><%= f.label :アカウント停止 %>
+        <%= f.radio_button :active, true %><%= f.label :有効 %>
+        <%= f.radio_button :active, false %><%= f.label :アカウント停止 %>
       </td>
     </tr>
     <tr>

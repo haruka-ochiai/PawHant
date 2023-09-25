@@ -4,7 +4,7 @@
       <table class="table table-bordered">
       <tr>
         <td class="bg-light">ペットの画像</td>
-        <td><%= image_tag pet.get_image(500, 500), size: "200x250" %></td>
+        <td><%= image_tag pet.get_image(500, 500), style: "object-fit: cover; width: 250px; height: 250px;" %></td>
       </tr>
       <tr>
         <td class="bg-light">ペットの種類</td>
@@ -34,5 +34,7 @@
   <% end %>
 <% else %>
   <!-- ペット情報が登録されていない場合の表示 -->
-  <h4 class="mx-auto mt-5">ペット情報はまだ登録されていません。</h4>
+  <div class="d-flex flex-column align-items-center justify-content-center" style="height: 60vh;">
+    <h4>ペット情報はまだ登録されていません。</h4>
+  </div>
 <% end %>
