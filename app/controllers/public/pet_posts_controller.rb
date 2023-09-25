@@ -89,7 +89,6 @@ class Public::PetPostsController < ApplicationController
                                         :weight,
                                         :characteristics,
                                         :description)
-                                        # :tag_name)
     end
 
 

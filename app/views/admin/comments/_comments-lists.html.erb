@@ -1,13 +1,11 @@
-<table>
- <% pet_post.comments.each do |comment| %>
-  <tr>
-    <td>ユーザー名 : <%= link_to comment.customer.name, customer_path(comment.customer)  %></td>
-    <td><%= comment.comment %></td>
-    <td>
-      <% if comment.customer == current_customer || current_admin %>
-        <%= link_to "Destroy", admin_comment_path(comment), method: :delete, class: "btn btn-danger"  %>
-      <% end %>
-    </td>
-  </tr>
-<% end %>
+<table class= "table table-borderless">
+   <% pet_post.comments.each do |comment| %>
+    <tr>
+      <td><%= link_to comment.customer.name, admin_customer_path(comment.customer)  %></td>
+      <td><%= comment.comment %></td>
+      <td>
+        <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-outline-secondary"  %>
+      </td>
+    </tr>
+  <% end %>
 </table>

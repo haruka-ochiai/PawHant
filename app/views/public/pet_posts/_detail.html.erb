@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col col-md-5 col-sm-8 d-flex align-items-center justify-content-center">
-     <table class="table table-borderless ">
+     <table class="table table-borderless">
        <tr>
         <td><%= image_tag pet_post.get_image(500, 500), class: "rounded mx-auto d-block", style: "object-fit: cover; width: 320px;" %></td>
       </tr>
@@ -22,7 +22,6 @@
       </tr>
     </table>
   </div>
-
   <div class="col col-md-6 col-sm-8 offset-md-1 mx-auto">
     <div class="d-flex align-items-center">
       <h4>詳細情報</h4>
@@ -76,9 +75,10 @@
       </tr>
       <tr>
         <td class="bg-light">タグ</td>
-        <td><% pet_post_tags.each do |tag| %>
-              <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
-            <% end %>
+        <td>
+          <% pet_post_tags.each do |tag| %>
+            <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -88,10 +88,6 @@
     </table>
   </div>
 </div>
-<div>
-
-</div>
-
 <div class="container">
   <div class="row">
     <div class="col-md-8 sm-8 mx-auto">

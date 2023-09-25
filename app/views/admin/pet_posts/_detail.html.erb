@@ -1,13 +1,22 @@
 <div class="row">
-  <div class="col col-md-4 d-flex align-items-center">
-    <%= image_tag pet_post.get_image(500, 500), size: "350x250", class: "rounded mx-auto d-block" %>
+  <div class="col col-md-5 col-sm-8 d-flex align-items-center justify-content-center">
+    <table class="table table-borderless">
+      <tr>
+        <td><%= image_tag pet_post.get_image(500, 500), class: "rounded mx-auto d-block", style: "object-fit: cover; width: 320px;" %></td>
+      </tr>
+      <tr>
+        <td class="text-center">
+          <%= pet_post.sightings.count %> 件の目撃
+          <p>コメント件数：<%= pet_post.comments.count %></p>
+        </td>
+      </tr>
+    </table>
   </div>
-
-  <div class="col col-md-7 offset-md-1">
+  <div class="col col-md-6 col-sm-8 offset-md-1 mx-auto">
     <div class="d-flex align-items-center">
       <h4>詳細情報</h4>
         <div class="ml-3">
-          <%= link_to "削除", admin_pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info" %>
+          <%= link_to "削除", admin_pet_post_path(pet_post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger mb-2" %>
         </div>
     </div>
     <table class="table table-bordered">
@@ -53,9 +62,10 @@
       </tr>
       <tr>
         <td class="bg-light">タグ</td>
-        <td><% pet_post_tags.each do |tag| %>
-              <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
-            <% end %>
+        <td>
+          <% pet_post_tags.each do |tag| %>
+            <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -65,14 +75,10 @@
     </table>
   </div>
 </div>
-<div>
-    <p><%= pet_post.sightings.count %> 件の目撃</p>
-    <p>コメント件数：<%= pet_post.comments.count %></p>
-</div>
-
 <div class="container">
-  <div class="row my-3">
-    <div class="col-md-10 mx-auto">
-    <%= render 'admin/comments/comments-lists', pet_post: pet_post, comment: comment %>
+  <div class="row">
+    <div class="col-md-8 sm-8 mx-auto">
+      <%= render 'admin/comments/comments-lists', pet_post: pet_post, comment: comment %>
     </div>
   </div>
+</div>
