@@ -7,5 +7,4 @@ class Public::NotificationsController < ApplicationController
       notification.update(read: true)
     end
   end
-
 end

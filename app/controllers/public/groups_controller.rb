@@ -52,8 +52,7 @@ class Public::GroupsController < ApplicationController
   def group_params
       params.require(:group).permit(:name,
                                     :introduction,
-                                    :group_image
-                                    )
+                                    :group_image)
   end
 
   def ensure_correct_customer

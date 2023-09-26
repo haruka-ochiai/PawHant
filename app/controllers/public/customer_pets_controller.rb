@@ -32,7 +32,6 @@ class Public::CustomerPetsController < ApplicationController
     else
       render :edit
     end
-
   end
 
   def destroy
@@ -54,8 +53,7 @@ class Public::CustomerPetsController < ApplicationController
                                          :gender,
                                          :age,
                                          :weight,
-                                         :characteristics
-                                         )
+                                         :characteristics)
   end
 
   def is_matching_login_customer

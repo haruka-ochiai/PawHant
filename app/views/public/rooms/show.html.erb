@@ -14,7 +14,7 @@
     <% if @messages.present? %>
       <% @messages.each do |m| %>
         <% if @myCustomerId == m.customer.id %>
-        <div class="col col-md-10 sm-3">
+        <div class="col col-md-10 col-sm-10">
           <div class="chat">
             <div class="message d-flex align-items-center justify-content-end">
               <div class="message-content ms-3">
@@ -24,7 +24,7 @@
           </div>
         </div>
         <% else %>
-        <div class="col col-md-10 sm-3 ml-5">
+        <div class="col col-md-10 col-sm-10 ml-5">
           <div class="chat">
             <div class="message d-flex align-items-center">
               <div class="message-content me-3">

@@ -6,6 +6,7 @@ class SearchesController < ApplicationController
     @pet_posts = PetPost.where("prefecture LIKE ? OR area LIKE ?", "%#{@keyword}%", "%#{@keyword}%").page(params[:page]).per(8)
   end
 
+  # 絞り込み検索
   def new
     @q = PetPost.ransack(params[:q])
   end

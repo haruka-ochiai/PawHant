@@ -1,6 +1,5 @@
 class Public::SightingsController < ApplicationController
 
-
   def create
     pet_post = PetPost.find(params[:pet_post_id])
     sighting = current_customer.sightings.new(pet_post_id: pet_post.id)
@@ -14,5 +13,4 @@ class Public::SightingsController < ApplicationController
     sighting.destroy
     redirect_to request.referer
   end
-
 end

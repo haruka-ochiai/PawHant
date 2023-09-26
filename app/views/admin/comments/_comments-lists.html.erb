@@ -1,10 +1,10 @@
 <table class= "table table-borderless">
-   <% pet_post.comments.each do |comment| %>
+  <% pet_post.comments.each do |comment| %>
     <tr>
       <td><%= link_to comment.customer.name, admin_customer_path(comment.customer)  %></td>
       <td><%= comment.comment %></td>
       <td>
-        <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-outline-secondary"  %>
+        <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
       </td>
     </tr>
   <% end %>

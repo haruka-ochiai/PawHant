@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <div class="d-flex align-items-center">
-          <h4 class="my-2"><%= "##{@tag.tag_name}" %> の検索結果一覧</h4>
-        </div>
+      <div class="d-flex align-items-center">
+        <h4 class="my-2"><%= "##{@tag.tag_name}" %> の検索結果一覧</h4>
       </div>
-      <div class="container">
-          <div class="row">
-              <% @pet_posts.each do |pet_post| %>
-                  <%= render 'public/pet_posts/list', pet_post: pet_post %>
-              <% end %>
-          </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% @pet_posts.each do |pet_post| %>
+          <%= render 'public/pet_posts/list', pet_post: pet_post %>
+        <% end %>
       </div>
-      <div class="mx-auto mt-3">
-        <%= paginate @pet_posts %>
-      </div>
+    </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @pet_posts %>
+    </div>
   </div>
 </div>

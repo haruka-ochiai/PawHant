@@ -10,7 +10,6 @@ class PetPost < ApplicationRecord
   # 通知
   has_one :notification, as: :subject, dependent: :destroy
 
-
   #バリデーション
   validates :age, presence: true
   validates :pet_status, presence: true
@@ -22,7 +21,6 @@ class PetPost < ApplicationRecord
   validates :weight, presence: true
   validates :characteristics, presence: true, length: { minimum: 2, maximum: 50 }
   validates :description, presence: true, length: { minimum: 2, maximum: 60 }
-  # validates :image, presence: true
 
   def favorited_by?(customer)
     sightings.exists?(customer_id: customer.id)

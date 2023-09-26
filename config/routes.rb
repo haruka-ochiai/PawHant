@@ -42,9 +42,11 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
 
     resources :customers, only: [:show, :edit, :update] do
+      # リアクションした投稿一覧
       get "sighting_pet_posts", to: "customers#sighting_pet_posts", as: 'customers_sighting_pet_posts'
       resources :customer_pets, only: [:new, :create, :edit, :update, :destroy]
       member do
+      # 会員ごとの投稿一覧
       get 'pet_posts', to: 'pet_posts#index_for_customer'
       end
       collection do

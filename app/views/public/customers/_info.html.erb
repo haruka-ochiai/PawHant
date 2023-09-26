@@ -20,7 +20,6 @@
     <td><%= customer.email %></td>
   </tr>
 </table>
-
 <% unless customer.is_guest? %>
   <%= link_to "編集する",  edit_customer_path, class: "btn btn-outline-secondary" %>
 <% end %>
