@@ -5,46 +5,46 @@
 <div class="form-group">
   <%= f.label :pet_status, "ペット状況" %>
   <div class="form-check">
-    <%= f.radio_button :pet_status, 'lost', class: "form-check-input" %>
-    <%= f.label :迷子, class: "form-check-label" %>
+    <%= f.radio_button :pet_status, 'lost', id: "lost_radio", class: "form-check-input" %>
+    <%= f.label :迷子, for: "lost_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :pet_status, 'found', class: "form-check-input" %>
-    <%= f.label :保護, class: "form-check-label" %>
+    <%= f.radio_button :pet_status, 'found', id: "found_radio", class: "form-check-input" %>
+    <%= f.label :保護, for: "found_radio", class: "form-check-label" %>
   </div>
 </div>
-<div class="form-group">
+<div class="form-group ">
   <%= f.label :pet_status, "ペットの種類" %>
   <div class="form-check">
-    <%= f.radio_button :species, 'dog', class: "form-check-input" %>
-    <%= f.label :犬, class: "form-check-label" %>
+    <%= f.radio_button :species, 'dog', id: "dog_radio", class: "form-check-input" %>
+    <%= f.label :犬, for: "dog_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :species, 'cat', class: "form-check-input" %>
-    <%= f.label :猫, class: "form-check-label" %>
+    <%= f.radio_button :species, 'cat', id: "cat_radio", class: "form-check-input" %>
+    <%= f.label :猫, for: "cat_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :species, 'bird', class: "form-check-input" %>
-    <%= f.label :鳥, class: "form-check-label" %>
+    <%= f.radio_button :species, 'bird', id: "bird_radio", class: "form-check-input" %>
+    <%= f.label :鳥, for: "bird_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :species, 'other', class: "form-check-input" %>
-    <%= f.label :その他, class: "form-check-label" %>
+    <%= f.radio_button :species, 'other', id: "other_radio", class: "form-check-input" %>
+    <%= f.label :その他, for: "other_radio", class: "form-check-label" %>
   </div>
 </div>
 <div class="form-group">
   <%= f.label :gender, "性別" %>
   <div class="form-check">
-    <%= f.radio_button :gender, 'male', class: "form-check-input" %>
-    <%= f.label :オス, class: "form-check-label" %>
+    <%= f.radio_button :gender, 'male', id: "male_radio", class: "form-check-input" %>
+    <%= f.label :オス, for: "male_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :gender, 'female', class: "form-check-input" %>
-    <%= f.label :メス, class: "form-check-label" %>
+    <%= f.radio_button :gender, 'female', id: "female_radio", class: "form-check-input" %>
+    <%= f.label :メス, for: "female_radio", class: "form-check-label" %>
   </div>
   <div class="form-check">
-    <%= f.radio_button :gender, 'unknown', class: "form-check-input" %>
-    <%= f.label :不明, class: "form-check-label" %>
+    <%= f.radio_button :gender, 'unknown', id: "unknown_radio", class: "form-check-input" %>
+    <%= f.label :不明, for: "unknown_radio", class: "form-check-label" %>
   </div>
 </div>
 <div class="form-group">
