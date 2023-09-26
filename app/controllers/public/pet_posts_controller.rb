@@ -23,7 +23,7 @@ class Public::PetPostsController < ApplicationController
   end
 
   def create
-   @pet_post = PetPost.new(pet_post_params)
+    @pet_post = PetPost.new(pet_post_params)
     @pet_post.customer_id = current_customer.id
     tag_list = params[:pet_post][:tag_name].split
     if @pet_post.save

@@ -22,7 +22,7 @@ class Customer < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
 
-  # is_deletedがfalseならtrueを返すようにしている
+  # ログイン権限確認
   def active_for_authentication?
     super && (active == true)
   end

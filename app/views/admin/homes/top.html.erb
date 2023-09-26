@@ -7,7 +7,7 @@
       <div class="row">
         <% if @pet_posts.present? %>
           <% @pet_posts.each do |pet_post| %>
-              <%= render 'admin/pet_posts/list', pet_post: pet_post %>
+            <%= render 'admin/pet_posts/list', pet_post: pet_post %>
           <% end %>
         <% else %>
           <div class="d-flex align-items-center mx-auto" style="height: 300px;">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="mx-auto mt-3">
-        <%= paginate @pet_posts %>
+      <%= paginate @pet_posts %>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 <table class= "table table-borderless">
- <% pet_post.comments.each do |comment| %>
-   <tr>
-    <td><%= link_to comment.customer.name, customer_path(comment.customer) %></td>
-    <td><%= comment.comment %></td>
-    <td>
-      <% if comment.customer == current_customer %>
-        <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, class: "btn btn-sm btn-outline-secondary"  %>
-      <% end %>
-    </td>
+  <% pet_post.comments.each do |comment| %>
+    <tr>
+      <td><%= link_to comment.customer.name, customer_path(comment.customer) %></td>
+      <td><%= comment.comment %></td>
+      <td>
+        <% if comment.customer == current_customer %>
+          <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, class: "btn btn-sm btn-outline-secondary"  %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

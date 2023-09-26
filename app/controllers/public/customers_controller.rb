@@ -50,7 +50,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(active: false)
     reset_session
     flash[:notice] = 'ユーザーを削除しました。'
-    redirect_to :root #削除に成功すればrootページに戻る
+    redirect_to :root
   end
 
   # リアクションした投稿一覧
@@ -68,8 +68,7 @@ class Public::CustomersController < ApplicationController
                                       :postcode,
                                       :address,
                                       :phone_number,
-                                      :email,
-                                      )
+                                      :email)
   end
 
 
@@ -78,7 +77,6 @@ class Public::CustomersController < ApplicationController
     unless customer.id == current_customer.id
       redirect_to root_path
     end
-
     if current_customer.is_guest?
     redirect_to root_path, alert: "ゲストユーザーは編集できません。"
     end
