@@ -23,11 +23,14 @@
         <p><%= "#{pet_post.comments.count} 件のコメント" %></p>
       <% end %>
         <div style="height: 100px;">
+          <div style="height: 60px;">
           <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
+          </div>
           <p><% pet_post.tags.each do |tag|%>
                <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
              <% end %>
           </p>
+
         </div>
         <%= link_to pet_post_path(pet_post.id), class: "btn btn-warning" do %>
           詳細を見る
