@@ -22,7 +22,9 @@
 - 近隣住民のペットが迷子になった時
 ​
 ## 設計書
-- 作成出来次第、追加
+- [ER図](https://app.diagrams.net/#G1cI7PePzhlJ_oGhTeUciX-JLygYVvzOAL)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1YAXqxQa3ML-6HSTDIt5YPBZif1JKFpG6/edit#gid=1243549839)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1U4pwMqYzRdNRZ2rr_6BO6jU9vJHQBgBRhukEloBGfnc/edit#gid=549108681)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,4 +34,5 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 使用するサイトが決まり次第追加
+- [pixabay](https://pixabay.com/ja/)
+- [illustAC](https://www.ac-illust.com/?downloader_register=success)
