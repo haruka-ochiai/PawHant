@@ -24,7 +24,6 @@ parakeet_tag = Tag.find_or_create_by!(tag_name: "インコ")
 gray_tag = Tag.find_or_create_by!(tag_name: "灰色")
 yellow_tag = Tag.find_or_create_by!(tag_name: "黄色")
 bulldog_tag = Tag.find_or_create_by!(tag_name: "ブルドッグ")
-siameseg_tag = Tag.find_or_create_by!(tag_name: "シャム")
 green_tag = Tag.find_or_create_by!(tag_name: "緑")
 white_tag = Tag.find_or_create_by!(tag_name: "白")
 
@@ -452,24 +451,6 @@ toshi = Customer.find_or_create_by!(email: "toshi@example.com") do |customer|
   customer.phone_number = "19191919191"
 end
 
-toshi_post = PetPost.find_or_create_by!(area: "葛飾区〇〇町19-19") do |pet_post|
-  pet_post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-cat5.jpg"), filename:"sample-petpost-cat5.jpg")
-  pet_post.pet_status = "found"
-  pet_post.species = "cat"
-  pet_post.gender = "female"
-  pet_post.age = "成猫"
-  pet_post.weight ="between_1_and_5kg"
-  pet_post.prefecture = "東京都"
-  pet_post.area = "葛飾区〇〇町19-19"
-  pet_post.occurred_on = "2023-09-26"
-  pet_post.characteristics = "とてもおとなしいです。あまり鳴きません。"
-  pet_post.description = "敷地に迷い込んできたので保護しました。"
-  pet_post.customer = toshi
-end
-
-Tagging.find_or_create_by!(pet_post_id: toshi_post.id, tag_id: siameseg_tag.id)
-Tagging.find_or_create_by!(pet_post_id: toshi_post.id, tag_id: cat_tag.id)
-
 ryu = Customer.find_or_create_by!(email: "ryu@example.com") do |customer|
   customer.name = "りゅう"
   customer.password = "password"
@@ -522,18 +503,6 @@ CustomerPet.find_or_create_by!(characteristics: "警戒心が強く人見知り�
   customer_pet.customer = itsuki
 end
 
-CustomerPet.find_or_create_by!(characteristics: "やんちゃで可愛いです。") do |customer_pet|
-  customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-dog1.jpg"), filename:"sample-customer-pet-dog1.jpg")
-  customer_pet.customer_id = "toshi.id"
-  customer_pet.pet_status = "normal"
-  customer_pet.species = "dog"
-  customer_pet.name = "ゴロウ"
-  customer_pet.gender = "male"
-  customer_pet.age = "7歳"
-  customer_pet.weight ="between_1_and_5kg"
-  customer_pet.characteristics = "やんちゃで可愛いです。"
-  customer_pet.customer = toshi
-end
 
 CustomerPet.find_or_create_by!(characteristics: "いろいろなことに好奇心旺盛です。") do |customer_pet|
   customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-customer-pet-dog2.jpg"), filename:"sample-customer-pet-dog2.jpg")
