@@ -1,0 +1,11 @@
+<% if pet_post.favorited_by?(current_customer) %>
+  <%= link_to pet_post_sightings_path(pet_post), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+  <% end %>
+    <%= pet_post.sightings.count %> 件の目撃
+<% else %>
+  <%= link_to pet_post_sightings_path(pet_post), method: :post, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
+  <% end %>
+  <%= pet_post.sightings.count %> 件の目撃
+<% end %>

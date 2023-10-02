@@ -6,17 +6,9 @@
       </tr>
       <tr>
         <td class="text-center">
-         <% if pet_post.favorited_by?(current_customer) %>
-            <%= link_to pet_post_sightings_path(pet_post), method: :delete do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-            <% end %>
-              <%= pet_post.sightings.count %> 件の目撃
-          <% else %>
-            <%= link_to pet_post_sightings_path(pet_post), method: :post do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: grey;"></i>
-            <% end %>
-            <%= pet_post.sightings.count %> 件の目撃
-          <% end %>
+          <div id="sightings_buttons_<%= pet_post.id %>">
+            <%= render "public/sightings/sighting", pet_post: pet_post %>
+          </div>
             <p>コメント件数：<%= pet_post.comments.count %></p>
         </td>
       </tr>
