@@ -25,7 +25,7 @@ class Public::PetPostsController < ApplicationController
   def create
     @pet_post = PetPost.new(pet_post_params)
     @pet_post.customer_id = current_customer.id
-    tag_list = params[:pet_post][:tag_name].split
+    tag_list = params[:pet_post][:tag_name].split.uniq
     if @pet_post.save
       @pet_post.save_tag(tag_list)
       flash[:notice] = "投稿に成功しました"
@@ -58,7 +58,12 @@ class Public::PetPostsController < ApplicationController
     @pet_post = PetPost.find(params[:id])
     @pet_post.destroy
     flash[:notice] = "投稿を削除しました"
-    redirect_to root_path
+
+    if @pet_post.lost?
+      redirect_to root_path
+    else
+      redirect_to pet_posts_path
+    end
   end
 
   # タグが含まれる投稿を表示
