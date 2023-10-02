@@ -9,9 +9,6 @@
         <div id="sightings_buttons_<%= pet_post.id %>">
           <%= render "public/sightings/sighting", pet_post: pet_post %>
         </div>
-
-
-
         <p><%= link_to "#{pet_post.comments.count} 件のコメント", pet_post_path(pet_post.id) %></p>
       <% else %>
         <%= pet_post.sightings.count %> 件の目撃
