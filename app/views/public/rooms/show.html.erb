@@ -22,24 +22,23 @@
                     <p class="message-text p-2 bg-light text-dark"><%= m.message %></p>
                   </div>
                 </div>
-          <% else %>
+              <% else %>
                 <div class="col col-md-10 col-sm-10">
                   <div class="message-content">
                     <p class="message-name mb-1"><%= m.customer.name %></p>
                     <p class="message-text p-2 bg-warning text-dark"><%= m.message %></p>
                   </div>
                 </div>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
-
+        </div>
+      </div>
       <%= form_with model: @message do |f| %>
         <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-control" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.submit "投稿", class: 'btn btn-outline-secondary mt-2'%>
       <% end %>
-      </div>
-      </div>
     </div>
   </div>
 </div>
