@@ -1,4 +1,7 @@
 <%= form_with model: [pet_post, comment], remote: true do |f| %>
+  <div id="comments-error">
+    <%= render 'layouts/error', obj: comment %>
+  </div>
   <%= f.text_area :comment, rows: '2', class: "form-control",  placeholder: "コメントをここに入力してください" %>
   <div class="my-2">
     <%= f.submit "送信する", class: "btn btn-sm btn-outline-secondary" %>

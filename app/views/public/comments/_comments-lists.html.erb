@@ -5,7 +5,7 @@
       <td id ="comment"><%= comment.comment %></td>
       <td>
         <% if comment.customer == current_customer %>
-          <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, class: "btn btn-sm btn-outline-secondary"  %>
+          <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary"  %>
         <% end %>
       </td>
     </tr>

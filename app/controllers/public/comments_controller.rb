@@ -2,9 +2,9 @@ class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-    pet_post = PetPost.find(params[:pet_post_id])
+    @pet_post = PetPost.find(params[:pet_post_id])
     @comment = current_customer.comments.new(comment_params)
-    @comment.pet_post_id = pet_post.id
+    @comment.pet_post_id = @pet_post.id
   #   if comment.save
   #     redirect_to request.referer
   #   else
@@ -16,13 +16,13 @@ class Public::CommentsController < ApplicationController
   #   end
   # end
     if @comment.save
-      respond_to do |format|
-        format.js
-      end
+      flash.now[:notice] = 'コメントを投稿しました'
+      render :comment
     else
-      respond_to do |format|
-        format.js { render js: "alert('コメント欄に文字を入力してください');" }
-    end
+      @pet_post = PetPost.find(params[:pet_post_id])
+      @pet_post_tags = @pet_post.tags
+      @comment = Comment.new
+      render :error
     end
   end
 
