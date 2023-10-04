@@ -3,18 +3,29 @@ class Public::CommentsController < ApplicationController
 
   def create
     pet_post = PetPost.find(params[:pet_post_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.pet_post_id = pet_post.id
-    if comment.save
-      redirect_to request.referer
+    @comment = current_customer.comments.new(comment_params)
+    @comment.pet_post_id = pet_post.id
+  #   if comment.save
+  #     redirect_to request.referer
+  #   else
+  #     @pet_post = PetPost.find(params[:pet_post_id])
+  #     @pet_post_tags = @pet_post.tags
+  #     @comment = Comment.new
+  #     flash[:alert] = "コメント欄に文字を入力してください。"
+  #     redirect_to request.referer
+  #   end
+  # end
+    if @comment.save
+      respond_to do |format|
+        format.js
+      end
     else
-      @pet_post = PetPost.find(params[:pet_post_id])
-      @pet_post_tags = @pet_post.tags
-      @comment = Comment.new
-      flash[:alert] = "コメント欄に文字を入力してください。"
-      redirect_to request.referer
+      respond_to do |format|
+        format.js { render js: "alert('コメント欄に文字を入力してください');" }
+    end
     end
   end
+
 
   def destroy
     Comment.find(params[:id]).destroy

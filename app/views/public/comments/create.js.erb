@@ -1,0 +1,7 @@
+<% if @comment.errors.any? %>
+  // エラーメッセージを表示する処理
+  alert('<%= j @comment.errors.full_messages.join(', ') %>');
+<% else %>
+  // コメントを表示する処理
+  $('#comment').append('<%= j render(@comment) %>');
+<% end %>
