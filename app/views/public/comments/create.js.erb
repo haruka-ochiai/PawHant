@@ -1,3 +1,18 @@
-$("#comments_list").html("<%= j( render "public/comments/comments-lists", comment: @comment, pet_post: @pet_post )%>");
-$('#comment_count').html("コメント件数：<%= @pet_post.comments.count %>")
-$("text_area").val('');
+$(document).ready(function() {
+  // ページが読み込まれたときに送信ボタンを非表示にする
+  $("#submit_button").hide();
+
+  $("#comment_textarea").on("input", function() {
+    if ($(this).val().trim() !== "") {
+      $("#submit_button").show();
+    } else {
+      $("#submit_button").hide();
+    }
+  });
+
+  // ページ読み込み時にコメントリストなどを表示するコードは、上記のコードの後に記述します
+  $("#comments_list").html("<%= j( render 'public/comments/comments-lists', comment: @comment, pet_post: @pet_post ) %>");
+  $('#comment_count').html("コメント件数：<%= @pet_post.comments.count %>");
+  $('#comment_textarea').val("");
+});
+

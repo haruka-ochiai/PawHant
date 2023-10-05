@@ -1,0 +1,7 @@
+<% if comment.blank? %>
+  // コメントが入力されていない場合、送信ボタンを非活性化する
+  document.getElementById('submit_button').disabled = true;
+<% else %>
+  // コメントが入力されている場合、送信ボタンを有効化する
+  document.getElementById('submit_button').disabled = false;
+<% end %>
