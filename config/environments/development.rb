@@ -79,6 +79,19 @@ Rails.application.configure do
 
   config.hosts.clear
 
+  host = 'localhost:8080'
+  config.action_mailer.default_url_options = { protocol: 'https', host: host }# メール内で生成されるURLに関するデフォルトの設定
+  config.action_mailer.raise_delivery_errors = true # メール送信時にエラーが発生した場合、エラーを表示
+  config.action_mailer.smtp_settings = { # SMTPの設定
+    :port => 587,
+    :domain => 'gmail.com',
+    :address => "smtp.gmail.com",
+    :user_name => ENV["GMAIL_USERNAME"] ,
+    :password => ENV["GMAIL_PASSWORD"] ,
+    :authentication => :plain, # 認証方式としてPLAINを使用
+    :enable_starttls_auto => true # STARTTLS（Transport Layer Security）を自動的に有効にする設定(セキュアな通信)
+  }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
