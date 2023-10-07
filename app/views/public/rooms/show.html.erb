@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col mb-5">
       <% @entries.each do |e| %>
         <% if @myCustomerId != e.customer.id %>
           <h2><%= e.customer.name %>さんとのトークルーム</h2>
@@ -10,37 +10,30 @@
   </div>
 </div>
 <div class="container">
-  <div class="row mx-auto">
-    <% if @messages.present? %>
-      <% @messages.each do |m| %>
-        <% if @myCustomerId == m.customer.id %>
-        <div class="col col-md-10 col-sm-10">
-          <div class="chat">
-            <div class="message d-flex align-items-center justify-content-end">
-              <div class="message-content ms-3">
-                <p class="message-text p-2 bg-light text-dark"><%= m.message %></p>
-              </div>
-            </div>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-sm-8">
+      <div class="container">
+        <div class="row">
+          <% if @messages.present? %>
+            <% @messages.each do |m| %>
+              <% if @myCustomerId == m.customer.id %>
+                <div class="col-12">
+                  <div class="message-content d-flex justify-content-end">
+                    <p class="message-text p-2 bg-light text-dark text-right d-inline-block"><%= m.message %></p>
+                  </div>
+                </div>
+              <% else %>
+                <div class="col-12">
+                  <div class="message-content">
+                    <p class="message-name mb-1"><%= m.customer.name %></p>
+                    <p class="message-text p-2 bg-warning text-dark d-inline-block"><%= m.message %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
-        <% else %>
-        <div class="col col-md-10 col-sm-10 ml-5">
-          <div class="chat">
-            <div class="message d-flex align-items-center">
-              <div class="message-content me-3">
-                <p class="message-name mb-1"><%= m.customer.name %></p>
-                <p class="message-text p-2 bg-warning text-dark"><%= m.message %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-  <div class="row mt-5">
-    <div class="col-md-7 pt-5 mx-auto">
+      </div>
       <%= form_with model: @message do |f| %>
         <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-control" %>
         <%= f.hidden_field :room_id, value: @room.id %>
