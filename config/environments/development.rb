@@ -79,7 +79,7 @@ Rails.application.configure do
 
   config.hosts.clear
 
-  host = 'localhost:8080'
+  host = '389c1778cf254251b8f8f892b4f8e49b.vfs.cloud9.ap-northeast-1.amazonaws.com'
   config.action_mailer.default_url_options = { protocol: 'https', host: host }# メール内で生成されるURLに関するデフォルトの設定
   config.action_mailer.raise_delivery_errors = true # メール送信時にエラーが発生した場合、エラーを表示
   config.action_mailer.smtp_settings = { # SMTPの設定
