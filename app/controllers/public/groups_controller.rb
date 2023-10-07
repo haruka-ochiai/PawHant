@@ -44,10 +44,11 @@ class Public::GroupsController < ApplicationController
   def send_mail
     @group = Group.find(params[:group_id])
     @group_name = @group.name
+    @customer_name = current_customer.name
     group_members = @group.customers
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
-    ContactMailer.send_mail(@group_name, @mail_title, @mail_content, group_members).deliver
+    ContactMailer.send_mail(@group_name, @mail_title, @mail_content, @customer_name, group_members).deliver
   end
 
   def group_params
