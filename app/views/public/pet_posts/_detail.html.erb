@@ -9,7 +9,9 @@
           <div id="sightings_buttons_<%= pet_post.id %>">
             <%= render "public/sightings/sighting", pet_post: pet_post %>
           </div>
+          <div id="comment_count">
             <p>コメント件数：<%= pet_post.comments.count %></p>
+          </div>
         </td>
       </tr>
     </table>
@@ -85,12 +87,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 sm-8 mx-auto">
-      <%= render 'public/comments/comments-lists', pet_post: pet_post, comment: comment %>
+      <div id="comments_list">
+        <%= render 'public/comments/comments-lists', pet_post: pet_post, comment: comment %>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-8 sm-8 mx-auto">
-      <%= render 'public/comments/form', pet_post: pet_post, comment: comment %>
+        <%= render 'public/comments/form', pet_post: pet_post, comment: comment %>
     </div>
   </div>
 </div>

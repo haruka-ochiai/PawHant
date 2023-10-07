@@ -1,0 +1,2 @@
+$("#comments_list").html("<%= j( render "public/comments/comments-lists", comment: @comment, pet_post: @pet_post )%>");
+$('#comment_count').html("コメント件数：<%= @pet_post.comments.count %>")
