@@ -17,16 +17,16 @@
           <% if @messages.present? %>
             <% @messages.each do |m| %>
               <% if @myCustomerId == m.customer.id %>
-                <div class="col col-md-10 col-sm-10">
-                  <div class="message-content">
-                    <p class="message-text p-2 bg-light text-dark"><%= m.message %></p>
+                <div class="col-12">
+                  <div class="message-content d-flex justify-content-end">
+                    <p class="message-text p-2 bg-light text-dark text-right d-inline-block"><%= m.message %></p>
                   </div>
                 </div>
               <% else %>
-                <div class="col col-md-10 col-sm-10">
+                <div class="col-12">
                   <div class="message-content">
                     <p class="message-name mb-1"><%= m.customer.name %></p>
-                    <p class="message-text p-2 bg-warning text-dark"><%= m.message %></p>
+                    <p class="message-text p-2 bg-warning text-dark d-inline-block"><%= m.message %></p>
                   </div>
                 </div>
               <% end %>
