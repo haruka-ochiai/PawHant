@@ -4,3 +4,13 @@
     <%= f.submit "送信する", class: "btn btn-sm btn-outline-secondary", id: "submit_button" %>
   </div>
 <% end %>
+<script>
+  $("#submit_button").hide();
+  $("#comment_textarea").on("input", function() {
+  if ($(this).val().trim() !== "") {
+    $("#submit_button").show();
+  } else {
+    $("#submit_button").hide();
+  }
+});
+</script>
