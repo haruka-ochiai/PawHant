@@ -120,7 +120,7 @@ Rails.application.configure do
 
   # パスワード再設定
   host = 'pawhant.com'
-  config.action_mailer.default_url_options = { protocol: 'https', host: host }# メール内で生成されるURLに関するデフォルトの設定
+  config.action_mailer.default_url_options = { protocol: 'http', host: host }# メール内で生成されるURLに関するデフォルトの設定
   config.action_mailer.raise_delivery_errors = true # メール送信時にエラーが発生した場合、エラーを表示
   config.action_mailer.smtp_settings = { # SMTPの設定
     :port => 587,
