@@ -24,7 +24,9 @@
           <th class="bg-light">メンバー</th>
           <td>
             <% @customers.each do |customer| %>
-  　　        <%= link_to customer.name, customer_path(customer) %>
+              <% if customer.active == true %>
+  　　            <%= link_to customer.name, customer_path(customer) %>
+              <% end %>
             <% end %>
           </td>
         </tr>

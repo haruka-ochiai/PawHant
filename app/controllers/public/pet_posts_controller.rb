@@ -2,7 +2,10 @@ class Public::PetPostsController < ApplicationController
   before_action :authenticate_customer!, except: [:index, :tag_search]
 
   def index
-    @pet_posts = PetPost.where(pet_status: "found").page(params[:page]).per(8).order('updated_at DESC')
+    @pet_posts = PetPost.where(pet_status: "found")
+                        .joins(:customer)
+                        .where(customer: { active: true })
+                        .page(params[:page]).per(8).order('updated_at DESC')
   end
 
   def show
