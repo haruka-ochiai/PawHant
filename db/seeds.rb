@@ -471,7 +471,7 @@ taro_post = PetPost.find_or_create_by!(area: "葛飾区〇〇町20-20") do |pet_
   pet_post.occurred_on = "2023-09-26"
   pet_post.characteristics = "臆病で人見知りです。"
   pet_post.description = "中々帰って来ず心配しています"
-  pet_post.customer = ryu
+  pet_post.customer = taro
 end
 
 Tagging.find_or_create_by!(pet_post_id: taro_post.id, tag_id: brack_tag.id)
@@ -548,11 +548,11 @@ GroupMember.find_or_create_by!(group_id: itabashi_group.id, customer_id: itsuki.
 katsushika_group = Group.find_or_create_by!(name: "葛飾区") do |group|
   group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-cat6.jpg"), filename:"sample-petpost-cat6.jpg")
   group.introduction = "猫が好きです。猫探し手伝いお願いします。"
-  group.owner_id = ryu.id
+  group.owner_id = taro.id
 end
 
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: taro.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: rin.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: toshi.id)
 
-Sighting.find_or_create_by!(pet_post_id: ryu_post.id, customer_id: toshi.id)
+Sighting.find_or_create_by!(pet_post_id: taro_post.id, customer_id: toshi.id)
