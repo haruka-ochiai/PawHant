@@ -2,7 +2,10 @@ class Public::PetPostsController < ApplicationController
   before_action :authenticate_customer!, except: [:index, :tag_search]
 
   def index
-    @pet_posts = PetPost.where(pet_status: "found").page(params[:page]).per(8).order('updated_at DESC')
+    @pet_posts = PetPost.where(pet_status: "found")
+                        .joins(:customer)
+                        .where(customer: { active: true })
+                        .page(params[:page]).per(8).order('updated_at DESC')
   end
 
   def show
@@ -10,6 +13,9 @@ class Public::PetPostsController < ApplicationController
       @pet_post = PetPost.find(params[:id])
       @pet_post_tags = @pet_post.tags
       @comment = Comment.new
+      unless @pet_post.customer.active
+        redirect_to root_path, alert: "投稿したユーザーは退会済みです。"
+      end
     else
     redirect_to new_customer_session_path,
     alert: "詳細を見るには、ログイン、または新規登録が必要です。"
