@@ -451,15 +451,15 @@ toshi = Customer.find_or_create_by!(email: "toshi@example.com") do |customer|
   customer.phone_number = "19191919191"
 end
 
-ryu = Customer.find_or_create_by!(email: "ryu@example.com") do |customer|
-  customer.name = "りゅう"
+taro = Customer.find_or_create_by!(email: "taro@example.com") do |customer|
+  customer.name = "たろう"
   customer.password = "password"
   customer.postcode = "2020202"
   customer.address = "東京都葛飾区"
   customer.phone_number = "20202020202"
 end
 
-ryu_post = PetPost.find_or_create_by!(area: "葛飾区〇〇町20-20") do |pet_post|
+taro_post = PetPost.find_or_create_by!(area: "葛飾区〇〇町20-20") do |pet_post|
   pet_post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-cat6.jpg"), filename:"sample-petpost-cat6.jpg")
   pet_post.pet_status = "lost"
   pet_post.species = "cat"
@@ -474,12 +474,12 @@ ryu_post = PetPost.find_or_create_by!(area: "葛飾区〇〇町20-20") do |pet_p
   pet_post.customer = ryu
 end
 
-Tagging.find_or_create_by!(pet_post_id: ryu_post.id, tag_id: brack_tag.id)
-Tagging.find_or_create_by!(pet_post_id: ryu_post.id, tag_id: cat_tag.id)
+Tagging.find_or_create_by!(pet_post_id: taro_post.id, tag_id: brack_tag.id)
+Tagging.find_or_create_by!(pet_post_id: taro_post.id, tag_id: cat_tag.id)
 
 CustomerPet.find_or_create_by!(characteristics: "臆病で人見知りです。") do |customer_pet|
   customer_pet.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-petpost-cat6.jpg"), filename:"sample-petpost-cat6.jpg")
-  customer_pet.customer_id = "ryu.id"
+  customer_pet.customer_id = "taro.id"
   customer_pet.pet_status = "normal"
   customer_pet.species = "cat"
   customer_pet.name = "くろ"
@@ -487,7 +487,7 @@ CustomerPet.find_or_create_by!(characteristics: "臆病で人見知りです。"
   customer_pet.age = "７歳"
   customer_pet.weight ="between_1_and_5kg"
   customer_pet.characteristics = "臆病で人見知りです。"
-  customer_pet.customer = ryu
+  customer_pet.customer = taro
 end
 
 CustomerPet.find_or_create_by!(characteristics: "警戒心が強く人見知りです。") do |customer_pet|
@@ -551,7 +551,7 @@ katsushika_group = Group.find_or_create_by!(name: "葛飾区") do |group|
   group.owner_id = ryu.id
 end
 
-GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: ryu.id)
+GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: taro.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: rin.id)
 GroupMember.find_or_create_by!(group_id: katsushika_group.id, customer_id: toshi.id)
 

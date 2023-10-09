@@ -13,6 +13,9 @@ class Public::PetPostsController < ApplicationController
       @pet_post = PetPost.find(params[:id])
       @pet_post_tags = @pet_post.tags
       @comment = Comment.new
+      unless @pet_post.customer.active
+        redirect_to root_path, alert: "投稿したユーザーは退会済みです。"
+      end
     else
     redirect_to new_customer_session_path,
     alert: "詳細を見るには、ログイン、または新規登録が必要です。"
