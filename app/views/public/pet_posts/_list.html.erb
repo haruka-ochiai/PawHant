@@ -18,9 +18,16 @@
           <div style="height: 60px;">
           <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
           </div>
-          <p><% pet_post.tags.each do |tag|%>
-               <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
-             <% end %>
+              <% count = 0 %>
+          <p>
+            <% pet_post.tags.each do |tag|%>
+              <% if count < 3 %>
+                <%= link_to "##{tag.tag_name}", tag_search_pet_post_path(pet_post, tag) %>
+                <% count += 1 %>
+               <% else %>
+                <% break %>
+              <% end %>
+            <% end %>
           </p>
 
         </div>
