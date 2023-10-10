@@ -9,6 +9,9 @@ class Message < ApplicationRecord
 
   private
   def create_notifications
-    Notification.create(subject: self, customer: self.customer, action_type: :received_message)
+    room_customers = room.customers
+    notificate_customer = room_customers.reject { |room_customer| room_customer.id == customer.id }.first
+    Notification.create(subject: self, customer: notificate_customer, action_type: :received_message)
   end
+
 end

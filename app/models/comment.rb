@@ -8,6 +8,8 @@ class Comment < ApplicationRecord
 
   private
   def create_notifications
-    Notification.create(subject: self, customer: pet_post.customer, action_type: :commented_to_own_post)
+    unless customer == pet_post.customer
+      Notification.create(subject: self, customer: pet_post.customer, action_type: :commented_to_own_post)
+    end
   end
 end
