@@ -46,4 +46,8 @@ class Customer < ApplicationRecord
     end
   end
 
+  def me?
+    id == current_customer.id
+  end
+
 end
