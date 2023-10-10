@@ -13,6 +13,9 @@ class Customer < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  # 通報
+  has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
   #バリデーション
   validates :name, presence: true, length: { minimum: 1, maximum: 10 }, uniqueness: { case_sensitive: false, message: "は既に使用されています" }
