@@ -2,7 +2,7 @@ class Public::NotificationsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @notifications = Notification.where.not(customer_id: current_customer.id)
+    @notifications = Notification.where(customer_id: current_customer.id)
                                        .order(created_at: :desc)
                                        .page(params[:page])
                                        .per(8)
