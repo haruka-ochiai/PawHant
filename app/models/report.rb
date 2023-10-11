@@ -4,7 +4,7 @@ class Report < ApplicationRecord
   # 通報対象を示す関連付け
   belongs_to :reported, class_name: "Customer", foreign_key: "reported_id"
   # 通報対象のコンテンツを示す多様性（Polymorphic）関連付け
-  belongs_to :content_type, polymorphic: true
+  belongs_to :content, polymorphic: true
 
   # reporter_idがuser_idである通報の件数を返すクラスメソッド
   def self.reported_count(customer_id)

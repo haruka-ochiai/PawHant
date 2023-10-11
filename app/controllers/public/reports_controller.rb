@@ -23,21 +23,15 @@ class Public::ReportsController < ApplicationController
 
       # 報告をデータベースに保存
       if @report.save
-        respond_to do |format|
-          format.js { render "create_success" } # 成功時のレスポンスを返す
-        end
+        render "public/reports/create_success"  # 成功時のレスポンスを返す
       else
-        respond_to do |format|
-          format.js { render "create_failure" } # 失敗時のレスポンスを返す
-        end
+        render "public/reports/create_failure" # 失敗時のレスポンスを返す
       end
     end
 
   rescue ActiveRecord::NotNullViolation => e
     # NOT NULL 制約違反が発生した場合もエラー処理
-    respond_to do |format|
-      format.js { render "create_failure", status: :unprocessable_entity } # エラーレスポンスを返す
-    end
+      render "public/reports/create_failure", status: :unprocessable_entity
   end
 
   private

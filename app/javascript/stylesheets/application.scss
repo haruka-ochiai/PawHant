@@ -12,6 +12,10 @@ body {
   color: #666666;
 }
 
+.custom-bg-light-green {
+  background-color: rgba(0, 128, 0, 0.5); /* 緑色のRGBA表現で透明度0.5 */
+}
+
 /* モーダルの背景 */
 .modal {
   display: none;
