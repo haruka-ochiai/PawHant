@@ -8,6 +8,9 @@
           <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary"  %>
         <% end %>
       </td>
+      <td class="report-btn text-right ml-2" id="report-btn-<%= comment.id %>">
+        　<%= render "public/reports/report_btn", comment: comment %>
+      </td>
     </tr>
   <% end %>
 </table>

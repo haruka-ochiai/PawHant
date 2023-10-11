@@ -4,9 +4,8 @@ class Report < ApplicationRecord
   # 通報対象を示す関連付け
   belongs_to :reported, class_name: "Customer", foreign_key: "reported_id"
   # 通報対象のコンテンツを示す多様性（Polymorphic）関連付け
-  belongs_to :content, polymorphic: true
+  belongs_to :content_type, polymorphic: true
 
-  enum content_type: { customer: 0, pet_post: 1, comment: 2 }
   # 通報理由の列挙型（Enum）
   enum reason: {
     inappropriate_content: 0,     # 不適切なコンテンツ

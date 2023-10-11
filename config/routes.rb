@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'reports/index'
+    get 'reports/show'
+  end
+  namespace :public do
+    get 'reports/new'
+  end
   # 会員用
   devise_for :customers, controllers: {
   registrations: "public/registrations",
