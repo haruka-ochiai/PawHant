@@ -1,5 +1,4 @@
-<%= form_with model: report, url: reports_path, method: :post, remote: true do |f| %>
-
+<%= form_with model: report, url: reports_path, remote: true do |f| %>
   <div class="form-check">
     <%= f.radio_button :reason, "inappropriate_content" %>
     <%= f.label :reason_inappropriate_content, I18n.t("enums.report.reason.inappropriate_content"), class: "form-check-label" %>
@@ -16,9 +15,7 @@
     <%= f.radio_button :reason, "other" %>
     <%= f.label :reason_other, I18n.t("enums.report.reason.other"), class: "form-check-label" %>
   </div>
-
   <%= f.hidden_field :content_id, value: params[:content_id] %>
   <%= f.hidden_field :content_type, value: params[:content_type] %>
-  <%= f.hidden_field :report_staus, value: params[:report_status] %>
-  <%= f.submit "報告", class: "btn btn-dark" %>
+  <%= f.submit "報告", class: "btn btn-dark my-3 text-center mx-2" %>
 <% end %>

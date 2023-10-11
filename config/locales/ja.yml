@@ -1,5 +1,15 @@
 ja:
   enums:
+    report:
+      reason:
+        inappropriate_content: "不適切な表現"
+        commercial_purposes: "商業目的"
+        spam: "スパム"
+        other: "その他"
+      report_status:
+        unresolved: "未対応"
+        pending: "保留"
+        resolved: "対応済み"
     customer_pet: &pet
       pet_status:
         normal: "元気"
@@ -22,16 +32,6 @@ ja:
         over_10kg: "10kg以上"
     pet_post:
       <<: *pet
-  　report:
-      reason:
-        inappropriate_content: "不適切な表現"
-        commercial_purposes: "商業目的"
-        spam: "スパム"
-        other: "その他"
-      report_status:
-        unresolved: "未対応"
-        pending: "保留"
-        resolved: "対応済み"
   activerecord:
     errors:
       messages:

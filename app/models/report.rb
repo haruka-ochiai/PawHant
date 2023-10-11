@@ -6,6 +6,11 @@ class Report < ApplicationRecord
   # 通報対象のコンテンツを示す多様性（Polymorphic）関連付け
   belongs_to :content_type, polymorphic: true
 
+  # reporter_idがuser_idである通報の件数を返すクラスメソッド
+  def self.reported_count(customer_id)
+    where(reported_id: customer_id).count
+  end
+
   # 通報理由の列挙型（Enum）
   enum reason: {
     inappropriate_content: 0,     # 不適切なコンテンツ

@@ -50,6 +50,6 @@ class Public::ReportsController < ApplicationController
 
   # 報告のパラメーターを安全に受け取るためのメソッド
   def report_params
-    params.require(:report).permit(:content_type, :content_id, :reason, :report_status)
+    params.require(:report).permit(:content_type, :content_id, :reason)
   end
 end
