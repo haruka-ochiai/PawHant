@@ -11,25 +11,23 @@
           <%= form_with model: @customer, url: customer_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
             <div class="input-group mb-3">
-              <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前"%>
-            </div>
-            <div class="input-group mb-3">
               <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス" %>
             </div>
             <div class="input-group mb-3">
               <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
             </div>
-            <div class="input-group mb-3">
-              <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputConfirmPassword", placeholder:"パスワード確認" %>
-            </div>
-            <%= f.submit "ログイン", class:"btn btn-block btn-outline-secondary mt-5" %>
+              <%= f.submit "ログイン", class:"btn btn-block btn-outline-secondary mt-4" %>
           <% end %>
-           <div class="pt-5">
-          新規登録の方は<%= render "public/shared/links" %>から新規登録してください。<br>
-          </div>
-          <div class="pt-5">
-          パスワードを忘れた方は<%= link_to "こちら", new_customer_password_path %>から再登録してください<br>
-          </div>
+            <div class="mt-5">
+              <%= link_to "パスワードを忘れた方", new_customer_password_path %><br>
+            </div>
+            <div class="pt-5">
+              ----- もしくは -----
+            </div>
+            <div class="pt-5">
+              新規登録の方は<%= render "public/shared/links" %>から新規登録してください。<br>
+            </div>
+        </div>
       </div>
     </div>
   </div>
