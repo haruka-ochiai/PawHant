@@ -1,6 +1,12 @@
-<div class="card mx-auto mt-5" style="width: 500px;">
+<div class="card mx-auto my-5" style="width: 500px;">
   <div class="card-body">
     <h3 class="card-title text-center mb-4">通報詳細</h3>
+    <div class="text-center mb-4">
+       <% if @report.content.present? %>
+         ※該当のコメントを削除すると自動的に<br>
+         ステータスが対応済みとなります。
+        <% end %>
+    </div>
     <div class="row" style="height: 40px;">
       <div class="col-6">通報ID</div>
       <div class="col-6"><%= link_to @report.id %></div>
@@ -24,7 +30,7 @@
     <div class="row" style="height: 40px;">
   <% if @report.content.present? %>
       <div class="col-6">該当の<%= @report.display_content_type %></div>
-      <div class="col-6"><%= link_to @report.display_content_type, admin_pet_post_path(@report.content.pet_post) %></div>
+     <div class="col-6"><%= link_to "#{@report.display_content_type} を確認する", admin_pet_post_path(@report.content.pet_post) %></div>
     </div>
     <div class="row" style="height: 40px;">
       <div class="col-6">対応ステータス</div>
@@ -33,7 +39,7 @@
           <div class="form-group text-center">
             <%= f.select :report_status, Report.report_statuses.keys.map { |key| [I18n.t("enums.report.report_status.#{key}"), key] }, {}, class: "form-control" %>
           </div>
-          <%= f.submit '更新', class: "btn btn-primary" %>
+          <%= f.submit '更新', class: "btn btn-outline-primary" %>
         <% end %>
       </div>
     </div>

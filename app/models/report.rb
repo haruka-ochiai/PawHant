@@ -14,8 +14,6 @@ class Report < ApplicationRecord
   def display_content_type
     if content_type == "Comment"
       "コメント"
-    elsif content_type == "PetPost"
-      "投稿"
     else
       content_type
     end
