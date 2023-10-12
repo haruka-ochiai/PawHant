@@ -1,0 +1,54 @@
+<div class="card mx-auto my-5" style="width: 500px;">
+  <div class="card-body">
+    <h3 class="card-title text-center mb-4">通報詳細</h3>
+    <div class="text-center mb-4">
+       <% if @report.content.present? %>
+         ※該当のコメントを削除すると自動的に<br>
+         ステータスが対応済みとなります。
+        <% end %>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">通報ID</div>
+      <div class="col-6"><%= link_to @report.id %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">通報された会員</div>
+      <div class="col-6"><%= link_to @report.reported.name, admin_customer_path(@report.reported_id) %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">理由</div>
+      <div class="col-6"><%= I18n.t("enums.report.reason.#{@report.reason}") %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">通報者</div>
+      <div class="col-6"><%= @report.reporter.name %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">通報対象</div>
+      <div class="col-6"><%= @report.display_content_type %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+  <% if @report.content.present? %>
+      <div class="col-6">該当の<%= @report.display_content_type %></div>
+     <div class="col-6"><%= link_to "#{@report.display_content_type} を確認する", admin_pet_post_path(@report.content.pet_post) %></div>
+    </div>
+    <div class="row" style="height: 40px;">
+      <div class="col-6">対応ステータス</div>
+      <div class="col-6">
+        <%= form_with model:@report, url:admin_report_path(@report), method: :patch, local: true do |f| %>
+          <div class="form-group text-center">
+            <%= f.select :report_status, Report.report_statuses.keys.map { |key| [I18n.t("enums.report.report_status.#{key}"), key] }, {}, class: "form-control" %>
+          </div>
+          <%= f.submit '更新', class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% else %>
+       <div class="col-6">対応ステータス</div>
+       <div class="col-6">該当の<%= @report.display_content_type %>は<br>削除済みです。</div>
+  <% end %>
+ <div class="text-center mt-5">
+    <%= link_to "通報一覧へ", admin_reports_path %>
+  </div>
+</div>

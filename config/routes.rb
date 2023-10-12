@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'reports/index'
+    get 'reports/show'
+  end
+  namespace :public do
+    get 'reports/new'
+  end
   # 会員用
   devise_for :customers, controllers: {
   registrations: "public/registrations",
@@ -23,6 +30,7 @@ Rails.application.routes.draw do
     resources :pet_posts, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
     resources :groups, only: [:index, :show, :destroy]
+    resources :reports, only: [:index, :show, :update]
     end
 
   # 検索関係
@@ -42,6 +50,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
+    resources :reports, only: [:new, :create]
 
     resources :customers, only: [:show, :edit, :update] do
       # リアクションした投稿一覧
@@ -57,6 +66,7 @@ Rails.application.routes.draw do
       end
     end
 
+    # 投稿
       resources :pet_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
         member do
         get 'tag_search/:tag_id', action: 'tag_search', as: :tag_search
@@ -65,6 +75,7 @@ Rails.application.routes.draw do
       resource :sightings, only: [:create, :destroy]
     end
 
+    # チャット
     resources :rooms, only: [:show, :create]
     resources :messages, only: [:create]
     resources :groups, only: [:index, :show, :edit, :update, :new, :create] do

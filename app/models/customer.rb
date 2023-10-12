@@ -13,6 +13,9 @@ class Customer < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  # 通報
+  has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
   #バリデーション
   validates :name, presence: true, length: { minimum: 1, maximum: 10 }, uniqueness: { case_sensitive: false, message: "は既に使用されています" }
@@ -25,6 +28,10 @@ class Customer < ApplicationRecord
   # ログイン権限確認
   def active_for_authentication?
     super && (active == true)
+  end
+
+  def reported_count
+    Report.where(reported_id: self.id).count
   end
 
 
@@ -41,10 +48,6 @@ class Customer < ApplicationRecord
       customer.is_guest = true
       # ゲストユーザーであることを示すフラグ
     end
-  end
-
-  def me?
-    id == current_customer.id
   end
 
 end

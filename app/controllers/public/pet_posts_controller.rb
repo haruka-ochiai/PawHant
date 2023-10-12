@@ -11,6 +11,7 @@ class Public::PetPostsController < ApplicationController
   def show
     if admin_signed_in? || customer_signed_in?
       @pet_post = PetPost.find(params[:id])
+      @report = Report.new
       @pet_post_tags = @pet_post.tags
       @comment = Comment.new
       unless @pet_post.customer.active
