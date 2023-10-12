@@ -30,6 +30,10 @@ class Customer < ApplicationRecord
     super && (active == true)
   end
 
+  def reported_count
+    Report.where(reported_id: self.id).count
+  end
+
 
   # ゲストログイン
   GUEST_CUSTOMER_EMAIL = "guest@example.com"

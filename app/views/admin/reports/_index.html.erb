@@ -16,13 +16,18 @@
           </thead>
           <tbody>
             <% @reports.each do |report| %>
+
               <tr>
                 <td><%= link_to report.id, admin_report_path(report) %></td>
                 <td><%= report.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %></td>
                 <td><%= report.reported.name %></td>
                 <td><%= Report.where(reported_id: report.reported_id).count %></td>
+                <% if report.content.present? %>
                 <td><%= report.report_status_i18n %></td>
               </tr>
+              <% else %>
+              <td>対応済み</td>
+              <% end %>
             <% end %>
           </tbody>
         </table>

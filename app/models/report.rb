@@ -11,6 +11,16 @@ class Report < ApplicationRecord
     where(reported_id: customer_id).count
   end
 
+  def display_content_type
+    if content_type == "Comment"
+      "コメント"
+    elsif content_type == "PetPost"
+      "投稿"
+    else
+      content_type
+    end
+  end
+
   # 通報理由の列挙型（Enum）
   enum reason: {
     inappropriate_content: 0,     # 不適切なコンテンツ
