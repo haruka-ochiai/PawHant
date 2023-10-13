@@ -29,10 +29,15 @@
               <% end %>
             <% end %>
           </p>
-
         </div>
-        <%= link_to pet_post_path(pet_post.id), class: "btn btn-warning" do %>
-          詳細を見る
+        <% if pet_post.pet_status == 'lost' %>
+          <%= link_to pet_post_path(pet_post.id), class: "btn btn-warning" do %>
+            詳細を見る <i class="fa-solid fa-paw"></i>
+          <% end %>
+        <% else %>
+          <%= link_to pet_post_path(pet_post.id), class: "btn btn-primary" do %>
+            詳細を見る <i class="fa-solid fa-paw"></i>
+          <% end %>
         <% end %>
       </div>
       <div class="card-footer mt-2">

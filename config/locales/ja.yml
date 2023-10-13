@@ -15,7 +15,6 @@ ja:
         normal: "元気"
         lost: "迷子"
         found: "保護"
-        resolved: "解決"
       species:
         dog: "犬"
         cat: "猫"
