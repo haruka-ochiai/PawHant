@@ -1,5 +1,5 @@
 <div class="col-md-3 col-sm-6 my-3">
-  <div class="card mx-auto" style="width: 17rem;">
+  <div class="card mx-auto">
     <%= link_to admin_pet_post_path(pet_post.id) do %>
       <%= image_tag pet_post.get_image(500, 500), class: "card-img-top img-fluid", style: "object-fit: cover; height: 280px;" %>
     <% end %>
@@ -8,8 +8,14 @@
         <%= pet_post.sightings.count %> 件の目撃
         <p><%= link_to "#{pet_post.comments.count} 件のコメント", admin_pet_post_path(pet_post.id) %></p>
         <p>場所 :  <b><%= pet_post.prefecture %><%= pet_post.area %>付近</b></p>
-        <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-warning" do %>
-          詳細を見る
+        <% if pet_post.pet_status == 'lost' %>
+          <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-warning" do %>
+            詳細を見る <i class="fa-solid fa-paw"></i>
+          <% end %>
+        <% else %>
+          <%= link_to admin_pet_post_path(pet_post.id), class: "btn btn-primary" do %>
+            詳細を見る <i class="fa-solid fa-paw"></i>
+          <% end %>
         <% end %>
       </div>
       <div class="card-footer">
