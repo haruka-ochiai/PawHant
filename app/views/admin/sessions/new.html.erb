@@ -9,12 +9,6 @@
         <div class="input-group mb-3">
            <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
         </div>
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
         <%= f.submit "ログイン", class:"btn btn-block btn-secondary mt-5" %>
       <% end %>
       <%= render "admin/shared/links" %>
