@@ -53,6 +53,9 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'shoulda-matchers',
+    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
+    branch: 'rails-5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -69,3 +72,4 @@ gem "net-pop"
 gem "net-imap"
 gem 'ransack'
 gem 'jquery-rails'
+gem 'bigdecimal', '1.3.5'
