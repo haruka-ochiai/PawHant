@@ -21,5 +21,28 @@ RSpec.describe 'ログイン後の遷移', type: :system do
   sign_in customer
   visit customer_path(customer)
   expect(page).to have_content '詳細'
+  expect(page).to have_link('編集する')
   end
+
+  it 'ゲストユーザーの場合編集ボタンが表示されない' do
+  guest_user = create(:guest_user, email: 'guest@example.com', password: 'SecureRandom.urlsafe_base64')
+  sign_in guest_user
+  visit customer_path(guest_user)
+  expect(page).to have_content '詳細'
+  expect(page).not_to have_link('編集する')
+  end
+end
+
+  RSpec.describe "編集画面", type: :system do
+  it '会員編集画面の表示' do
+    customer = create(:customer, email: 'taro@example.com', password: 'password')
+    sign_in customer
+    visit edit_customer_path(customer)
+    expect(page).to have_content('編集')
+    expect(page).not_to have_link('編集内容を保存')
+  end
+
+
+
+
 end

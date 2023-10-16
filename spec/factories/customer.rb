@@ -12,4 +12,20 @@ FactoryBot.define do
     reset_password_token { nil }
     reset_password_sent_at { nil }
   end
+  
+  factory :guest_user, class: Customer do
+    email { 'guest@example.com' }
+    password { SecureRandom.urlsafe_base64 }
+    name { 'guestuser' }
+    postcode { '' }
+    phone_number { '' }
+    address { '' }
+    is_guest { true }
+  end
 end
+
+
+
+
+
+
