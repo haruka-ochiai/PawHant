@@ -6,7 +6,7 @@ class Report < ApplicationRecord
   # 通報対象のコンテンツを示す多様性（Polymorphic）関連付け
   belongs_to :content, polymorphic: true
 
-  # reporter_idがuser_idである通報の件数を返すクラスメソッド
+  # reporter_idがcustomer_idである通報の件数を返すクラスメソッド
   def self.reported_count(customer_id)
     where(reported_id: customer_id).count
   end

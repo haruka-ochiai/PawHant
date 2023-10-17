@@ -45,6 +45,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
 
+  # 退会
   def withdraw
     @customer = current_customer
     @customer.update(active: false)

@@ -6,12 +6,12 @@ class Public::SessionsController < Devise::SessionsController
 
    #顧客ログイン後遷移先
   def after_sign_in_path_for(resource)
-      root_path
+    root_path
   end
 
   #顧客ログアウト後遷移先
   def after_sign_out_path_for(resource)
-      root_path
+    root_path
   end
 
   protected

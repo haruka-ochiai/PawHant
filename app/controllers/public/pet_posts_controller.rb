@@ -104,7 +104,7 @@ class Public::PetPostsController < ApplicationController
     end
 
 
-    def tag_params # tagに関するストロングパラメータ
+    def tag_params
       params.require(:pet_post).permit(:tag_name)
     end
 end

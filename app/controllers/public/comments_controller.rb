@@ -6,16 +6,6 @@ class Public::CommentsController < ApplicationController
     @comment = current_customer.comments.new(comment_params)
     @comment.pet_post_id = @pet_post.id
     @comment.save
-  #   if comment.save
-  #     redirect_to request.referer
-  #   else
-  #     @pet_post = PetPost.find(params[:pet_post_id])
-  #     @pet_post_tags = @pet_post.tags
-  #     @comment = Comment.new
-  #     flash[:alert] = "コメント欄に文字を入力してください。"
-  #     redirect_to request.referer
-  #   end
-  # end
   end
 
 
@@ -29,5 +19,4 @@ class Public::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:comment)
   end
-
 end
