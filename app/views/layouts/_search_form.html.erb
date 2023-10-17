@@ -1,6 +1,19 @@
-<%= form_with url:  keyword_search_searches_path, local: true, method: :get, class: "d-flex align-items-center" do |f| %>
+<%= form_with url:  keyword_search_searches_path, local: true, method: :get, class: "d-flex align-items-center", id: "search_form" do |f| %>
   <%= f.text_field :keyword, class: "form-control w-75", placeholder: "エリアを入力" %>
   <%= f.hidden_field :model, value: "pet_post" %>
   <%= f.hidden_field :method, value: "partial" %>
-  <button type="submit" class="btn btn-light">検索</button>
+  <button type="submit" id="search_button", class="btn btn-light">検索</button>
 <% end %>
+<script>
+  $(document).ready(function() {
+    $("#search_button").hide();
+
+    $("#search_form input[type='text']").on("input", function() {
+      if ($(this).val().trim() !== "") {
+        $("#search_button").show();
+      } else {
+        $("#search_button").hide();
+      }
+    });
+  });
+</script>
