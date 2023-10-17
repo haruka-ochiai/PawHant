@@ -28,10 +28,6 @@ class Public::ReportsController < ApplicationController
         render "public/reports/create_failure" # 失敗時のレスポンスを返す
       end
     end
-
-  rescue ActiveRecord::NotNullViolation => e
-    # NOT NULL 制約違反が発生した場合もエラー処理
-      render "public/reports/create_failure", status: :unprocessable_entity
   end
 
   private

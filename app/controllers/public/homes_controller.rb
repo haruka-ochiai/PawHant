@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+  
   def top
     @pet_posts = PetPost.where(pet_status: "lost")
                         .joins(:customer)

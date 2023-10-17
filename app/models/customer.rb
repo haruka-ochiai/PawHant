@@ -47,5 +47,4 @@ class Customer < ApplicationRecord
       # ゲストユーザーであることを示すフラグ
     end
   end
-
 end

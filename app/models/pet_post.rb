@@ -67,6 +67,4 @@ class PetPost < ApplicationRecord
   enum species: { dog: 0, cat: 1, bird: 2, other: 3 }
   enum gender: { male: 0, female: 1, unknown: 2 }
   enum weight: {less_than_1kg: 0, between_1_and_5kg: 1, between_5_and_10kg: 2, over_10kg: 3 }
-
-
 end
