@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
-  before_action :is_matching_login_customer, only: [:edit, :update]
   before_action :authenticate_customer!
+  before_action :is_matching_login_customer, only: [:edit, :update]
 
   def show
     @customer = Customer.find(params[:id])
@@ -72,14 +72,18 @@ class Public::CustomersController < ApplicationController
                                       :email)
   end
 
-
   def is_matching_login_customer
-    customer = Customer.find(params[:id])
-    unless customer.id == current_customer.id
-      redirect_to root_path
-    end
-    if current_customer.is_guest?
+  customer = Customer.find(params[:id])
+
+  # ゲストユーザーの場合は常にルートパスにリダイレクト
+  if current_customer.is_guest?
     redirect_to root_path, alert: "ゲストユーザーは編集できません。"
-    end
+    return
   end
+
+  unless customer.id == current_customer.id
+    redirect_to root_path
+  end
+end
+
 end
