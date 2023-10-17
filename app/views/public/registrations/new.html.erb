@@ -13,19 +13,19 @@
             <% end %>
           <% end %>
           <div class="input-group mb-3">
-            <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前"%>
+            <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"ユーザー名"%>
           </div>
           <div class="input-group mb-3">
             <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス" %>
           </div>
           <div class="input-group mb-3">
-            <%= f.text_field :postcode, autofocus: true, class:"form-control", id:"inputName", placeholder:"郵便番号"%>
+            <%= f.text_field :postcode, autofocus: true, class:"form-control", id:"inputName", placeholder:"郵便番号(ハイフンなし)"%>
           </div>
           <div class="input-group mb-3">
             <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputName", placeholder:"住所"%>
           </div>
           <div class="input-group mb-3">
-            <%= f.text_field :phone_number, autofocus: true, class:"form-control", id:"inputName", placeholder:"電話番号"%>
+            <%= f.text_field :phone_number, autofocus: true, class:"form-control", id:"inputName", placeholder:"電話番号(ハイフンなし)"%>
           </div>
           <div class="input-group mb-3">
             <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
