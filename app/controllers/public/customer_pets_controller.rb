@@ -1,6 +1,6 @@
 class Public::CustomerPetsController < ApplicationController
-  before_action :is_matching_login_customer, only: [:new, :edit, :update]
   before_action :authenticate_customer!
+  before_action :is_matching_login_customer, only: [:new, :edit, :update]
 
   def new
     @customer = Customer.find(params[:customer_id])
@@ -57,8 +57,17 @@ class Public::CustomerPetsController < ApplicationController
   end
 
   def is_matching_login_customer
-    customer = Customer.find(params[:customer_id])
-    unless customer.id == current_customer.id
+  # URLパラメータからcustomer_idを取得
+  customer_id = params[:customer_id]
+
+  # ゲストユーザーの場合は常にルートパスにリダイレクト
+  if current_customer.is_guest?
+    redirect_to root_path
+    return
+  end
+
+    # ログインユーザーのIDとcustomer_idが一致しない場合はルートパスにリダイレクト
+    unless customer_id && customer_id.to_i == current_customer.id
       redirect_to root_path
     end
   end
