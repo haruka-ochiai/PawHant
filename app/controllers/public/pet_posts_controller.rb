@@ -44,7 +44,11 @@ class Public::PetPostsController < ApplicationController
 
   def edit
     @pet_post = PetPost.find(params[:id])
-    @pet_post_tags = @pet_post.tags.pluck(:tag_name)
+    if @pet_post.customer == current_customer
+      @pet_post_tags = @pet_post.tags.pluck(:tag_name)
+    else
+      redirect_to root_path
+    end
   end
 
   def update

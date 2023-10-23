@@ -61,7 +61,7 @@
 </div>
 <div class="form-group">
   <%= f.label :area, "詳細住所(20文字以内)" %>
-  <%= f.text_field :area, class: "form-control", placeholder: "例:〇〇市〇〇町11-1" %>
+  <%= f.text_area :area, class: "form-control", placeholder: "例:〇〇市〇〇町11-1" %>
 </div>
 <div class="form-group">
   <%= f.label :occurred_on, "発生日" %>
@@ -69,9 +69,9 @@
 </div>
 <div class="form-group">
   <%= f.label :characteristics, "特徴(50文字以内)" %>
-  <%= f.text_field :characteristics, class: "form-control", placeholder: "毛色、模様、特徴を入力してください" %>
+  <%= f.text_area :characteristics, class: "form-control", placeholder: "毛色、模様、特徴を入力してください" %>
 </div>
 <div class="form-group">
   <%= f.label :description, "説明文特徴(60文字以内)" %>
-  <%= f.text_field :description, class: "form-control", placeholder: "状況や伝えたいことなどご自由にお書きください"  %>
+  <%= f.text_area :description, class: "form-control", placeholder: "状況や伝えたいことなどご自由にお書きください"  %>
 </div>
