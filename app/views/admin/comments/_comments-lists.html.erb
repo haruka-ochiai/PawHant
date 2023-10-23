@@ -1,6 +1,7 @@
 <table class= "table table-borderless">
   <% pet_post.comments.each do |comment| %>
     <tr>
+      <td>投稿日：<%= comment.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') %></td>
       <td><%= link_to comment.customer.name, admin_customer_path(comment.customer)  %></td>
       <td><%= comment.comment %></td>
       <td>
