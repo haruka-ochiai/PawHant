@@ -1,17 +1,19 @@
-<table class= "table table-borderless">
-  <% pet_post.comments.each do |comment| %>
-    <tr>
-      <td>投稿日：<%= comment.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') %></td>
-      <td><%= link_to comment.customer.name, customer_path(comment.customer) %></td>
-      <td><%= comment.comment %></td>
-      <td>
-        <% if comment.customer == current_customer %>
-          <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-secondary"  %>
-        <% end %>
-      </td>
-      <td class="report-btn" id="report-btn-<%= comment.id %>">
-        　<%= render "public/reports/report_btn", comment: comment %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% pet_post.comments.each do |comment| %>
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= link_to comment.customer.name, customer_path(comment.customer) %></h5>
+        <h5>投稿日：<%= comment.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') %></h5>
+        
+        <p class="card-text"><%= comment.comment %></p>
+        <p>
+          <% if comment.customer == current_customer %>
+            <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-secondary"  %>
+          <% end %>
+        </p>
+        <div class="report-btn" id="report-btn-<%= comment.id %>">
+          　<%= render "public/reports/report_btn", comment: comment %>
+        </div>
+      </tr>
+    </div>
+  </div>
+<% end %>
