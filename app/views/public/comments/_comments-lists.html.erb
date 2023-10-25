@@ -1,16 +1,25 @@
-<table class= "table table-borderless">
-  <% pet_post.comments.each do |comment| %>
-    <tr>
-      <td><%= link_to comment.customer.name, customer_path(comment.customer) %></td>
-      <td><%= comment.comment %></td>
-      <td>
-        <% if comment.customer == current_customer %>
-          <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary"  %>
-        <% end %>
-      </td>
-      <td class="report-btn" id="report-btn-<%= comment.id %>">
-        　<%= render "public/reports/report_btn", comment: comment %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% pet_post.comments.each do |comment| %>
+  <div class="card my-2">
+    <div class="card-body p-2">
+      <div class="d-flex">
+        <div class="card-title ms-3 mb-1">
+          <%= link_to comment.customer.name, customer_path(comment.customer) %>
+        </div>
+        <div class="mx-3">
+          <%= "#{time_ago_in_words(comment.created_at)}前" %>
+        </div>
+      </div>
+      <p class="card-text mb-2"><%= comment.comment %></p>
+      <div class="d-flex">
+        <div class="report-btn" id="report-btn-<%= comment.id %>">
+          <%= render "public/reports/report_btn", comment: comment %>
+        </div>
+        <div class="mx-3">
+          <% if comment.customer == current_customer %>
+            <%= link_to "削除", pet_post_comment_path(comment.pet_post, comment), method: :delete, remote: true, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-secondary"  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
