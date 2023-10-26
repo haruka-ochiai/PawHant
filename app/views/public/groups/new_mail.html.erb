@@ -1,7 +1,8 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-5 col-md-8 mx-auto">
-      <h4 class="my-4 ml-4">通知メール</h4>
+      <h4 class="mt-4 ml-4">通知メール</h4>
+      <p class="mb-4 ml-4">タイトルと本文を入力してください。(送信ボタンが表示されます。)</p>
     </div>
   </div>
 </div>
@@ -9,18 +10,34 @@
   <div class="row">
     <div class="col-md-8 sm-8 mx-auto">
       <%= form_with url: group_send_mail_path(@group),method: :get, local: true do |f| %>
-        <div class="form-group">
+        <div class="form-group mt-4">
           <%= f.label :タイトル %>
-          <%= f.text_field :mail_title,class:'form-control'%>
+          <%= f.text_field :mail_title,class:'form-control mail-title'%>
         </div>
         <div class="form-group">
           <%=f.label:本文 %>
-          <%= f.text_area :mail_content,class:'form-control mb-4' %>
+          <%= f.text_area :mail_content,class:'form-control mail-content mb-4' %>
         </div>
         <div>
-          <%= f.submit'送信', class: "btn btn-outline-primary" %>
+          <%= f.submit'送信', class: "btn btn-outline-primary send-button" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+  $(".send-button").hide();
+  
+  $(".mail-title, .mail-content").on("input", function() {
+    const titleInput = $(".mail-title").val().trim();
+    const contentInput = $(".mail-content").val().trim();
+    
+    if (titleInput !== "" && contentInput !== "") {
+      $(".send-button").show();
+    } else {
+      $(".send-button").hide();
+    }
+  });
+});
+</script>

@@ -10,7 +10,7 @@
   <tbody>
     <% groups.each do |group| %>
       <tr>
-        <td><%= image_tag group.get_group_image(500, 500), size: "50x50", class: "rounded" %></td>
+        <td><%= image_tag group.get_group_image(500, 500), class: "group-index-img" %></td>
         <td><%= group.name %></td>
         <td><%= group.customers.where(active: true).count %></td>
         <td><%= link_to '詳細を見る', group_path(group), class: "btn btn-sm btn-outline-warning" %></td>
