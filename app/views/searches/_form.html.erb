@@ -1,25 +1,25 @@
 <div class="form-group">
   <%= f.label :pet_status, "ペット状況" %>
   <div class="form-check">
-    <%= f.radio_button :pet_status_eq, 1 %>迷子
-    <%= f.radio_button :pet_status_eq, 2 %>保護
+    <%= f.radio_button :pet_status_eq, 1 %> <%= f.label :pet_status_eq, "迷子", value: 1 %><br>
+    <%= f.radio_button :pet_status_eq, 2 %> <%= f.label :pet_status_eq, "保護", value: 2 %>
   </div>
 </div>
 <div class="form-group">
   <%= f.label :pet_status, "ペットの種類" %>
   <div class="form-check">
-    <%= f.radio_button :species_eq, 0 %>犬
-    <%= f.radio_button :species_eq, 1 %>猫
-    <%= f.radio_button :species_eq, 2%>鳥
-    <%= f.radio_button :species_eq, 3%>その他
+    <%= f.radio_button :species_eq, 0 %> <%= f.label :species_eq, "犬", value: 0 %><br>
+    <%= f.radio_button :species_eq, 1 %> <%= f.label :species_eq, "猫", value: 1 %><br>
+    <%= f.radio_button :species_eq, 2%> <%= f.label :species_eq, "鳥", value: 2 %><br>
+    <%= f.radio_button :species_eq, 3%> <%= f.label :species_eq, "その他", value: 3 %>
   </div>
 </div>
 <div class="form-group">
   <%= f.label :gender, "性別" %>
   <div class="form-check">
-    <%= f.radio_button :gender_eq, 0 %>オス
-    <%= f.radio_button :gender_eq, 1 %>メス
-    <%= f.radio_button :gender_eq, 2 %>不明
+    <%= f.radio_button :gender_eq, 0 %> <%= f.label :gender_eq, "オス", value: 0 %><br>
+    <%= f.radio_button :gender_eq, 1 %> <%= f.label :gender_eq, "メス", value: 1 %><br>
+    <%= f.radio_button :gender_eq, 2 %> <%= f.label :gender_eq, "不明", value: 2 %><br>
   </div>
 </div>
 <div class="form-group">
