@@ -49,11 +49,23 @@
           <% end %>
         </div>
       </div>
-      <%= form_with model: @message do |f| %>
-        <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-control" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿", class: 'btn btn-outline-secondary mt-2'%>
-      <% end %>
+      <div class = "mb-5">
+        <%= form_with model: @message do |f| %>
+          <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , id: "chat_textarea", size: 50, class:"form-control" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "送信", class: 'btn btn-outline-secondary mt-2', id: "chat_button"%>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  $("#chat_button").hide();
+  $("#chat_textarea").on("input", function() {
+  if ($(this).val().trim() !== "") {
+    $("#chat_button").show();
+  } else {
+    $("#chat_button").hide();
+  }
+});
+</script>
