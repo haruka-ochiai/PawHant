@@ -12,21 +12,36 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 col-sm-8">
-      <div class="container">
+     <div class="container">
         <div class="row">
           <% if @messages.present? %>
+            <% current_date = nil %>
             <% @messages.each do |m| %>
               <% if @myCustomerId == m.customer.id %>
                 <div class="col-12">
-                  <div class="message-content d-flex justify-content-end">
-                    <p class="message-text p-2 bg-light text-dark text-right d-inline-block"><%= m.message %></p>
+                  <div class="message-content justify-content-end clearfix">
+                    <% if m.created_at.to_date != current_date %>
+                      <!-- 新しい日付が始まる場合に日付を表示 -->
+                      <p class="message-date text-center"><%= m.created_at.in_time_zone('Tokyo').strftime("%m月%d日") %></p>
+                      <% current_date = m.created_at.to_date %>
+                    <% end %>
+                    <p class="message-time small text-right mb-1"><%= m.created_at.in_time_zone('Tokyo').strftime('%H:%M') %></p>
+                    <p class="message-text p-2 bg-light text-dark d-inline-block float-right"><%= m.message %></p>
                   </div>
                 </div>
               <% else %>
                 <div class="col-12">
-                  <div class="message-content">
-                    <p class="message-name mb-1"><%= m.customer.name %></p>
-                    <p class="message-text p-2 bg-warning text-dark d-inline-block"><%= m.message %></p>
+                  <div class="message-content my-2">
+                    <% if m.created_at.to_date != current_date %>
+                      <!-- 新しい日付が始まる場合に日付を表示 -->
+                      <p class="message-date text-center"><%= m.created_at.strftime("%m月%d日") %></p>
+                      <% current_date = m.created_at.to_date %>
+                    <% end %>
+                    <div class="d-flex justify-content">
+                      <p class="message-name mb-1"><%= m.customer.name %></p>
+                      <p class="message-time small mb-1 ml-2"><%= m.created_at.in_time_zone('Tokyo').strftime('%H:%M') %></p>
+                    </div>
+                    <p class="message-text p-2 mb-1 bg-warning text-dark d-inline-block"><%= m.message %></p>
                   </div>
                 </div>
               <% end %>
